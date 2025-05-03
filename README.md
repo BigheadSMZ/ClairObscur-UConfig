@@ -1,7 +1,7 @@
 # Clair Obscur: Expedition 33 - Unreal Config
 Creates and configures "Engine.ini" for Clair Obscur: Expedition 33.
 
-![image](https://github.com/user-attachments/assets/9aa94f31-03e5-4839-949a-2230a4b1804d)
+![image](https://github.com/user-attachments/assets/4fbb170d-2a4a-4581-8da0-6392675ee803)
 
 # Installation
 The executable can be ran from anywhere, but it is suggested to copy it alongside **Expedition33\*.exe** (where * is a wildcard, the Steam version is **Expedition33_Steam.exe** for example). Doing this allows launching the game from the configurator.
