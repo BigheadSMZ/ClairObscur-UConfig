@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -30,7 +31,21 @@ namespace ClairObscurConfig
         {
             var RetVal = new StringBuilder(255);
             GetPrivateProfileString(Section ?? this.EXE, Key, "", RetVal, 255, this.Path);
-            return RetVal.ToString();
+
+            // Convert to string.
+            string Value = RetVal.ToString();
+
+            // Some people like to put comments on lines so catch that.
+            if (Value.Contains(";") | Value.Contains("#"))
+            {
+                // Split on semicolon comments.
+                string[] SplitValue = Value.Split(';','#');
+
+                // Get only the value.
+                Value = SplitValue[0].Trim();
+            }
+            // Now we can return the proper value.
+            return Value;
         }
         // Write an entry and a value to the INI file.
         public void Write(string Key, string Value, string Section = null)
