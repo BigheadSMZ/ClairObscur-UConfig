@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace ClairObscurConfig
 {
     public partial class Form_MainForm : Form
     {
         bool ControlHeld;
+        bool AllowToggle;
 
         public Form_MainForm()
         {
             InitializeComponent();
+        }
+        private void Form_MainForm_Shown(object sender, EventArgs e)
+        {
+            // Prevents the radio button events from firing until after the dialog is shown. This is a cheap and dirty workaround to
+            // avoid "double loading" the INI files and also spamming the "INI doesn't exist" message if it's not found.
+            this.AllowToggle = true;
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Game Type GroupBox
@@ -18,7 +24,7 @@ namespace ClairObscurConfig
         private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
         {
             // Get the check state.
-            if ((sender as RadioButton).Checked)
+            if ((sender as RadioButton).Checked & this.AllowToggle)
             {
                 // Update the INI properties.
                 EngineINI.Type = "Steam";
@@ -36,8 +42,8 @@ namespace ClairObscurConfig
                         break; 
                     }
                     case false: 
-                    { 
-                        Forms.PromptININotExist(); 
+                    {
+                        Forms.PromptININotExist();
                         Forms.ToggleGUI(false); 
                         break; 
                     }
@@ -47,7 +53,7 @@ namespace ClairObscurConfig
         private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
         {
             // Get the check state.
-            if ((sender as RadioButton).Checked)
+            if ((sender as RadioButton).Checked & this.AllowToggle)
             {
                 // Update the INI properties.
                 EngineINI.Type = "GamePass";
@@ -304,5 +310,6 @@ namespace ClairObscurConfig
                 Forms.MainDialog.Button_ExitSave.Text = "Save / Exit";
             }
         }
+
     }
 }

@@ -986,6 +986,7 @@
             this.Name = "Form_MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clair Obscur: Expedition 33 - Unreal Config";
+            this.Shown += new System.EventHandler(this.Form_MainForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
