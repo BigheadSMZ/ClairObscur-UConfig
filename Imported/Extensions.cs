@@ -42,8 +42,6 @@ namespace ClairObscurConfig
 
         public static bool TestPath(this string InputPath, bool IsDirectory = false)
         {
-            Console.WriteLine(InputPath);
-
             // If the value is null or empty then return false.
             if (InputPath == null || InputPath == "") { return false; }
 
