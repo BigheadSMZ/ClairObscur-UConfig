@@ -12,8 +12,6 @@ namespace ClairObscurConfig
         public static string  AppVersion;
         public static string  BasePath;
         public static string  GamePath;
-        public static string  INIPath;
-        public static IniFile INIFile;
 
         public static void SetApplicationValues()
         {
@@ -21,19 +19,20 @@ namespace ClairObscurConfig
             Config.AppPath  = Assembly.GetExecutingAssembly().Location;
             Config.AppData  = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             Config.BasePath = Path.GetDirectoryName(Config.AppPath);
-            Config.INIPath  = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\Engine.ini";
-            Config.INIFile  = new IniFile(Config.INIPath);
             Config.GamePath = Game.GetExecutable();
+
+            // Initialize the INI file.
+            EngineINI.InitializeINI();
 
             // We might need these earlier than I planned.
             Forms.OkayDialog  = new Form_OkayForm();
             Forms.YesNoDialog = new Form_YesNoForm();
 
             // If the INI exists, load the values. If it doesn't exist alert the user.
-            switch (Config.INIPath.TestPath())
+            switch (EngineINI.Path.TestPath())
             {
                 case true : { EngineINI.LoadINIValues(); break; }
-                case false: { Forms.PromptNoINIBoot();   break; }
+                case false: { Forms.PromptININotExist();   break; }
             }
         }
     }

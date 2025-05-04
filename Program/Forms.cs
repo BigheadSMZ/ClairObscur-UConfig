@@ -18,10 +18,16 @@ namespace ClairObscurConfig
             // Set the title of the window to include the current version.
             Forms.MainDialog.Text = "Clair Obscur: Expedition 33 - Unreal Config v" + Config.AppVersion;
 
-            // Make sure the INI exists before attempting to update values.
-            switch (Config.INIPath.TestPath())
+            // Select the radio button based on INI type.
+            switch (EngineINI.Type)
             {
-                case true:  { Forms.UpdateValues();   break; }
+                case "Steam" :   { Forms.MainDialog.Radio_Steam.Checked = true;    break; }
+                case "GamePass": { Forms.MainDialog.Radio_GamePass.Checked = true; break; }
+            }
+            // Make sure the INI exists before attempting to update values.
+            switch (EngineINI.Path.TestPath())
+            {
+                case true:  { Forms.UpdateValues() ;  break; }
                 case false: { Forms.ToggleGUI(false); break; }
             }
             // Check to see if the game executable is in the same path as the configurator.
@@ -34,6 +40,9 @@ namespace ClairObscurConfig
 
         public static void UpdateValues()
         {
+            // Do one more validation so the GUI doesn't crash with invalid values.
+            EngineINI.ValidateValues();
+
             // Update the dialog with the loaded values that need translated. 
             Forms.MainDialog.Combo_AF.SelectedItem         = ValueSwap.Translate_AA(EngineINI.Anist_Val);
             Forms.MainDialog.Combo_DoF.SelectedItem        = ValueSwap.Translate_Scale(EngineINI.Depth_Val);
@@ -91,7 +100,7 @@ namespace ClairObscurConfig
             FileExplorer.Start();
         }
 
-        public static void PromptNoINIBoot()
+        public static void PromptININotExist()
         {
             // We simply need to let the user know the INI was created.
             string Title   = "Missing Engine.ini";
@@ -118,7 +127,7 @@ namespace ClairObscurConfig
         public static void PromptCreateNewINI()
         {
             // Check if the file already exists.
-            if (Config.INIPath.TestPath())
+            if (EngineINI.Path.TestPath())
             {
                 // Ask the user if they wish to replace it.
                 string Title   = "Replace Engine.ini?";
@@ -172,8 +181,8 @@ namespace ClairObscurConfig
         {
             // Let the user know their changes were saved.
             string Title = "Game Not Found";
-            string Message = "The game executable was not found. To launch the game with this configurator, it must be placed alongside \"Expedition33*.exe\" in the game folder.";
-            Forms.OkayDialog.Display(Title, Message, 250, 44, 32, 10, 10);
+            string Message = "Game executable not found. To launch the game with this configurator, place it alongside \"Expedition33_Steam.exe\", \"Sandfall.exe\", or \"SandFall-Win64-Shipping.exe\".";
+            Forms.OkayDialog.Display(Title, Message, 290, 44, 10, 10, 10);
             EngineINI.WriteINIValues();
         }
 

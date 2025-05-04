@@ -78,6 +78,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_Base = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_AppData = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_EngineINI = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeperatorA = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_ExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_ExitSave = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +99,9 @@
             this.Button_Save = new System.Windows.Forms.Button();
             this.Button_Reload = new System.Windows.Forms.Button();
             this.GlobalToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.StripItem_EngineINI = new System.Windows.Forms.ToolStripMenuItem();
+            this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
+            this.Radio_GamePass = new System.Windows.Forms.RadioButton();
+            this.Radio_Steam = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -106,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_ViewDist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_Sharpen)).BeginInit();
             this.MainMenuStrip.SuspendLayout();
+            this.GroupBox_GameVer.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -156,7 +160,7 @@
             this.GroupBox_Main.Controls.Add(this.Combo_DoF);
             this.GroupBox_Main.Controls.Add(this.Label_AF);
             this.GroupBox_Main.Controls.Add(this.Combo_AF);
-            this.GroupBox_Main.Location = new System.Drawing.Point(12, 267);
+            this.GroupBox_Main.Location = new System.Drawing.Point(12, 320);
             this.GroupBox_Main.Name = "GroupBox_Main";
             this.GroupBox_Main.Size = new System.Drawing.Size(500, 275);
             this.GroupBox_Main.TabIndex = 1;
@@ -672,7 +676,7 @@
             // 
             // Button_ExitSave
             // 
-            this.Button_ExitSave.Location = new System.Drawing.Point(391, 548);
+            this.Button_ExitSave.Location = new System.Drawing.Point(391, 601);
             this.Button_ExitSave.Name = "Button_ExitSave";
             this.Button_ExitSave.Size = new System.Drawing.Size(120, 30);
             this.Button_ExitSave.TabIndex = 2;
@@ -765,6 +769,14 @@
             this.StripItem_AppData.Text = "Open AppData Folder";
             this.StripItem_AppData.ToolTipText = "Opens the Sandfall AppData \r\nbase folder in File Explorer.\r\n";
             this.StripItem_AppData.Click += new System.EventHandler(this.StripItem_AppData_Click);
+            // 
+            // StripItem_EngineINI
+            // 
+            this.StripItem_EngineINI.Name = "StripItem_EngineINI";
+            this.StripItem_EngineINI.Size = new System.Drawing.Size(196, 22);
+            this.StripItem_EngineINI.Text = "Open Engine.ini Folder";
+            this.StripItem_EngineINI.ToolTipText = "Opens the AppData folder \r\nwhere Engine.ini is located.";
+            this.StripItem_EngineINI.Click += new System.EventHandler(this.StripItem_EngineINI_Click);
             // 
             // ToolStripSeperatorA
             // 
@@ -891,7 +903,7 @@
             // 
             // Button_Launch
             // 
-            this.Button_Launch.Location = new System.Drawing.Point(265, 548);
+            this.Button_Launch.Location = new System.Drawing.Point(265, 601);
             this.Button_Launch.Name = "Button_Launch";
             this.Button_Launch.Size = new System.Drawing.Size(120, 30);
             this.Button_Launch.TabIndex = 5;
@@ -901,7 +913,7 @@
             // 
             // Button_Save
             // 
-            this.Button_Save.Location = new System.Drawing.Point(13, 548);
+            this.Button_Save.Location = new System.Drawing.Point(13, 601);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(120, 30);
             this.Button_Save.TabIndex = 6;
@@ -911,7 +923,7 @@
             // 
             // Button_Reload
             // 
-            this.Button_Reload.Location = new System.Drawing.Point(139, 548);
+            this.Button_Reload.Location = new System.Drawing.Point(139, 601);
             this.Button_Reload.Name = "Button_Reload";
             this.Button_Reload.Size = new System.Drawing.Size(120, 30);
             this.Button_Reload.TabIndex = 7;
@@ -919,19 +931,47 @@
             this.Button_Reload.UseVisualStyleBackColor = true;
             this.Button_Reload.Click += new System.EventHandler(this.Button_Reload_Click);
             // 
-            // StripItem_EngineINI
+            // GroupBox_GameVer
             // 
-            this.StripItem_EngineINI.Name = "StripItem_EngineINI";
-            this.StripItem_EngineINI.Size = new System.Drawing.Size(196, 22);
-            this.StripItem_EngineINI.Text = "Open Engine.ini Folder";
-            this.StripItem_EngineINI.ToolTipText = "Opens the AppData folder \r\nwhere Engine.ini is located.";
-            this.StripItem_EngineINI.Click += new System.EventHandler(this.StripItem_EngineINI_Click);
+            this.GroupBox_GameVer.Controls.Add(this.Radio_GamePass);
+            this.GroupBox_GameVer.Controls.Add(this.Radio_Steam);
+            this.GroupBox_GameVer.Location = new System.Drawing.Point(13, 267);
+            this.GroupBox_GameVer.Name = "GroupBox_GameVer";
+            this.GroupBox_GameVer.Size = new System.Drawing.Size(498, 48);
+            this.GroupBox_GameVer.TabIndex = 8;
+            this.GroupBox_GameVer.TabStop = false;
+            this.GroupBox_GameVer.Text = "Game Version";
+            // 
+            // Radio_GamePass
+            // 
+            this.Radio_GamePass.AutoSize = true;
+            this.Radio_GamePass.Location = new System.Drawing.Point(126, 19);
+            this.Radio_GamePass.Name = "Radio_GamePass";
+            this.Radio_GamePass.Size = new System.Drawing.Size(114, 17);
+            this.Radio_GamePass.TabIndex = 1;
+            this.Radio_GamePass.TabStop = true;
+            this.Radio_GamePass.Text = "GamePass Version";
+            this.Radio_GamePass.UseVisualStyleBackColor = true;
+            this.Radio_GamePass.CheckedChanged += new System.EventHandler(this.Radio_GamePass_CheckedChanged);
+            // 
+            // Radio_Steam
+            // 
+            this.Radio_Steam.AutoSize = true;
+            this.Radio_Steam.Location = new System.Drawing.Point(16, 19);
+            this.Radio_Steam.Name = "Radio_Steam";
+            this.Radio_Steam.Size = new System.Drawing.Size(93, 17);
+            this.Radio_Steam.TabIndex = 0;
+            this.Radio_Steam.TabStop = true;
+            this.Radio_Steam.Text = "Steam Version";
+            this.Radio_Steam.UseVisualStyleBackColor = true;
+            this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
             // Form_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 587);
+            this.ClientSize = new System.Drawing.Size(524, 637);
+            this.Controls.Add(this.GroupBox_GameVer);
             this.Controls.Add(this.Button_Reload);
             this.Controls.Add(this.Button_Save);
             this.Controls.Add(this.Button_Launch);
@@ -957,6 +997,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_Sharpen)).EndInit();
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.GroupBox_GameVer.ResumeLayout(false);
+            this.GroupBox_GameVer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1032,6 +1074,9 @@
         private System.Windows.Forms.ToolStripMenuItem StripItem_AppData;
         private System.Windows.Forms.ToolStripMenuItem StripItem_Base;
         private System.Windows.Forms.ToolStripMenuItem StripItem_EngineINI;
+        private System.Windows.Forms.GroupBox GroupBox_GameVer;
+        public System.Windows.Forms.RadioButton Radio_GamePass;
+        public System.Windows.Forms.RadioButton Radio_Steam;
     }
 }
 

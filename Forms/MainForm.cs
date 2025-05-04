@@ -13,7 +13,68 @@ namespace ClairObscurConfig
             InitializeComponent();
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        //   Main Dialog - GroupBox
+        //   Main Dialog - Game Type GroupBox
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
+        {
+            // Get the check state.
+            if ((sender as RadioButton).Checked)
+            {
+                // Update the INI properties.
+                EngineINI.Type = "Steam";
+                EngineINI.Path = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\Engine.ini";
+                EngineINI.File = new IniFile(EngineINI.Path);
+
+                // Try to load and toggle the GUI based on existence.
+                switch (EngineINI.Path.TestPath())
+                {
+                    case true:  
+                    { 
+                        EngineINI.LoadINIValues(); 
+                        Forms.ToggleGUI(true); 
+                        Forms.UpdateValues(); 
+                        break; 
+                    }
+                    case false: 
+                    { 
+                        Forms.PromptININotExist(); 
+                        Forms.ToggleGUI(false); 
+                        break; 
+                    }
+                }
+            }
+        }
+        private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
+        {
+            // Get the check state.
+            if ((sender as RadioButton).Checked)
+            {
+                // Update the INI properties.
+                EngineINI.Type = "GamePass";
+                EngineINI.Path = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK\\Engine.ini";
+                EngineINI.File = new IniFile(EngineINI.Path);
+
+                // Try to load and toggle the GUI based on existence.
+                switch (EngineINI.Path.TestPath())
+                {
+                    case true:
+                    {
+                        EngineINI.LoadINIValues();
+                        Forms.ToggleGUI(true);
+                        Forms.UpdateValues();
+                        break;
+                    }
+                    case false:
+                    {
+                        Forms.PromptININotExist();
+                        Forms.ToggleGUI(false);
+                        break;
+                    }
+                }
+            }
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Main Dialog - Options GroupBox
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void Combo_AF_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -214,7 +275,7 @@ namespace ClairObscurConfig
         private void Button_Exit_Click(object sender, EventArgs e)
         {
             // The INI must exist and the Control key not held.
-            if (Config.INIPath.TestPath() & !this.ControlHeld)
+            if (EngineINI.Path.TestPath() & !this.ControlHeld)
             {
                 // Update the INI file.
                 EngineINI.WriteINIValues();
@@ -225,7 +286,7 @@ namespace ClairObscurConfig
         private void Form_MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             // Must be Control Key, the INI must exist, and the variable must be false.
-            if (e.KeyCode == Keys.ControlKey & Config.INIPath.TestPath() & !this.ControlHeld)
+            if (e.KeyCode == Keys.ControlKey & EngineINI.Path.TestPath() & !this.ControlHeld)
             {
                 // Change the button text of the Exit button to not save.
                 e.SuppressKeyPress = true;
@@ -236,7 +297,7 @@ namespace ClairObscurConfig
         private void Form_MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             // Must be Control Key and the INI must exist.
-            if (e.KeyCode == Keys.ControlKey & Config.INIPath.TestPath())
+            if (e.KeyCode == Keys.ControlKey & EngineINI.Path.TestPath())
             {
                 // Restore the save text on the Exit button.
                 this.ControlHeld = false;
