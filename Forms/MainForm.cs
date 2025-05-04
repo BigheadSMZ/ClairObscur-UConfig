@@ -80,15 +80,15 @@ namespace ClairObscurConfig
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
             EngineINI.TMQua_Val = NewValue;
         }
-        private void Num_Sharpen_ValueChanged(object sender, EventArgs e)
-        {
-            string NewValue = Convert.ToString((sender as NumericUpDown).Value);
-            EngineINI.TMSha_Val = NewValue;
-        }
         private void Combo_GrainQuant_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
             EngineINI.TMGra_Val = ValueSwap.Translate_Binary(NewValue);
+        }
+        private void Num_Sharpen_ValueChanged(object sender, EventArgs e)
+        {
+            string NewValue = Convert.ToString((sender as NumericUpDown).Value);
+            EngineINI.TMSha_Val = NewValue;
         }
         private void Num_ViewDist_ValueChanged(object sender, EventArgs e)
         {
