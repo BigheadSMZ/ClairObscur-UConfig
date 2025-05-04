@@ -26,6 +26,16 @@ namespace ClairObscurConfig
                         return FileProperties.FullName;
                     }
                 }
+                // Let's also look for Sandfall which is the GamePass version or the "main" executable in both versions.
+                if (Wildcard.Match(FileProperties.BaseName, "Sandfall*"))
+                {
+                    // It must be an executable and not be this configurator.
+                    if (FileProperties.Extension == ".exe")
+                    {
+                        // After a rigid code adventure, we have the game executable.
+                        return FileProperties.FullName;
+                    }
+                }
             }
             // If we got here, sadly the executable is not here.
             return "";
