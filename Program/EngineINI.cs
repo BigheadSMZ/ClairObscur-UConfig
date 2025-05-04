@@ -106,27 +106,30 @@ namespace ClairObscurConfig
             EngineINI.ViewF_Val = Config.INIFile.Read(EngineINI.ViewF_Str, "SystemSettings"); // - foliage.LODDistanceScale
 
             // If the INI existed, but some values don't exist, then fill them with default values.
-            if (EngineINI.Anist_Val == "") { ValuesMissing = true; EngineINI.Anist_Val = "4"; }
-            if (EngineINI.Depth_Val == "") { ValuesMissing = true; EngineINI.Depth_Val = "2"; }
-            if (EngineINI.Bloom_Val == "") { ValuesMissing = true; EngineINI.Bloom_Val = "2"; }
-            if (EngineINI.MBlur_Val == "") { ValuesMissing = true; EngineINI.MBlur_Val = "2"; }
-            if (EngineINI.LenFl_Val == "") { ValuesMissing = true; EngineINI.LenFl_Val = "2"; }
-            if (EngineINI.FogEf_Val == "") { ValuesMissing = true; EngineINI.FogEf_Val = "1"; }
-            if (EngineINI.VoFog_Val == "") { ValuesMissing = true; EngineINI.VoFog_Val = "1"; }
-            if (EngineINI.SCoFr_Val == "") { ValuesMissing = true; EngineINI.SCoFr_Val = "0"; }
-            if (EngineINI.Distr_Val == "") { ValuesMissing = true; EngineINI.Distr_Val = "0"; }
-            if (EngineINI.Grain_Val == "") { ValuesMissing = true; EngineINI.Grain_Val = "0"; }
-            if (EngineINI.ShadQ_Val == "") { ValuesMissing = true; EngineINI.ShadQ_Val = "1"; }
-            if (EngineINI.ShadR_Val == "") { ValuesMissing = true; EngineINI.ShadR_Val = "1024"; }
-            if (EngineINI.TMQua_Val == "") { ValuesMissing = true; EngineINI.TMQua_Val = "5"; }
-            if (EngineINI.TMSha_Val == "") { ValuesMissing = true; EngineINI.TMSha_Val = "0.6"; }
-            if (EngineINI.TMGra_Val == "") { ValuesMissing = true; EngineINI.TMGra_Val = "1"; }
-            if (EngineINI.ViewD_Val == "") { ValuesMissing = true; EngineINI.ViewD_Val = "1.00"; }
-            if (EngineINI.ViewS_Val == "") { ValuesMissing = true; EngineINI.ViewS_Val = "1.00"; }
-            if (EngineINI.ViewF_Val == "") { ValuesMissing = true; EngineINI.ViewF_Val = "0.75"; }
+            if (EngineINI.Anist_Val == "" | EngineINI.Anist_Val == null) { ValuesMissing = true; EngineINI.Anist_Val = "4"; }
+            if (EngineINI.Depth_Val == "" | EngineINI.Depth_Val == null) { ValuesMissing = true; EngineINI.Depth_Val = "2"; }
+            if (EngineINI.Bloom_Val == "" | EngineINI.Bloom_Val == null) { ValuesMissing = true; EngineINI.Bloom_Val = "2"; }
+            if (EngineINI.MBlur_Val == "" | EngineINI.MBlur_Val == null) { ValuesMissing = true; EngineINI.MBlur_Val = "2"; }
+            if (EngineINI.LenFl_Val == "" | EngineINI.LenFl_Val == null) { ValuesMissing = true; EngineINI.LenFl_Val = "2"; }
+            if (EngineINI.FogEf_Val == "" | EngineINI.FogEf_Val == null) { ValuesMissing = true; EngineINI.FogEf_Val = "1"; }
+            if (EngineINI.VoFog_Val == "" | EngineINI.VoFog_Val == null) { ValuesMissing = true; EngineINI.VoFog_Val = "1"; }
+            if (EngineINI.SCoFr_Val == "" | EngineINI.SCoFr_Val == null) { ValuesMissing = true; EngineINI.SCoFr_Val = "0"; }
+            if (EngineINI.Distr_Val == "" | EngineINI.Distr_Val == null) { ValuesMissing = true; EngineINI.Distr_Val = "0"; }
+            if (EngineINI.Grain_Val == "" | EngineINI.Grain_Val == null) { ValuesMissing = true; EngineINI.Grain_Val = "0"; }
+            if (EngineINI.ShadQ_Val == "" | EngineINI.ShadQ_Val == null) { ValuesMissing = true; EngineINI.ShadQ_Val = "1"; }
+            if (EngineINI.ShadR_Val == "" | EngineINI.ShadR_Val == null) { ValuesMissing = true; EngineINI.ShadR_Val = "1024"; }
+            if (EngineINI.TMQua_Val == "" | EngineINI.TMQua_Val == null) { ValuesMissing = true; EngineINI.TMQua_Val = "5"; }
+            if (EngineINI.TMSha_Val == "" | EngineINI.TMSha_Val == null) { ValuesMissing = true; EngineINI.TMSha_Val = "0.6"; }
+            if (EngineINI.TMGra_Val == "" | EngineINI.TMGra_Val == null) { ValuesMissing = true; EngineINI.TMGra_Val = "1"; }
+            if (EngineINI.ViewD_Val == "" | EngineINI.ViewD_Val == null) { ValuesMissing = true; EngineINI.ViewD_Val = "1.00"; }
+            if (EngineINI.ViewS_Val == "" | EngineINI.ViewS_Val == null) { ValuesMissing = true; EngineINI.ViewS_Val = "1.00"; }
+            if (EngineINI.ViewF_Val == "" | EngineINI.ViewF_Val == null) { ValuesMissing = true; EngineINI.ViewF_Val = "0.75"; }
 
             // If values had to be appended then save the INI.
-            EngineINI.WriteINIValues();
+            if (ValuesMissing)
+            {
+                EngineINI.WriteINIValues();
+            }
         }
         public static void WriteINIValues(bool NewINI = false)
         {
