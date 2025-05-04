@@ -42,6 +42,8 @@ namespace ClairObscurConfig
 
         public static bool TestPath(this string InputPath, bool IsDirectory = false)
         {
+            Console.WriteLine(InputPath);
+
             // If the value is null or empty then return false.
             if (InputPath == null || InputPath == "") { return false; }
 
@@ -52,7 +54,7 @@ namespace ClairObscurConfig
             catch (Exception x)
             {
                 // All of this crap has popped up depending on the input paramter so catch it all.
-                if (x is DirectoryNotFoundException || x is FileNotFoundException || x is ArgumentException) { return false; }
+                if (x is DirectoryNotFoundException || x is FileNotFoundException || x is ArgumentException || x is NotSupportedException) { return false; }
             }
             // The above should already catch most paths or files that don't exist. But any paths or files that make it past
             // the exception, get the type that they are (path or file) then use the respective method to test if they exist.*/
