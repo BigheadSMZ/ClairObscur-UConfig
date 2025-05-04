@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace ClairObscurConfig
 {
@@ -39,8 +40,8 @@ namespace ClairObscurConfig
         public static string ShadQ_Val; // - r.ShadowQuality
         public static string ShadR_Val; // - r.Shadow.MaxResolution
         public static string TMQua_Val; // - r.Tonemapper.Quality
-        public static string TMSha_Val; // - r.Tonemapper.Sharpen
         public static string TMGra_Val; // - r.Tonemapper.GrainQuantization
+        public static string TMSha_Val; // - r.Tonemapper.Sharpen
         public static string ViewD_Val; // - r.ViewDistanceScale
         public static string ViewS_Val; // - r.DFDistanceScale
         public static string ViewF_Val; // - foliage.LODDistanceScale
@@ -70,8 +71,8 @@ namespace ClairObscurConfig
             EngineINI.ShadQ_Val = "1";
             EngineINI.ShadR_Val = "1024";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "0.6";
             EngineINI.TMGra_Val = "1";
+            EngineINI.TMSha_Val = "0.6";
             EngineINI.ViewD_Val = "1.00";
             EngineINI.ViewS_Val = "1.00";
             EngineINI.ViewF_Val = "0.75";
@@ -80,11 +81,31 @@ namespace ClairObscurConfig
             EngineINI.WriteINIValues(true);
         }
 
+        public static void ValidateValues()
+        {
+            // If the values are not within a certain range, they will crash the GUI.
+            EngineINI.Anist_Val = Validate.StringInArray(EngineINI.Anist_Val, new string[] { "1", "2", "4", "8", "16" }, "4");
+            EngineINI.Depth_Val = Validate.RangeInt(EngineINI.Depth_Val, 0, 4, "2");
+            EngineINI.Bloom_Val = Validate.RangeInt(EngineINI.Bloom_Val, 0, 5, "2");
+            EngineINI.MBlur_Val = Validate.RangeInt(EngineINI.MBlur_Val, 0, 4, "2");
+            EngineINI.LenFl_Val = Validate.RangeInt(EngineINI.LenFl_Val, 0, 3, "2");
+            EngineINI.FogEf_Val = Validate.RangeInt(EngineINI.FogEf_Val, 0, 1, "1");
+            EngineINI.VoFog_Val = Validate.RangeInt(EngineINI.VoFog_Val, 0, 1, "1");
+            EngineINI.SCoFr_Val = Validate.RangeInt(EngineINI.SCoFr_Val, 0, 1, "0");
+            EngineINI.Distr_Val = Validate.RangeInt(EngineINI.Distr_Val, 0, 1, "0");
+            EngineINI.Grain_Val = Validate.RangeInt(EngineINI.Grain_Val, 0, 1, "0");
+            EngineINI.ShadQ_Val = Validate.RangeInt(EngineINI.ShadQ_Val, 1, 5, "1");
+            EngineINI.ShadR_Val = Validate.StringInArray(EngineINI.ShadR_Val, new string[] { "1024", "2048", "4096", "8192" }, "1024");
+            EngineINI.TMQua_Val = Validate.RangeInt(EngineINI.TMQua_Val, 0, 5, "5");
+            EngineINI.TMGra_Val = Validate.RangeInt(EngineINI.TMGra_Val, 0, 1, "1");
+            EngineINI.TMSha_Val = Validate.RangeDec(EngineINI.TMSha_Val, 0, 10.0, "0.6");
+            EngineINI.ViewD_Val = Validate.RangeDec(EngineINI.ViewD_Val, 0.40, 10.00, "1.00");
+            EngineINI.ViewS_Val = Validate.RangeDec(EngineINI.ViewS_Val, 0.40, 10.00, "1.00");
+            EngineINI.ViewF_Val = Validate.RangeDec(EngineINI.ViewF_Val, 0.40, 10.00, "0.75");
+        }
+
         public static void LoadINIValues()
         {
-            // Track if some values could not be loaded.
-            bool ValuesMissing = false;
-
             // Load the values from the INI file.
             EngineINI.Anist_Val = Config.INIFile.Read(EngineINI.Anist_Str, "SystemSettings"); // - r.MaxAnisotropy
             EngineINI.Depth_Val = Config.INIFile.Read(EngineINI.Depth_Str, "SystemSettings"); // - r.DepthOfFieldQuality
@@ -99,38 +120,16 @@ namespace ClairObscurConfig
             EngineINI.ShadQ_Val = Config.INIFile.Read(EngineINI.ShadQ_Str, "SystemSettings"); // - r.ShadowQuality
             EngineINI.ShadR_Val = Config.INIFile.Read(EngineINI.ShadR_Str, "SystemSettings"); // - r.Shadow.MaxResolution
             EngineINI.TMQua_Val = Config.INIFile.Read(EngineINI.TMQua_Str, "SystemSettings"); // - r.Tonemapper.Quality
-            EngineINI.TMSha_Val = Config.INIFile.Read(EngineINI.TMSha_Str, "SystemSettings"); // - r.Tonemapper.Sharpen
             EngineINI.TMGra_Val = Config.INIFile.Read(EngineINI.TMGra_Str, "SystemSettings"); // - r.Tonemapper.GrainQuantization
+            EngineINI.TMSha_Val = Config.INIFile.Read(EngineINI.TMSha_Str, "SystemSettings"); // - r.Tonemapper.Sharpen
             EngineINI.ViewD_Val = Config.INIFile.Read(EngineINI.ViewD_Str, "SystemSettings"); // - r.ViewDistanceScale
             EngineINI.ViewS_Val = Config.INIFile.Read(EngineINI.ViewS_Str, "SystemSettings"); // - r.DFDistanceScale
             EngineINI.ViewF_Val = Config.INIFile.Read(EngineINI.ViewF_Str, "SystemSettings"); // - foliage.LODDistanceScale
 
-            // If the INI existed, but some values don't exist, then fill them with default values.
-            if (EngineINI.Anist_Val == "" | EngineINI.Anist_Val == null) { ValuesMissing = true; EngineINI.Anist_Val = "4"; }
-            if (EngineINI.Depth_Val == "" | EngineINI.Depth_Val == null) { ValuesMissing = true; EngineINI.Depth_Val = "2"; }
-            if (EngineINI.Bloom_Val == "" | EngineINI.Bloom_Val == null) { ValuesMissing = true; EngineINI.Bloom_Val = "2"; }
-            if (EngineINI.MBlur_Val == "" | EngineINI.MBlur_Val == null) { ValuesMissing = true; EngineINI.MBlur_Val = "2"; }
-            if (EngineINI.LenFl_Val == "" | EngineINI.LenFl_Val == null) { ValuesMissing = true; EngineINI.LenFl_Val = "2"; }
-            if (EngineINI.FogEf_Val == "" | EngineINI.FogEf_Val == null) { ValuesMissing = true; EngineINI.FogEf_Val = "1"; }
-            if (EngineINI.VoFog_Val == "" | EngineINI.VoFog_Val == null) { ValuesMissing = true; EngineINI.VoFog_Val = "1"; }
-            if (EngineINI.SCoFr_Val == "" | EngineINI.SCoFr_Val == null) { ValuesMissing = true; EngineINI.SCoFr_Val = "0"; }
-            if (EngineINI.Distr_Val == "" | EngineINI.Distr_Val == null) { ValuesMissing = true; EngineINI.Distr_Val = "0"; }
-            if (EngineINI.Grain_Val == "" | EngineINI.Grain_Val == null) { ValuesMissing = true; EngineINI.Grain_Val = "0"; }
-            if (EngineINI.ShadQ_Val == "" | EngineINI.ShadQ_Val == null) { ValuesMissing = true; EngineINI.ShadQ_Val = "1"; }
-            if (EngineINI.ShadR_Val == "" | EngineINI.ShadR_Val == null) { ValuesMissing = true; EngineINI.ShadR_Val = "1024"; }
-            if (EngineINI.TMQua_Val == "" | EngineINI.TMQua_Val == null) { ValuesMissing = true; EngineINI.TMQua_Val = "5"; }
-            if (EngineINI.TMSha_Val == "" | EngineINI.TMSha_Val == null) { ValuesMissing = true; EngineINI.TMSha_Val = "0.6"; }
-            if (EngineINI.TMGra_Val == "" | EngineINI.TMGra_Val == null) { ValuesMissing = true; EngineINI.TMGra_Val = "1"; }
-            if (EngineINI.ViewD_Val == "" | EngineINI.ViewD_Val == null) { ValuesMissing = true; EngineINI.ViewD_Val = "1.00"; }
-            if (EngineINI.ViewS_Val == "" | EngineINI.ViewS_Val == null) { ValuesMissing = true; EngineINI.ViewS_Val = "1.00"; }
-            if (EngineINI.ViewF_Val == "" | EngineINI.ViewF_Val == null) { ValuesMissing = true; EngineINI.ViewF_Val = "0.75"; }
-
-            // If values had to be appended then save the INI.
-            if (ValuesMissing)
-            {
-                EngineINI.WriteINIValues();
-            }
+            // Make sure the values are not ones that can crash the GUI.
+            EngineINI.ValidateValues();
         }
+
         public static void WriteINIValues(bool NewINI = false)
         {
             // We'll throw an exception if the file doesn't already exist.
@@ -153,8 +152,8 @@ namespace ClairObscurConfig
             Config.INIFile.Write(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings"); // - r.ShadowQuality
             Config.INIFile.Write(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings"); // - r.Shadow.MaxResolution
             Config.INIFile.Write(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings"); // - r.Tonemapper.Quality
-            Config.INIFile.Write(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings"); // - r.Tonemapper.Sharpen
             Config.INIFile.Write(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings"); // - r.Tonemapper.GrainQuantization
+            Config.INIFile.Write(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings"); // - r.Tonemapper.Sharpen
             Config.INIFile.Write(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings"); // - r.ViewDistanceScale
             Config.INIFile.Write(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings"); // - r.DFDistanceScale
             Config.INIFile.Write(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings"); // - foliage.LODDistanceScale
