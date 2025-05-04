@@ -17,8 +17,8 @@
             EngineINI.ShadQ_Val = "0";
             EngineINI.ShadR_Val = "1024";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "0.4";
             EngineINI.TMGra_Val = "1";
+            EngineINI.TMSha_Val = "0.4";
             EngineINI.ViewD_Val = "0.50";
             EngineINI.ViewS_Val = "0.50";
             EngineINI.ViewF_Val = "0.35";
@@ -38,8 +38,8 @@
             EngineINI.ShadQ_Val = "1";
             EngineINI.ShadR_Val = "1024";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "0.6";
             EngineINI.TMGra_Val = "1";
+            EngineINI.TMSha_Val = "0.6";
             EngineINI.ViewD_Val = "1.00";
             EngineINI.ViewS_Val = "1.00";
             EngineINI.ViewF_Val = "0.75";
@@ -59,8 +59,8 @@
             EngineINI.ShadQ_Val = "3";
             EngineINI.ShadR_Val = "2048";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "0.8";
             EngineINI.TMGra_Val = "0";
+            EngineINI.TMSha_Val = "0.8";
             EngineINI.ViewD_Val = "2.00";
             EngineINI.ViewS_Val = "2.00";
             EngineINI.ViewF_Val = "1.75";
@@ -80,8 +80,8 @@
             EngineINI.ShadQ_Val = "4";
             EngineINI.ShadR_Val = "4096";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "1.0";
             EngineINI.TMGra_Val = "0";
+            EngineINI.TMSha_Val = "1.0";
             EngineINI.ViewD_Val = "2.75";
             EngineINI.ViewS_Val = "2.75";
             EngineINI.ViewF_Val = "2.50";
@@ -96,8 +96,8 @@
             EngineINI.Distr_Val = "1";
             EngineINI.Grain_Val = "0";
             EngineINI.TMQua_Val = "0";
-            EngineINI.TMSha_Val = "1.2";
             EngineINI.TMGra_Val = "0";
+            EngineINI.TMSha_Val = "1.2";
         }
         public static void LoadPreset_SoftAmbient()
         {
@@ -109,8 +109,8 @@
             EngineINI.Distr_Val = "0";
             EngineINI.Grain_Val = "1";
             EngineINI.TMQua_Val = "5";
-            EngineINI.TMSha_Val = "0.5";
             EngineINI.TMGra_Val = "1";
+            EngineINI.TMSha_Val = "0.5";
         }
     }
 }
