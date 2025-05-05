@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.Num_FolDist = new System.Windows.Forms.NumericUpDown();
             this.Num_ShadDist = new System.Windows.Forms.NumericUpDown();
@@ -105,7 +105,7 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_ShadDist)).BeginInit();
@@ -115,15 +115,15 @@
             this.GroupBox_GameVer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // PictureBox_GameArt
             // 
-            this.pictureBox1.Image = global::ClairObscurConfig.Properties.Resources.clairobscur;
-            this.pictureBox1.InitialImage = global::ClairObscurConfig.Properties.Resources.clairobscur;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 24);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 237);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.PictureBox_GameArt.Image = global::ClairObscurConfig.Properties.Resources.clairobscur;
+            this.PictureBox_GameArt.InitialImage = global::ClairObscurConfig.Properties.Resources.clairobscur;
+            this.PictureBox_GameArt.Location = new System.Drawing.Point(12, 24);
+            this.PictureBox_GameArt.Name = "PictureBox_GameArt";
+            this.PictureBox_GameArt.Size = new System.Drawing.Size(500, 237);
+            this.PictureBox_GameArt.TabIndex = 0;
+            this.PictureBox_GameArt.TabStop = false;
             // 
             // GroupBox_Main
             // 
@@ -652,7 +652,7 @@
             // Label_AF
             // 
             this.Label_AF.AutoSize = true;
-            this.Label_AF.Location = new System.Drawing.Point(105, 23);
+            this.Label_AF.Location = new System.Drawing.Point(104, 23);
             this.Label_AF.Name = "Label_AF";
             this.Label_AF.Size = new System.Drawing.Size(98, 13);
             this.Label_AF.TabIndex = 0;
@@ -678,7 +678,7 @@
             // 
             // Button_ExitSave
             // 
-            this.Button_ExitSave.Location = new System.Drawing.Point(391, 601);
+            this.Button_ExitSave.Location = new System.Drawing.Point(391, 600);
             this.Button_ExitSave.Name = "Button_ExitSave";
             this.Button_ExitSave.Size = new System.Drawing.Size(120, 30);
             this.Button_ExitSave.TabIndex = 21;
@@ -814,7 +814,7 @@
             // StripItem_CreateBackup
             // 
             this.StripItem_CreateBackup.Name = "StripItem_CreateBackup";
-            this.StripItem_CreateBackup.Size = new System.Drawing.Size(168, 22);
+            this.StripItem_CreateBackup.Size = new System.Drawing.Size(180, 22);
             this.StripItem_CreateBackup.Text = "Backup Engine.ini";
             this.StripItem_CreateBackup.ToolTipText = "Creates a backup of the current\r\nINI file and settings and appends\r\nthe extension" +
     " (.bak) to the file.";
@@ -823,7 +823,7 @@
             // StripItem_RestoreBackup
             // 
             this.StripItem_RestoreBackup.Name = "StripItem_RestoreBackup";
-            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(168, 22);
+            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(180, 22);
             this.StripItem_RestoreBackup.Text = "Restore Engine.ini";
             this.StripItem_RestoreBackup.ToolTipText = "Restores a backup of Engine.ini\r\nwhich replaces the current one\r\n(all current set" +
     "tings will be lost).";
@@ -927,13 +927,13 @@
             // StripItem_HelpAbout
             // 
             this.StripItem_HelpAbout.Name = "StripItem_HelpAbout";
-            this.StripItem_HelpAbout.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_HelpAbout.Size = new System.Drawing.Size(180, 22);
             this.StripItem_HelpAbout.Text = "About";
             this.StripItem_HelpAbout.Click += new System.EventHandler(this.StripItem_HelpAbout_Click);
             // 
             // Button_Launch
             // 
-            this.Button_Launch.Location = new System.Drawing.Point(265, 601);
+            this.Button_Launch.Location = new System.Drawing.Point(265, 600);
             this.Button_Launch.Name = "Button_Launch";
             this.Button_Launch.Size = new System.Drawing.Size(120, 30);
             this.Button_Launch.TabIndex = 20;
@@ -943,7 +943,7 @@
             // 
             // Button_Save
             // 
-            this.Button_Save.Location = new System.Drawing.Point(13, 601);
+            this.Button_Save.Location = new System.Drawing.Point(13, 600);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(120, 30);
             this.Button_Save.TabIndex = 18;
@@ -953,7 +953,7 @@
             // 
             // Button_Reload
             // 
-            this.Button_Reload.Location = new System.Drawing.Point(139, 601);
+            this.Button_Reload.Location = new System.Drawing.Point(139, 600);
             this.Button_Reload.Name = "Button_Reload";
             this.Button_Reload.Size = new System.Drawing.Size(120, 30);
             this.Button_Reload.TabIndex = 19;
@@ -1007,7 +1007,7 @@
             this.Controls.Add(this.Button_Launch);
             this.Controls.Add(this.Button_ExitSave);
             this.Controls.Add(this.GroupBox_Main);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.PictureBox_GameArt);
             this.Controls.Add(this.MainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1019,7 +1019,7 @@
             this.Shown += new System.EventHandler(this.Form_MainForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).EndInit();
             this.GroupBox_Main.ResumeLayout(false);
             this.GroupBox_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).EndInit();
@@ -1036,7 +1036,7 @@
         }
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PictureBox_GameArt;
         private System.Windows.Forms.Label Label_DoF;
         private System.Windows.Forms.Label Label_AF;
         private System.Windows.Forms.Label Label_Fog;
