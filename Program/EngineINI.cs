@@ -201,6 +201,9 @@ namespace ClairObscurConfig
             // Make sure the INI file exists.
             if (EngineINI.Path.TestPath() & Forms.PromptBackupINI())
             {
+                // Save current values when creating a backup.
+                EngineINI.WriteINIValues();
+                 
                 // If a backup exists, remove it before creating a new one.
                 if (BackupPath.TestPath())
                 {
