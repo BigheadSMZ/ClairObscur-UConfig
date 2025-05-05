@@ -30,14 +30,9 @@ namespace ClairObscurConfig
                 {
                     return ToCheck;
                 }
-                // If it's not within range, return the fallback.
-                return Fallback;
             }
-            // If it couldn't be parsed as an integer, return the fallback.
-            else
-            {
-                return Fallback; ;
-            }
+            // If it couldn't be parsed as an integer or is not within the range, return the fallback.
+            return Fallback;
         }
         // Checks if a string as a double is within range of a low and high value. Low and High are valid.
         public static string RangeDec(string ToCheck, double Low, double High, string Fallback)
@@ -53,14 +48,9 @@ namespace ClairObscurConfig
                 {
                     return ToCheck;
                 }
-                // If it's not within range, return the fallback.
-                return Fallback;
             }
-            // If it couldn't be parsed as a double, return the fallback.
-            else
-            {
-                return Fallback; ;
-            }
+            // If it couldn't be parsed as a double or is not within the range, return the fallback.
+            return Fallback;
         }
     }
 }
