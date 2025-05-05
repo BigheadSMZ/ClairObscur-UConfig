@@ -12,7 +12,7 @@ The executable can be ran from anywhere, but it is suggested to copy it alongsid
 - Copy configurator to game directory alongside launch executable.
 - Load up the configurator. If no INI exists, it will alert you how to create one.
 - If you do not have an INI, create it with **File >> Create Engine.ini**.
-- This will unlock the various options that will affect the graphics of Clair Obscura.
+- This will unlock the various options that will affect the graphics of Clair Obscur.
 - Configure the game how you like, or use the built in presets from the menu bar.
 - Suggested to load a **Low-Ultra** preset before using **Sharp & Clear** or **Soft & Ambient**.
 - A backup can be created and loaded from the menu bar, allowing test configurations.
