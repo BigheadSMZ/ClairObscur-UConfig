@@ -75,6 +75,9 @@ namespace ClairObscurConfig
 
         public static void DeleteINIFile()
         {
+            // If the INI doesn't exist, it's best to not outright crash.
+            if (!EngineINI.Path.TestPath()) { return; }
+
             // Remove the read only attribute.
             System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
 
@@ -137,6 +140,9 @@ namespace ClairObscurConfig
 
         public static void LoadINIValues()
         {
+            // If the INI doesn't exist, it's best to not outright crash.
+            if (!EngineINI.Path.TestPath()) { return; }
+
             // Load the values from the INI file.
             EngineINI.Anist_Val = EngineINI.File.Read(EngineINI.Anist_Str, "SystemSettings"); // - r.MaxAnisotropy
             EngineINI.Depth_Val = EngineINI.File.Read(EngineINI.Depth_Str, "SystemSettings"); // - r.DepthOfFieldQuality
@@ -163,6 +169,9 @@ namespace ClairObscurConfig
 
         public static void WriteINIValues(bool NewINI = false)
         {
+            // If the INI doesn't exist, it's best to not outright crash.
+            if (!EngineINI.Path.TestPath()) { return; }
+
             // We'll throw an exception if the file doesn't already exist.
             if (!NewINI)
             {

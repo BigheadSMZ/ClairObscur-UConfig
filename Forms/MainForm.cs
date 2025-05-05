@@ -194,14 +194,17 @@ namespace ClairObscurConfig
         }
         private void StripItem_Base_Click(object sender, EventArgs e)
         {
+            if (!Config.BasePath.TestPath()) { return; }
             Forms.OpenFileExplorer(Config.BasePath);
         }
         private void StripItem_AppData_Click(object sender, EventArgs e)
         {
+            if (!(Config.AppData + "\\Sandfall").TestPath()) { return; }
             Forms.OpenFileExplorer(Config.AppData + "\\Sandfall");
         }
         private void StripItem_EngineINI_Click(object sender, EventArgs e)
         {
+            if (!EngineINI.Path.TestPath()) { return; }
             Forms.OpenFileExplorer(EngineINI.Path.GetFilePath());
         }
         private void StripItem_ExitNoSave_Click(object sender, EventArgs e)
