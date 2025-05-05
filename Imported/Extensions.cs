@@ -313,6 +313,7 @@ namespace ClairObscurConfig
             // Return the string array.
             return StringList;
         }
+
         public static string[] ListToArray(this List<string> StringList)
         {
             // Create a new string array equal in size to the list.

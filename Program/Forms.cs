@@ -200,7 +200,7 @@ namespace ClairObscurConfig
             // Let the user know their changes were saved.
             string Title = "About";
             string Message = "Clair Obscur: Expedition 33 - Unreal Config v" + Config.AppVersion + "\r\nCreated by: Bighead - bighead.0@gmail.com";
-            Forms.OkayDialog.Display(Title, Message, 260, 32, 30, 20, 10);
+            Forms.OkayDialog.Display(Title, Message, 280, 32, 30, 20, 10);
             EngineINI.WriteINIValues();
         }
 
