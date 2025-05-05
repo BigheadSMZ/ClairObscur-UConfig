@@ -201,6 +201,13 @@ namespace ClairObscurConfig
             // Make sure the INI file exists.
             if (EngineINI.Path.TestPath() & Forms.PromptBackupINI())
             {
+                // If a backup exists, remove it before creating a new one.
+                if (BackupPath.TestPath())
+                {
+                    // If the read-only attribute was retained, remove it so it can be deleted.
+                    System.IO.File.SetAttributes(BackupPath, ~FileAttributes.ReadOnly);
+                    System.IO.File.Delete(BackupPath);
+                }
                 // Copy it using ".bak" extension.
                 System.IO.File.Copy(EngineINI.Path, BackupPath, true);
 
