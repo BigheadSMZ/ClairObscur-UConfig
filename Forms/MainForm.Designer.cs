@@ -70,30 +70,33 @@
             this.Combo_AF = new System.Windows.Forms.ComboBox();
             this.Button_ExitSave = new System.Windows.Forms.Button();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStripItem_File = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_CreateINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_SaveINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_ReloadINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_DeleteINI = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolStripSeperatorA = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_Base = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_AppData = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_EngineINI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripSeperatorA = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolStripSeperatorB = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_ExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_ExitSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.presetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStripItem_Backup = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_CreateBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_RestoreBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStripItem_Presets = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_PresetLow = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_PresetMed = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_PresetHigh = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_PresetUltra = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolStripSeperatorC = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_SharpClear = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_SoftAmb = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStripItem_Game = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_LaunchGame = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_CloseGame = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_HelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.Button_Launch = new System.Windows.Forms.Button();
             this.Button_Save = new System.Windows.Forms.Button();
@@ -687,33 +690,34 @@
             // MainMenuStrip
             // 
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.presetsToolStripMenuItem,
-            this.gameToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.MainStripItem_File,
+            this.MainStripItem_Backup,
+            this.MainStripItem_Presets,
+            this.MainStripItem_Game,
+            this.MainStripItem_Help});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
             this.MainMenuStrip.Size = new System.Drawing.Size(524, 24);
             this.MainMenuStrip.TabIndex = 4;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // MainStripItem_File
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainStripItem_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_CreateINI,
             this.StripItem_SaveINI,
             this.StripItem_ReloadINI,
             this.StripItem_DeleteINI,
-            this.toolStripSeparator1,
+            this.ToolStripSeperatorA,
             this.StripItem_Base,
             this.StripItem_AppData,
             this.StripItem_EngineINI,
-            this.ToolStripSeperatorA,
+            this.ToolStripSeperatorB,
             this.StripItem_ExitNoSave,
             this.StripItem_ExitSave});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.MainStripItem_File.Name = "MainStripItem_File";
+            this.MainStripItem_File.Size = new System.Drawing.Size(37, 20);
+            this.MainStripItem_File.Text = "File";
             // 
             // StripItem_CreateINI
             // 
@@ -748,10 +752,10 @@
             this.StripItem_DeleteINI.ToolTipText = resources.GetString("StripItem_DeleteINI.ToolTipText");
             this.StripItem_DeleteINI.Click += new System.EventHandler(this.StripItem_DeleteINI_Click);
             // 
-            // toolStripSeparator1
+            // ToolStripSeperatorA
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(193, 6);
+            this.ToolStripSeperatorA.Name = "ToolStripSeperatorA";
+            this.ToolStripSeperatorA.Size = new System.Drawing.Size(193, 6);
             // 
             // StripItem_Base
             // 
@@ -778,10 +782,10 @@
             this.StripItem_EngineINI.ToolTipText = "Opens the AppData folder \r\nwhere Engine.ini is located.";
             this.StripItem_EngineINI.Click += new System.EventHandler(this.StripItem_EngineINI_Click);
             // 
-            // ToolStripSeperatorA
+            // ToolStripSeperatorB
             // 
-            this.ToolStripSeperatorA.Name = "ToolStripSeperatorA";
-            this.ToolStripSeperatorA.Size = new System.Drawing.Size(193, 6);
+            this.ToolStripSeperatorB.Name = "ToolStripSeperatorB";
+            this.ToolStripSeperatorB.Size = new System.Drawing.Size(193, 6);
             // 
             // StripItem_ExitNoSave
             // 
@@ -799,19 +803,46 @@
             this.StripItem_ExitSave.ToolTipText = "Exit and save all changes \r\nto the Engine.ini file.";
             this.StripItem_ExitSave.Click += new System.EventHandler(this.StripItem_ExitSave_Click);
             // 
-            // presetsToolStripMenuItem
+            // MainStripItem_Backup
             // 
-            this.presetsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainStripItem_Backup.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripItem_CreateBackup,
+            this.StripItem_RestoreBackup});
+            this.MainStripItem_Backup.Name = "MainStripItem_Backup";
+            this.MainStripItem_Backup.Size = new System.Drawing.Size(58, 20);
+            this.MainStripItem_Backup.Text = "Backup";
+            // 
+            // StripItem_CreateBackup
+            // 
+            this.StripItem_CreateBackup.Name = "StripItem_CreateBackup";
+            this.StripItem_CreateBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_CreateBackup.Text = "Backup Engine.ini";
+            this.StripItem_CreateBackup.ToolTipText = "Creates a backup of the current\r\nINI file and settings and appends\r\nthe extension" +
+    " (.bak) to the file.";
+            this.StripItem_CreateBackup.Click += new System.EventHandler(this.StripItem_CreateBackup_Click);
+            // 
+            // StripItem_RestoreBackup
+            // 
+            this.StripItem_RestoreBackup.Name = "StripItem_RestoreBackup";
+            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_RestoreBackup.Text = "Restore Engine.ini";
+            this.StripItem_RestoreBackup.ToolTipText = "Restores a backup of Engine.ini\r\nwhich replaces the current one\r\n(all current set" +
+    "tings will be lost).";
+            this.StripItem_RestoreBackup.Click += new System.EventHandler(this.StripItem_RestoreBackup_Click);
+            // 
+            // MainStripItem_Presets
+            // 
+            this.MainStripItem_Presets.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_PresetLow,
             this.StripItem_PresetMed,
             this.StripItem_PresetHigh,
             this.StripItem_PresetUltra,
-            this.toolStripSeparator2,
+            this.ToolStripSeperatorC,
             this.StripItem_SharpClear,
             this.StripItem_SoftAmb});
-            this.presetsToolStripMenuItem.Name = "presetsToolStripMenuItem";
-            this.presetsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.presetsToolStripMenuItem.Text = "Presets";
+            this.MainStripItem_Presets.Name = "MainStripItem_Presets";
+            this.MainStripItem_Presets.Size = new System.Drawing.Size(56, 20);
+            this.MainStripItem_Presets.Text = "Presets";
             // 
             // StripItem_PresetLow
             // 
@@ -841,10 +872,10 @@
             this.StripItem_PresetUltra.Text = "Ultra (High-End PC)";
             this.StripItem_PresetUltra.Click += new System.EventHandler(this.StripItem_PresetUltra_Click);
             // 
-            // toolStripSeparator2
+            // ToolStripSeperatorC
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(231, 6);
+            this.ToolStripSeperatorC.Name = "ToolStripSeperatorC";
+            this.ToolStripSeperatorC.Size = new System.Drawing.Size(231, 6);
             // 
             // StripItem_SharpClear
             // 
@@ -860,14 +891,14 @@
             this.StripItem_SoftAmb.Text = "Soft && Ambient (More Effects)";
             this.StripItem_SoftAmb.Click += new System.EventHandler(this.StripItem_SoftAmb_Click);
             // 
-            // gameToolStripMenuItem
+            // MainStripItem_Game
             // 
-            this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainStripItem_Game.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_LaunchGame,
             this.StripItem_CloseGame});
-            this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.gameToolStripMenuItem.Text = "Game";
+            this.MainStripItem_Game.Name = "MainStripItem_Game";
+            this.MainStripItem_Game.Size = new System.Drawing.Size(50, 20);
+            this.MainStripItem_Game.Text = "Game";
             // 
             // StripItem_LaunchGame
             // 
@@ -886,18 +917,18 @@
     "the process.";
             this.StripItem_CloseGame.Click += new System.EventHandler(this.StripItem_CloseGame_Click);
             // 
-            // helpToolStripMenuItem
+            // MainStripItem_Help
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainStripItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_HelpAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.MainStripItem_Help.Name = "MainStripItem_Help";
+            this.MainStripItem_Help.Size = new System.Drawing.Size(44, 20);
+            this.MainStripItem_Help.Text = "Help";
             // 
             // StripItem_HelpAbout
             // 
             this.StripItem_HelpAbout.Name = "StripItem_HelpAbout";
-            this.StripItem_HelpAbout.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_HelpAbout.Size = new System.Drawing.Size(180, 22);
             this.StripItem_HelpAbout.Text = "About";
             this.StripItem_HelpAbout.Click += new System.EventHandler(this.StripItem_HelpAbout_Click);
             // 
@@ -1045,24 +1076,24 @@
         public System.Windows.Forms.ComboBox Combo_VFog;
         public System.Windows.Forms.Button Button_ExitSave;
         public System.Windows.Forms.MenuStrip MainMenuStrip;
-        public System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem MainStripItem_File;
         public System.Windows.Forms.ToolStripMenuItem StripItem_CreateINI;
         public System.Windows.Forms.ToolStripMenuItem StripItem_ReloadINI;
         public System.Windows.Forms.ToolStripMenuItem StripItem_DeleteINI;
-        public System.Windows.Forms.ToolStripSeparator ToolStripSeperatorA;
+        public System.Windows.Forms.ToolStripSeparator ToolStripSeperatorB;
         public System.Windows.Forms.ToolStripMenuItem StripItem_ExitNoSave;
         public System.Windows.Forms.ToolStripMenuItem StripItem_ExitSave;
-        public System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem MainStripItem_Presets;
         public System.Windows.Forms.ToolStripMenuItem StripItem_PresetLow;
         public System.Windows.Forms.ToolStripMenuItem StripItem_PresetMed;
         public System.Windows.Forms.ToolStripMenuItem StripItem_PresetHigh;
         public System.Windows.Forms.ToolStripMenuItem StripItem_PresetUltra;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        public System.Windows.Forms.ToolStripSeparator ToolStripSeperatorC;
         public System.Windows.Forms.ToolStripMenuItem StripItem_SharpClear;
         public System.Windows.Forms.ToolStripMenuItem StripItem_SoftAmb;
-        public System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem MainStripItem_Help;
         public System.Windows.Forms.ToolStripMenuItem StripItem_HelpAbout;
-        public System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem MainStripItem_Game;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchGame;
         public System.Windows.Forms.ToolStripMenuItem StripItem_CloseGame;
         public System.Windows.Forms.Button Button_Launch;
@@ -1071,13 +1102,16 @@
         public System.Windows.Forms.GroupBox GroupBox_Main;
         public System.Windows.Forms.ToolStripMenuItem StripItem_SaveINI;
         private System.Windows.Forms.ToolTip GlobalToolTip;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator ToolStripSeperatorA;
         private System.Windows.Forms.ToolStripMenuItem StripItem_AppData;
         private System.Windows.Forms.ToolStripMenuItem StripItem_Base;
         private System.Windows.Forms.ToolStripMenuItem StripItem_EngineINI;
         private System.Windows.Forms.GroupBox GroupBox_GameVer;
         public System.Windows.Forms.RadioButton Radio_GamePass;
         public System.Windows.Forms.RadioButton Radio_Steam;
+        private System.Windows.Forms.ToolStripMenuItem MainStripItem_Backup;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_CreateBackup;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_RestoreBackup;
     }
 }
 

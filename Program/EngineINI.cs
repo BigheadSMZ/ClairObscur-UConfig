@@ -192,5 +192,40 @@ namespace ClairObscurConfig
             // Add the read only attribute.
             System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
         }
+
+        public static void Backup()
+        {
+            // Set the INI backup path.
+            string BackupPath = EngineINI.Path + ".bak";
+
+            // Make sure the INI file exists.
+            if (EngineINI.Path.TestPath() & Forms.PromptBackupINI())
+            {
+                // Copy it using ".bak" extension.
+                System.IO.File.Copy(EngineINI.Path, BackupPath, true);
+
+                // Disable the backup option since a backup no longer exists.
+                Forms.MainDialog.StripItem_RestoreBackup.Enabled = true;
+            }
+        }
+
+        public static void Restore()
+        {
+            // Set the INI backup path.
+            string BackupPath = EngineINI.Path + ".bak";
+
+            // Make sure the backup file exists.
+            if (BackupPath.TestPath() & Forms.PromptRestoreINI())
+            {
+                // Delete the current INI and remove the ".bak" extension from the backup.
+                System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+                System.IO.File.Delete(EngineINI.Path);
+                System.IO.File.Move(BackupPath, EngineINI.Path);
+                System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
+
+                // Disable the backup option since a backup no longer exists.
+                Forms.MainDialog.StripItem_RestoreBackup.Enabled = false;
+            }
+        }
     }
 }

@@ -213,6 +213,17 @@ namespace ClairObscurConfig
             this.Close();
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   MenuStrip - Backup
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void StripItem_CreateBackup_Click(object sender, EventArgs e)
+        {
+            EngineINI.Backup();
+        }
+        private void StripItem_RestoreBackup_Click(object sender, EventArgs e)
+        {
+            EngineINI.Restore();
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - Presets
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void StripItem_PresetLow_Click(object sender, EventArgs e)
@@ -310,6 +321,5 @@ namespace ClairObscurConfig
                 Forms.MainDialog.Button_ExitSave.Text = "Save / Exit";
             }
         }
-
     }
 }

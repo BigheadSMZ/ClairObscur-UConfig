@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace ClairObscurConfig
 {
@@ -36,6 +35,13 @@ namespace ClairObscurConfig
             // Toggle the game options accordingly.
             Forms.MainDialog.StripItem_LaunchGame.Enabled = ExeExists;
             Forms.MainDialog.StripItem_CloseGame.Enabled  = ExeExists;
+
+            // Set the INI backup path.
+            string BackupPath = EngineINI.Path + ".bak";
+
+            // Set availability of backup options depending on INI existence.
+            Forms.MainDialog.StripItem_CreateBackup.Enabled = EngineINI.Path.TestPath();
+            Forms.MainDialog.StripItem_RestoreBackup.Enabled = BackupPath.TestPath();
         }
 
         public static void UpdateValues()
@@ -68,6 +74,13 @@ namespace ClairObscurConfig
 
         public static void ToggleGUI(bool Enabled)
         {
+            // Set the INI backup path.
+            string BackupPath = EngineINI.Path + ".bak";
+
+            // Set availability of backup options depending on INI existence.
+            Forms.MainDialog.StripItem_CreateBackup.Enabled = EngineINI.Path.TestPath();
+            Forms.MainDialog.StripItem_RestoreBackup.Enabled = BackupPath.TestPath();
+
             // Disable the options that can throw exceptions if there is no INI file.
             Forms.MainDialog.GroupBox_Main.Enabled         = Enabled;
             Forms.MainDialog.StripItem_SaveINI.Enabled     = Enabled;
@@ -166,6 +179,22 @@ namespace ClairObscurConfig
                 EngineINI.DeleteINIFile();
                 Forms.ToggleGUI(false);
             }
+        }
+
+        public static bool PromptBackupINI()
+        {
+            // Ask the user if they wish to backup the INI.
+            string Title   = "Backup Engine.ini?";
+            string Message = "Do you wish to back up the \"Engine.ini\" file? This will copy the current INI and append a \".bak\" extension.";
+            return Forms.YesNoDialog.Display(Title, Message, 260, 32, 22, 16, true);
+        }
+        
+        public static bool PromptRestoreINI()
+        {
+            // Ask the user if they wish to backup the INI.
+            string Title   = "Restore Engine.ini?";
+            string Message = "Do you wish to restore the \"Engine.ini\" from backup? This will overwrite your current INI file settings.";
+            return Forms.YesNoDialog.Display(Title, Message, 260, 32, 22, 16, true);
         }
 
         public static void PromptSaveINI()
