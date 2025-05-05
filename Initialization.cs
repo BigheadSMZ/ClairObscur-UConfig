@@ -9,7 +9,7 @@ namespace ClairObscurConfig
         static void Main()
         {
             // The version of the configurator. Set here for easy editing.
-            Config.AppVersion = "1.3";
+            Config.AppVersion = "1.4";
 
             // Enable form visual styles.
             Application.EnableVisualStyles();
