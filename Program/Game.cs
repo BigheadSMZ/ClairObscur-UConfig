@@ -5,11 +5,14 @@ namespace ClairObscurConfig
 {
     internal class Game
     {
+        // The name of the game this configurator is made for.
+        public static string Name  = "Clair Obscur: Expedition 33";
+
         // Executable names that the configurator looks for to launch the game. An asterisk "*" allows a wildcard match.
         static string[] Executables = new string[] { "Expedition33*", "Sandfall*" };
 
         // When using the "Task Kill" option on the menu, this is the name of the process to kill.
-        static string TaskKillName = "SandFall-Win64-Shipping";
+        static string TaskKillName  = "SandFall-Win64-Shipping";
 
         public static string GetExecutable()
         {

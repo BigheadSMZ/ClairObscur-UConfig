@@ -15,7 +15,7 @@ namespace ClairObscurConfig
             Forms.MainDialog = new Form_MainForm();
 
             // Set the title of the window to include the current version.
-            Forms.MainDialog.Text = "Clair Obscur: Expedition 33 - Unreal Config v" + Config.AppVersion;
+            Forms.MainDialog.Text = Game.Name + " - Unreal Config v" + Config.AppVersion;
 
             // Select the radio button based on INI type.
             switch (EngineINI.Type)
@@ -228,7 +228,7 @@ namespace ClairObscurConfig
         {
             // Let the user know their changes were saved.
             string Title = "About";
-            string Message = "Clair Obscur: Expedition 33 - Unreal Config v" + Config.AppVersion + "\r\nCreated by: Bighead - bighead.0@gmail.com";
+            string Message = Game.Name + " - Unreal Config v" + Config.AppVersion + "\r\nCreated by: Bighead - bighead.0@gmail.com";
             Forms.OkayDialog.Display(Title, Message, 280, 32, 30, 20, 10);
             EngineINI.WriteINIValues();
         }
