@@ -67,6 +67,7 @@
     <Compile Include="Forms\OkayForm.Designer.cs">
       <DependentUpon>OkayForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Imported\Decimal.cs" />
     <Compile Include="Imported\Extensions.cs" />
     <Compile Include="Imported\FileItem.cs" />
     <Compile Include="Imported\IniFile.cs" />

@@ -6,7 +6,7 @@ namespace ClairObscurConfig
     internal class Validate
     {
         // Checks an array of string values. Easy way to validate multiple values that don't fall within a range. 
-        public static string StringInArray(string ToCheck, string[] StringArray, string Fallback)
+        public static string StrArray(string ToCheck, string[] StringArray, string Fallback)
         {
             // If the value is in the array, return the value.
             if (StringArray.Any(ToCheck.Contains))

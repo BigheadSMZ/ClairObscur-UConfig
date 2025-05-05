@@ -110,8 +110,12 @@ namespace ClairObscurConfig
 
         public static void ValidateValues()
         {
+            // Arrays of the acceptable anisotropic filtering and shadow resolution values.
+            string[] AFValues   = new string[] { "1", "2", "4", "8", "16" };
+            string[] ShadValues = new string[] { "1024", "2048", "4096", "8192" };
+
             // If the values are not within a certain range, they will crash the GUI.
-            EngineINI.Anist_Val = Validate.StringInArray(EngineINI.Anist_Val, new string[] { "1", "2", "4", "8", "16" }, "4");
+            EngineINI.Anist_Val = Validate.StrArray(EngineINI.Anist_Val, AFValues, "4");
             EngineINI.Depth_Val = Validate.RangeInt(EngineINI.Depth_Val, 0, 4, "2");
             EngineINI.Bloom_Val = Validate.RangeInt(EngineINI.Bloom_Val, 0, 5, "2");
             EngineINI.MBlur_Val = Validate.RangeInt(EngineINI.MBlur_Val, 0, 4, "2");
@@ -122,7 +126,7 @@ namespace ClairObscurConfig
             EngineINI.Distr_Val = Validate.RangeInt(EngineINI.Distr_Val, 0, 1, "0");
             EngineINI.Grain_Val = Validate.RangeInt(EngineINI.Grain_Val, 0, 1, "0");
             EngineINI.ShadQ_Val = Validate.RangeInt(EngineINI.ShadQ_Val, 1, 5, "1");
-            EngineINI.ShadR_Val = Validate.StringInArray(EngineINI.ShadR_Val, new string[] { "1024", "2048", "4096", "8192" }, "1024");
+            EngineINI.ShadR_Val = Validate.StrArray(EngineINI.ShadR_Val, ShadValues, "1024");
             EngineINI.TMQua_Val = Validate.RangeInt(EngineINI.TMQua_Val, 0, 5, "5");
             EngineINI.TMGra_Val = Validate.RangeInt(EngineINI.TMGra_Val, 0, 1, "1");
             EngineINI.TMSha_Val = Validate.RangeDec(EngineINI.TMSha_Val, 0, 10.0, "0.6");

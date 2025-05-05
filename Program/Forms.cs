@@ -60,10 +60,10 @@ namespace ClairObscurConfig
             Forms.MainDialog.Combo_GrainQuant.SelectedItem = ValueSwap.Translate_Binary(EngineINI.TMGra_Val);
 
             // The remaining ones can simply be converted from string to decimal.
-            Forms.MainDialog.Num_Sharpen.Value  = Convert.ToDecimal(EngineINI.TMSha_Val);
-            Forms.MainDialog.Num_ViewDist.Value = Convert.ToDecimal(EngineINI.ViewD_Val);
-            Forms.MainDialog.Num_ShadDist.Value = Convert.ToDecimal(EngineINI.ViewS_Val);
-            Forms.MainDialog.Num_FolDist.Value  = Convert.ToDecimal(EngineINI.ViewF_Val);
+            Forms.MainDialog.Num_Sharpen.Value  = Functions.FormatStringDecimal(EngineINI.TMSha_Val);
+            Forms.MainDialog.Num_ViewDist.Value = Functions.FormatStringDecimal(EngineINI.ViewD_Val);
+            Forms.MainDialog.Num_ShadDist.Value = Functions.FormatStringDecimal(EngineINI.ViewS_Val);
+            Forms.MainDialog.Num_FolDist.Value  = Functions.FormatStringDecimal(EngineINI.ViewF_Val);
         }
 
         public static void ToggleGUI(bool Enabled)
