@@ -105,6 +105,8 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
+            this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -919,6 +921,8 @@
             // MainStripItem_Help
             // 
             this.MainStripItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripItem_GitHub,
+            this.StripItem_NexusMods,
             this.StripItem_HelpAbout});
             this.MainStripItem_Help.Name = "MainStripItem_Help";
             this.MainStripItem_Help.Size = new System.Drawing.Size(44, 20);
@@ -995,6 +999,20 @@
             this.Radio_Steam.Text = "Steam Version";
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
+            // 
+            // StripItem_NexusMods
+            // 
+            this.StripItem_NexusMods.Name = "StripItem_NexusMods";
+            this.StripItem_NexusMods.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_NexusMods.Text = "NexusMods Page";
+            this.StripItem_NexusMods.Click += new System.EventHandler(this.StripItem_NexusMods_Click);
+            // 
+            // StripItem_GitHub
+            // 
+            this.StripItem_GitHub.Name = "StripItem_GitHub";
+            this.StripItem_GitHub.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_GitHub.Text = "GitHub Page";
+            this.StripItem_GitHub.Click += new System.EventHandler(this.StripItem_GitHub_Click);
             // 
             // Form_MainForm
             // 
@@ -1111,6 +1129,8 @@
         private System.Windows.Forms.ToolStripMenuItem MainStripItem_Backup;
         public System.Windows.Forms.ToolStripMenuItem StripItem_CreateBackup;
         public System.Windows.Forms.ToolStripMenuItem StripItem_RestoreBackup;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_GitHub;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_NexusMods;
     }
 }
 

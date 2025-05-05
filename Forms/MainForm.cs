@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
@@ -273,6 +274,14 @@ namespace ClairObscurConfig
         private void StripItem_HelpAbout_Click(object sender, EventArgs e)
         {
             Forms.PromptAbout();
+        }
+        private void StripItem_GitHub_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/BigheadSMZ/ClairObscur-UConfig");
+        }
+        private void StripItem_NexusMods_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.nexusmods.com/clairobscurexpedition33/mods/119");
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Bottom Buttons
