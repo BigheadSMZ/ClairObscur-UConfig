@@ -232,6 +232,10 @@ namespace ClairObscurConfig
 
                 // Disable the backup option since a backup no longer exists.
                 Forms.MainDialog.StripItem_RestoreBackup.Enabled = false;
+
+                // Reload the values and update the values on the GUI.
+                EngineINI.LoadINIValues();
+                Forms.UpdateValues();
             }
         }
     }
