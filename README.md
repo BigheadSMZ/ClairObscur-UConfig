@@ -1,7 +1,7 @@
 # Clair Obscur: Expedition 33 - Unreal Config
 Creates and configures "Engine.ini" for Clair Obscur: Expedition 33.
 
-![image](https://github.com/user-attachments/assets/3846da0f-479c-4fd6-9570-5c9b5bdb7051)
+![image](https://github.com/user-attachments/assets/5e17d35c-23a4-4739-ad13-ca163d066425)
 
 # Installation
 The executable can be ran from anywhere, but it is suggested to copy it alongside **Expedition33_Steam.exe** for the Steam version, **Sandfall.exe** for the GamePass version, or **SandFall-Win64-Shipping.exe** for either version.
