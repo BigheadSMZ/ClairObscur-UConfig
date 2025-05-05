@@ -7,6 +7,7 @@ namespace ClairObscurConfig
     internal class Config
     {
         // Values used across the application.
+        public static string  AppName;
         public static string  AppPath;
         public static string  AppData;
         public static string  AppVersion;
@@ -17,6 +18,7 @@ namespace ClairObscurConfig
         {
             // Get the folder this app is in.
             Config.AppPath  = Assembly.GetExecutingAssembly().Location;
+            Config.AppName  = Config.AppPath.GetFileName();
             Config.AppData  = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             Config.BasePath = Path.GetDirectoryName(Config.AppPath);
             Config.GamePath = Game.GetExecutable();

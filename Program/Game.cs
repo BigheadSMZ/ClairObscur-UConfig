@@ -5,6 +5,12 @@ namespace ClairObscurConfig
 {
     internal class Game
     {
+        // Executable names that the configurator looks for to launch the game. An asterisk "*" allows a wildcard match.
+        static string[] Executables = new string[] { "Expedition33*", "Sandfall*" };
+
+        // When using the "Task Kill" option on the menu, this is the name of the process to kill.
+        static string TaskKillName = "SandFall-Win64-Shipping";
+
         public static string GetExecutable()
         {
             // Stores a list of files in the current path.
@@ -16,24 +22,21 @@ namespace ClairObscurConfig
                 // Get the current file as a FileItem which is more useful than FileInfo.
                 FileItem FileProperties = new FileItem(File);
 
-                // If the name of the file matches what we are looking for.
-                if (Wildcard.Match(FileProperties.BaseName, "Expedition33*"))
+                // Skip the current file if it's the running application.
+                if (FileProperties.Name == Config.AppName) { continue; }
+
+                // Loop through the executables listed.
+                foreach (string ExeName in Game.Executables)
                 {
-                    // It must be an executable and not be this configurator.
-                    if (FileProperties.Extension == ".exe" && FileProperties.BaseName != "Expedition33_Config")
+                    // If the name of the file matches what we are looking for.
+                    if (Wildcard.Match(FileProperties.BaseName, ExeName))
                     {
-                        // After a rigid code adventure, we have the game executable.
-                        return FileProperties.FullName;
-                    }
-                }
-                // Let's also look for Sandfall which is the GamePass version or the "main" executable in both versions.
-                if (Wildcard.Match(FileProperties.BaseName, "Sandfall*"))
-                {
-                    // It must be an executable and not be this configurator.
-                    if (FileProperties.Extension == ".exe")
-                    {
-                        // After a rigid code adventure, we have the game executable.
-                        return FileProperties.FullName;
+                        // It must be an executable and not be this configurator.
+                        if (FileProperties.Extension == ".exe")
+                        {
+                            // After a rigid code adventure, we have the game executable.
+                            return FileProperties.FullName;
+                        }
                     }
                 }
             }
@@ -75,7 +78,7 @@ namespace ClairObscurConfig
             foreach (Process Proc in ProcRunning)
             {
                 // Match the game process.
-                if (Proc.ProcessName == "SandFall-Win64-Shipping")
+                if (Proc.ProcessName == Game.TaskKillName)
                 {
                     // Kill it and exit.
                     Proc.Kill();
