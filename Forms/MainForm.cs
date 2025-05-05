@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
@@ -201,7 +202,7 @@ namespace ClairObscurConfig
         }
         private void StripItem_EngineINI_Click(object sender, EventArgs e)
         {
-            Forms.OpenFileExplorer(Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\");
+            Forms.OpenFileExplorer(EngineINI.Path.GetFilePath());
         }
         private void StripItem_ExitNoSave_Click(object sender, EventArgs e)
         {
