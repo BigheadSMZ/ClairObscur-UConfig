@@ -169,9 +169,6 @@ namespace ClairObscurConfig
 
         public static void WriteINIValues(bool NewINI = false)
         {
-            // If the INI doesn't exist, it's best to not outright crash.
-            if (!EngineINI.Path.TestPath()) { return; }
-
             // We'll throw an exception if the file doesn't already exist.
             if (!NewINI)
             {

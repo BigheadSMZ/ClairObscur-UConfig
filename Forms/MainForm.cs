@@ -176,6 +176,10 @@ namespace ClairObscurConfig
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - File
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void StripItem_CreateINI_Click(object sender, EventArgs e)
+        {
+            Forms.PromptCreateNewINI();
+        }
         private void StripItem_SaveINI_Click(object sender, EventArgs e)
         {
             Forms.PromptSaveINI();
@@ -187,10 +191,6 @@ namespace ClairObscurConfig
         private void StripItem_DeleteINI_Click(object sender, EventArgs e)
         {
             Forms.PromptDeleteINI();
-        }
-        private void StripItem_CreateINI_Click(object sender, EventArgs e)
-        {
-            Forms.PromptCreateNewINI();
         }
         private void StripItem_Base_Click(object sender, EventArgs e)
         {
