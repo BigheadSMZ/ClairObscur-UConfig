@@ -491,7 +491,6 @@
             this.Combo_ChromAb.Location = new System.Drawing.Point(10, 216);
             this.Combo_ChromAb.Name = "Combo_ChromAb";
             this.Combo_ChromAb.Size = new System.Drawing.Size(92, 21);
-            this.Combo_ChromAb.Sorted = true;
             this.Combo_ChromAb.TabIndex = 7;
             this.Combo_ChromAb.SelectedIndexChanged += new System.EventHandler(this.Combo_ChromAb_SelectedIndexChanged);
             // 
@@ -682,7 +681,7 @@
             this.Button_ExitSave.Location = new System.Drawing.Point(391, 601);
             this.Button_ExitSave.Name = "Button_ExitSave";
             this.Button_ExitSave.Size = new System.Drawing.Size(120, 30);
-            this.Button_ExitSave.TabIndex = 2;
+            this.Button_ExitSave.TabIndex = 21;
             this.Button_ExitSave.Text = "Save / Exit";
             this.Button_ExitSave.UseVisualStyleBackColor = true;
             this.Button_ExitSave.Click += new System.EventHandler(this.Button_Exit_Click);
@@ -815,7 +814,7 @@
             // StripItem_CreateBackup
             // 
             this.StripItem_CreateBackup.Name = "StripItem_CreateBackup";
-            this.StripItem_CreateBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_CreateBackup.Size = new System.Drawing.Size(168, 22);
             this.StripItem_CreateBackup.Text = "Backup Engine.ini";
             this.StripItem_CreateBackup.ToolTipText = "Creates a backup of the current\r\nINI file and settings and appends\r\nthe extension" +
     " (.bak) to the file.";
@@ -824,7 +823,7 @@
             // StripItem_RestoreBackup
             // 
             this.StripItem_RestoreBackup.Name = "StripItem_RestoreBackup";
-            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(168, 22);
             this.StripItem_RestoreBackup.Text = "Restore Engine.ini";
             this.StripItem_RestoreBackup.ToolTipText = "Restores a backup of Engine.ini\r\nwhich replaces the current one\r\n(all current set" +
     "tings will be lost).";
@@ -928,7 +927,7 @@
             // StripItem_HelpAbout
             // 
             this.StripItem_HelpAbout.Name = "StripItem_HelpAbout";
-            this.StripItem_HelpAbout.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_HelpAbout.Size = new System.Drawing.Size(107, 22);
             this.StripItem_HelpAbout.Text = "About";
             this.StripItem_HelpAbout.Click += new System.EventHandler(this.StripItem_HelpAbout_Click);
             // 
@@ -937,7 +936,7 @@
             this.Button_Launch.Location = new System.Drawing.Point(265, 601);
             this.Button_Launch.Name = "Button_Launch";
             this.Button_Launch.Size = new System.Drawing.Size(120, 30);
-            this.Button_Launch.TabIndex = 5;
+            this.Button_Launch.TabIndex = 20;
             this.Button_Launch.Text = "Launch Game";
             this.Button_Launch.UseVisualStyleBackColor = true;
             this.Button_Launch.Click += new System.EventHandler(this.Button_Launch_Click);
@@ -947,7 +946,7 @@
             this.Button_Save.Location = new System.Drawing.Point(13, 601);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(120, 30);
-            this.Button_Save.TabIndex = 6;
+            this.Button_Save.TabIndex = 18;
             this.Button_Save.Text = "Save Changes";
             this.Button_Save.UseVisualStyleBackColor = true;
             this.Button_Save.Click += new System.EventHandler(this.Button_Save_Click);
@@ -957,7 +956,7 @@
             this.Button_Reload.Location = new System.Drawing.Point(139, 601);
             this.Button_Reload.Name = "Button_Reload";
             this.Button_Reload.Size = new System.Drawing.Size(120, 30);
-            this.Button_Reload.TabIndex = 7;
+            this.Button_Reload.TabIndex = 19;
             this.Button_Reload.Text = "Reload Engine.ini";
             this.Button_Reload.UseVisualStyleBackColor = true;
             this.Button_Reload.Click += new System.EventHandler(this.Button_Reload_Click);
@@ -969,7 +968,7 @@
             this.GroupBox_GameVer.Location = new System.Drawing.Point(13, 267);
             this.GroupBox_GameVer.Name = "GroupBox_GameVer";
             this.GroupBox_GameVer.Size = new System.Drawing.Size(498, 48);
-            this.GroupBox_GameVer.TabIndex = 8;
+            this.GroupBox_GameVer.TabIndex = 22;
             this.GroupBox_GameVer.TabStop = false;
             this.GroupBox_GameVer.Text = "Game Version";
             // 
@@ -979,7 +978,7 @@
             this.Radio_GamePass.Location = new System.Drawing.Point(126, 19);
             this.Radio_GamePass.Name = "Radio_GamePass";
             this.Radio_GamePass.Size = new System.Drawing.Size(114, 17);
-            this.Radio_GamePass.TabIndex = 1;
+            this.Radio_GamePass.TabIndex = 22;
             this.Radio_GamePass.TabStop = true;
             this.Radio_GamePass.Text = "GamePass Version";
             this.Radio_GamePass.UseVisualStyleBackColor = true;
@@ -991,7 +990,7 @@
             this.Radio_Steam.Location = new System.Drawing.Point(16, 19);
             this.Radio_Steam.Name = "Radio_Steam";
             this.Radio_Steam.Size = new System.Drawing.Size(93, 17);
-            this.Radio_Steam.TabIndex = 0;
+            this.Radio_Steam.TabIndex = 22;
             this.Radio_Steam.TabStop = true;
             this.Radio_Steam.Text = "Steam Version";
             this.Radio_Steam.UseVisualStyleBackColor = true;
