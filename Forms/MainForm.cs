@@ -36,8 +36,11 @@ namespace ClairObscurConfig
             // Cancel if it's not checked.
             if (!Checked) { return; }
 
+            // The path needs to be created if it doesn't exist.
+            INIPath.CreatePath(true);
+
             // Update the INI properties.
-            EngineINI.Path = INIPath;
+            EngineINI.Path = INIPath + "\\Engine.ini";
             EngineINI.File = new IniFile(EngineINI.Path);
 
             // Try to load and toggle the GUI based on existence.
@@ -65,7 +68,7 @@ namespace ClairObscurConfig
             // Steam version of the game was toggled.
             bool   Checked  = (sender as RadioButton).Checked;
             string Version = "Steam";
-            string INIPath  = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\Engine.ini";
+            string INIPath  = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows";
             this.Radio_CheckedChanged(Checked, Version, INIPath);
         }
         private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
@@ -73,7 +76,7 @@ namespace ClairObscurConfig
             // GamePass version of the game was toggled.
             bool   Checked = (sender as RadioButton).Checked;
             string Version = "GamePass";
-            string INIPath = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK\\Engine.ini";
+            string INIPath = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK";
             this.Radio_CheckedChanged(Checked, Version, INIPath);
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
