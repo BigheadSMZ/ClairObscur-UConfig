@@ -212,7 +212,6 @@ namespace ClairObscurConfig
             string Title = "Game Not Found";
             string Message = "Game executable not found. To launch the game with this configurator, place it alongside \"Expedition33_Steam.exe\", \"Sandfall.exe\", or \"SandFall-Win64-Shipping.exe\".";
             Forms.OkayDialog.Display(Title, Message, 290, 44, 10, 10, 10);
-            EngineINI.WriteINIValues();
         }
 
         public static void PromptNoGameProcess()
@@ -221,7 +220,6 @@ namespace ClairObscurConfig
             string Title = "Game PID Not Found";
             string Message = "Process \"SandFall-Win64-Shipping.exe\" is not running.";
             Forms.OkayDialog.Display(Title, Message, 270, 32, 24, 24, 10);
-            EngineINI.WriteINIValues();
         }
 
         public static void PromptAbout()
@@ -230,7 +228,6 @@ namespace ClairObscurConfig
             string Title = "About";
             string Message = Game.Name + " - Unreal Config v" + Config.AppVersion + "\r\nCreated by: Bighead - bighead.0@gmail.com";
             Forms.OkayDialog.Display(Title, Message, 280, 32, 30, 20, 10);
-            EngineINI.WriteINIValues();
         }
 
     }
