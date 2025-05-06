@@ -139,9 +139,6 @@ namespace ClairObscurConfig
             // The amount to nudge the controls.
             int Nudge = 14;
 
-            // Let's use this to save some text. My fingers are tired.
-            Form_MainForm MainForm = Forms.MainDialog;
-
             // Toggle the visibility of checkboxes.
             foreach (CheckBox LoopBox in ToggleOptions)
             {
@@ -152,7 +149,7 @@ namespace ClairObscurConfig
             if (!State) { Nudge = -14; }
 
             // Move the controls based on the nudge value.
-            foreach (Control ComboLabelNumeric in MainForm.GroupBox_Main.Controls)
+            foreach (Control ComboLabelNumeric in Forms.MainDialog.GroupBox_Main.Controls)
             {
                 // Get the type of the control.
                 Type ControlType = ComboLabelNumeric.GetType();
