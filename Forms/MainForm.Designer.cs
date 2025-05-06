@@ -32,11 +32,29 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
+            this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
+            this.CheckBox_ShadDist = new System.Windows.Forms.CheckBox();
+            this.CheckBox_ViewDist = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Sharpen = new System.Windows.Forms.CheckBox();
+            this.CheckBox_GrainQuant = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Tonemap = new System.Windows.Forms.CheckBox();
+            this.CheckBox_ShadRes = new System.Windows.Forms.CheckBox();
+            this.CheckBox_ShadQual = new System.Windows.Forms.CheckBox();
+            this.CheckBox_FilmGrain = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Distort = new System.Windows.Forms.CheckBox();
+            this.CheckBox_ChromAb = new System.Windows.Forms.CheckBox();
+            this.CheckBox_VFog = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Fog = new System.Windows.Forms.CheckBox();
+            this.CheckBox_LensFlare = new System.Windows.Forms.CheckBox();
+            this.CheckBox_MBlur = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Bloom = new System.Windows.Forms.CheckBox();
+            this.CheckBox_DoF = new System.Windows.Forms.CheckBox();
+            this.CheckBox_AF = new System.Windows.Forms.CheckBox();
             this.Num_FolDist = new System.Windows.Forms.NumericUpDown();
             this.Num_ShadDist = new System.Windows.Forms.NumericUpDown();
             this.Num_ViewDist = new System.Windows.Forms.NumericUpDown();
             this.Num_Sharpen = new System.Windows.Forms.NumericUpDown();
-            this.Label_FolDistance = new System.Windows.Forms.Label();
+            this.Label_FolDist = new System.Windows.Forms.Label();
             this.Label_ShadDist = new System.Windows.Forms.Label();
             this.Label_ViewDist = new System.Windows.Forms.Label();
             this.Label_GrainQuant = new System.Windows.Forms.Label();
@@ -97,6 +115,8 @@
             this.StripItem_LaunchGame = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_CloseGame = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_HelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.Button_Launch = new System.Windows.Forms.Button();
             this.Button_Save = new System.Windows.Forms.Button();
@@ -105,8 +125,6 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
-            this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -129,11 +147,29 @@
             // 
             // GroupBox_Main
             // 
+            this.GroupBox_Main.Controls.Add(this.CheckBox_FolDist);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_ShadDist);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_ViewDist);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_Sharpen);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_GrainQuant);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_Tonemap);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_ShadRes);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_ShadQual);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_FilmGrain);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_Distort);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_ChromAb);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_VFog);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_Fog);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_LensFlare);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_MBlur);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_Bloom);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_DoF);
+            this.GroupBox_Main.Controls.Add(this.CheckBox_AF);
             this.GroupBox_Main.Controls.Add(this.Num_FolDist);
             this.GroupBox_Main.Controls.Add(this.Num_ShadDist);
             this.GroupBox_Main.Controls.Add(this.Num_ViewDist);
             this.GroupBox_Main.Controls.Add(this.Num_Sharpen);
-            this.GroupBox_Main.Controls.Add(this.Label_FolDistance);
+            this.GroupBox_Main.Controls.Add(this.Label_FolDist);
             this.GroupBox_Main.Controls.Add(this.Label_ShadDist);
             this.GroupBox_Main.Controls.Add(this.Label_ViewDist);
             this.GroupBox_Main.Controls.Add(this.Label_GrainQuant);
@@ -172,6 +208,204 @@
             this.GroupBox_Main.TabStop = false;
             this.GroupBox_Main.Text = "Graphics Configuration";
             // 
+            // CheckBox_FolDist
+            // 
+            this.CheckBox_FolDist.Location = new System.Drawing.Point(254, 248);
+            this.CheckBox_FolDist.Name = "CheckBox_FolDist";
+            this.CheckBox_FolDist.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_FolDist.TabIndex = 35;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_FolDist, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_FolDist.UseVisualStyleBackColor = true;
+            this.CheckBox_FolDist.CheckedChanged += new System.EventHandler(this.CheckBox_FolDist_CheckedChanged);
+            this.CheckBox_FolDist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_ShadDist
+            // 
+            this.CheckBox_ShadDist.Location = new System.Drawing.Point(254, 220);
+            this.CheckBox_ShadDist.Name = "CheckBox_ShadDist";
+            this.CheckBox_ShadDist.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_ShadDist.TabIndex = 34;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_ShadDist, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_ShadDist.UseVisualStyleBackColor = true;
+            this.CheckBox_ShadDist.CheckedChanged += new System.EventHandler(this.CheckBox_ShadDist_CheckedChanged);
+            this.CheckBox_ShadDist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_ViewDist
+            // 
+            this.CheckBox_ViewDist.Location = new System.Drawing.Point(254, 192);
+            this.CheckBox_ViewDist.Name = "CheckBox_ViewDist";
+            this.CheckBox_ViewDist.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_ViewDist.TabIndex = 33;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_ViewDist, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_ViewDist.UseVisualStyleBackColor = true;
+            this.CheckBox_ViewDist.CheckedChanged += new System.EventHandler(this.CheckBox_ViewDist_CheckedChanged);
+            this.CheckBox_ViewDist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_Sharpen
+            // 
+            this.CheckBox_Sharpen.Location = new System.Drawing.Point(254, 164);
+            this.CheckBox_Sharpen.Name = "CheckBox_Sharpen";
+            this.CheckBox_Sharpen.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_Sharpen.TabIndex = 32;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_Sharpen, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_Sharpen.UseVisualStyleBackColor = true;
+            this.CheckBox_Sharpen.CheckedChanged += new System.EventHandler(this.CheckBox_Sharpen_CheckedChanged);
+            this.CheckBox_Sharpen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_GrainQuant
+            // 
+            this.CheckBox_GrainQuant.Location = new System.Drawing.Point(254, 136);
+            this.CheckBox_GrainQuant.Name = "CheckBox_GrainQuant";
+            this.CheckBox_GrainQuant.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_GrainQuant.TabIndex = 31;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_GrainQuant, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_GrainQuant.UseVisualStyleBackColor = true;
+            this.CheckBox_GrainQuant.CheckedChanged += new System.EventHandler(this.CheckBox_GrainQuant_CheckedChanged);
+            this.CheckBox_GrainQuant.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_Tonemap
+            // 
+            this.CheckBox_Tonemap.Location = new System.Drawing.Point(254, 108);
+            this.CheckBox_Tonemap.Name = "CheckBox_Tonemap";
+            this.CheckBox_Tonemap.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_Tonemap.TabIndex = 30;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_Tonemap, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_Tonemap.UseVisualStyleBackColor = true;
+            this.CheckBox_Tonemap.CheckedChanged += new System.EventHandler(this.CheckBox_Tonemap_CheckedChanged);
+            this.CheckBox_Tonemap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_ShadRes
+            // 
+            this.CheckBox_ShadRes.Location = new System.Drawing.Point(254, 80);
+            this.CheckBox_ShadRes.Name = "CheckBox_ShadRes";
+            this.CheckBox_ShadRes.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_ShadRes.TabIndex = 29;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_ShadRes, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_ShadRes.UseVisualStyleBackColor = true;
+            this.CheckBox_ShadRes.CheckedChanged += new System.EventHandler(this.CheckBox_ShadRes_CheckedChanged);
+            this.CheckBox_ShadRes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_ShadQual
+            // 
+            this.CheckBox_ShadQual.Location = new System.Drawing.Point(254, 52);
+            this.CheckBox_ShadQual.Name = "CheckBox_ShadQual";
+            this.CheckBox_ShadQual.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_ShadQual.TabIndex = 28;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_ShadQual, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_ShadQual.UseVisualStyleBackColor = true;
+            this.CheckBox_ShadQual.CheckedChanged += new System.EventHandler(this.CheckBox_ShadQual_CheckedChanged);
+            this.CheckBox_ShadQual.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_FilmGrain
+            // 
+            this.CheckBox_FilmGrain.Location = new System.Drawing.Point(254, 24);
+            this.CheckBox_FilmGrain.Name = "CheckBox_FilmGrain";
+            this.CheckBox_FilmGrain.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_FilmGrain.TabIndex = 27;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_FilmGrain, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_FilmGrain.UseVisualStyleBackColor = true;
+            this.CheckBox_FilmGrain.CheckedChanged += new System.EventHandler(this.CheckBox_FilmGrain_CheckedChanged);
+            this.CheckBox_FilmGrain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_Distort
+            // 
+            this.CheckBox_Distort.Location = new System.Drawing.Point(4, 248);
+            this.CheckBox_Distort.Name = "CheckBox_Distort";
+            this.CheckBox_Distort.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_Distort.TabIndex = 26;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_Distort, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_Distort.UseVisualStyleBackColor = true;
+            this.CheckBox_Distort.CheckedChanged += new System.EventHandler(this.CheckBox_Distort_CheckedChanged);
+            this.CheckBox_Distort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_ChromAb
+            // 
+            this.CheckBox_ChromAb.Location = new System.Drawing.Point(4, 220);
+            this.CheckBox_ChromAb.Name = "CheckBox_ChromAb";
+            this.CheckBox_ChromAb.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_ChromAb.TabIndex = 25;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_ChromAb, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_ChromAb.UseVisualStyleBackColor = true;
+            this.CheckBox_ChromAb.CheckedChanged += new System.EventHandler(this.CheckBox_ChromAb_CheckedChanged);
+            this.CheckBox_ChromAb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_VFog
+            // 
+            this.CheckBox_VFog.Location = new System.Drawing.Point(4, 192);
+            this.CheckBox_VFog.Name = "CheckBox_VFog";
+            this.CheckBox_VFog.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_VFog.TabIndex = 24;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_VFog, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_VFog.UseVisualStyleBackColor = true;
+            this.CheckBox_VFog.CheckedChanged += new System.EventHandler(this.CheckBox_VFog_CheckedChanged);
+            this.CheckBox_VFog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_Fog
+            // 
+            this.CheckBox_Fog.Location = new System.Drawing.Point(4, 164);
+            this.CheckBox_Fog.Name = "CheckBox_Fog";
+            this.CheckBox_Fog.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_Fog.TabIndex = 23;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_Fog, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_Fog.UseVisualStyleBackColor = true;
+            this.CheckBox_Fog.CheckedChanged += new System.EventHandler(this.CheckBox_Fog_CheckedChanged);
+            this.CheckBox_Fog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_LensFlare
+            // 
+            this.CheckBox_LensFlare.Location = new System.Drawing.Point(4, 136);
+            this.CheckBox_LensFlare.Name = "CheckBox_LensFlare";
+            this.CheckBox_LensFlare.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_LensFlare.TabIndex = 22;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_LensFlare, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_LensFlare.UseVisualStyleBackColor = true;
+            this.CheckBox_LensFlare.CheckedChanged += new System.EventHandler(this.CheckBox_LensFlare_CheckedChanged);
+            this.CheckBox_LensFlare.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_MBlur
+            // 
+            this.CheckBox_MBlur.Location = new System.Drawing.Point(4, 108);
+            this.CheckBox_MBlur.Name = "CheckBox_MBlur";
+            this.CheckBox_MBlur.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_MBlur.TabIndex = 21;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_MBlur, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_MBlur.UseVisualStyleBackColor = true;
+            this.CheckBox_MBlur.CheckedChanged += new System.EventHandler(this.CheckBox_MBlur_CheckedChanged);
+            this.CheckBox_MBlur.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_Bloom
+            // 
+            this.CheckBox_Bloom.Location = new System.Drawing.Point(4, 80);
+            this.CheckBox_Bloom.Name = "CheckBox_Bloom";
+            this.CheckBox_Bloom.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_Bloom.TabIndex = 20;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_Bloom, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_Bloom.UseVisualStyleBackColor = true;
+            this.CheckBox_Bloom.CheckedChanged += new System.EventHandler(this.CheckBox_Bloom_CheckedChanged);
+            this.CheckBox_Bloom.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_DoF
+            // 
+            this.CheckBox_DoF.Location = new System.Drawing.Point(4, 52);
+            this.CheckBox_DoF.Name = "CheckBox_DoF";
+            this.CheckBox_DoF.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_DoF.TabIndex = 19;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_DoF, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_DoF.UseVisualStyleBackColor = true;
+            this.CheckBox_DoF.CheckedChanged += new System.EventHandler(this.CheckBox_DoF_CheckedChanged);
+            this.CheckBox_DoF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
+            // CheckBox_AF
+            // 
+            this.CheckBox_AF.Location = new System.Drawing.Point(4, 24);
+            this.CheckBox_AF.Name = "CheckBox_AF";
+            this.CheckBox_AF.Size = new System.Drawing.Size(14, 14);
+            this.CheckBox_AF.TabIndex = 18;
+            this.GlobalToolTip.SetToolTip(this.CheckBox_AF, "Check to omit this\r\noption from the INI.");
+            this.CheckBox_AF.UseVisualStyleBackColor = true;
+            this.CheckBox_AF.CheckedChanged += new System.EventHandler(this.CheckBox_AF_CheckedChanged);
+            this.CheckBox_AF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBox_CheckAllClicked);
+            // 
             // Num_FolDist
             // 
             this.Num_FolDist.DecimalPlaces = 2;
@@ -180,7 +414,7 @@
             0,
             0,
             131072});
-            this.Num_FolDist.Location = new System.Drawing.Point(260, 244);
+            this.Num_FolDist.Location = new System.Drawing.Point(271, 244);
             this.Num_FolDist.Maximum = new decimal(new int[] {
             10,
             0,
@@ -209,7 +443,7 @@
             0,
             0,
             131072});
-            this.Num_ShadDist.Location = new System.Drawing.Point(260, 216);
+            this.Num_ShadDist.Location = new System.Drawing.Point(271, 216);
             this.Num_ShadDist.Maximum = new decimal(new int[] {
             10,
             0,
@@ -238,7 +472,7 @@
             0,
             0,
             131072});
-            this.Num_ViewDist.Location = new System.Drawing.Point(260, 188);
+            this.Num_ViewDist.Location = new System.Drawing.Point(271, 188);
             this.Num_ViewDist.Maximum = new decimal(new int[] {
             10,
             0,
@@ -267,7 +501,7 @@
             0,
             0,
             65536});
-            this.Num_Sharpen.Location = new System.Drawing.Point(260, 160);
+            this.Num_Sharpen.Location = new System.Drawing.Point(271, 160);
             this.Num_Sharpen.Maximum = new decimal(new int[] {
             10,
             0,
@@ -278,20 +512,20 @@
             this.Num_Sharpen.TabIndex = 14;
             this.Num_Sharpen.ValueChanged += new System.EventHandler(this.Num_Sharpen_ValueChanged);
             // 
-            // Label_FolDistance
+            // Label_FolDist
             // 
-            this.Label_FolDistance.AutoSize = true;
-            this.Label_FolDistance.Location = new System.Drawing.Point(355, 247);
-            this.Label_FolDistance.Name = "Label_FolDistance";
-            this.Label_FolDistance.Size = new System.Drawing.Size(86, 13);
-            this.Label_FolDistance.TabIndex = 17;
-            this.Label_FolDistance.Text = "Foliage Distance";
-            this.GlobalToolTip.SetToolTip(this.Label_FolDistance, resources.GetString("Label_FolDistance.ToolTip"));
+            this.Label_FolDist.AutoSize = true;
+            this.Label_FolDist.Location = new System.Drawing.Point(366, 247);
+            this.Label_FolDist.Name = "Label_FolDist";
+            this.Label_FolDist.Size = new System.Drawing.Size(86, 13);
+            this.Label_FolDist.TabIndex = 17;
+            this.Label_FolDist.Text = "Foliage Distance";
+            this.GlobalToolTip.SetToolTip(this.Label_FolDist, resources.GetString("Label_FolDist.ToolTip"));
             // 
             // Label_ShadDist
             // 
             this.Label_ShadDist.AutoSize = true;
-            this.Label_ShadDist.Location = new System.Drawing.Point(355, 219);
+            this.Label_ShadDist.Location = new System.Drawing.Point(366, 219);
             this.Label_ShadDist.Name = "Label_ShadDist";
             this.Label_ShadDist.Size = new System.Drawing.Size(91, 13);
             this.Label_ShadDist.TabIndex = 16;
@@ -301,7 +535,7 @@
             // Label_ViewDist
             // 
             this.Label_ViewDist.AutoSize = true;
-            this.Label_ViewDist.Location = new System.Drawing.Point(355, 191);
+            this.Label_ViewDist.Location = new System.Drawing.Point(366, 191);
             this.Label_ViewDist.Name = "Label_ViewDist";
             this.Label_ViewDist.Size = new System.Drawing.Size(75, 13);
             this.Label_ViewDist.TabIndex = 15;
@@ -311,7 +545,7 @@
             // Label_GrainQuant
             // 
             this.Label_GrainQuant.AutoSize = true;
-            this.Label_GrainQuant.Location = new System.Drawing.Point(355, 135);
+            this.Label_GrainQuant.Location = new System.Drawing.Point(366, 135);
             this.Label_GrainQuant.Name = "Label_GrainQuant";
             this.Label_GrainQuant.Size = new System.Drawing.Size(94, 13);
             this.Label_GrainQuant.TabIndex = 13;
@@ -326,7 +560,7 @@
             this.Combo_GrainQuant.Items.AddRange(new object[] {
             "Enabled",
             "Disabled"});
-            this.Combo_GrainQuant.Location = new System.Drawing.Point(260, 132);
+            this.Combo_GrainQuant.Location = new System.Drawing.Point(271, 132);
             this.Combo_GrainQuant.Name = "Combo_GrainQuant";
             this.Combo_GrainQuant.Size = new System.Drawing.Size(92, 21);
             this.Combo_GrainQuant.TabIndex = 13;
@@ -335,7 +569,7 @@
             // Label_Sharpen
             // 
             this.Label_Sharpen.AutoSize = true;
-            this.Label_Sharpen.Location = new System.Drawing.Point(355, 163);
+            this.Label_Sharpen.Location = new System.Drawing.Point(366, 163);
             this.Label_Sharpen.Name = "Label_Sharpen";
             this.Label_Sharpen.Size = new System.Drawing.Size(104, 13);
             this.Label_Sharpen.TabIndex = 14;
@@ -347,7 +581,7 @@
             // Label_ShadRes
             // 
             this.Label_ShadRes.AutoSize = true;
-            this.Label_ShadRes.Location = new System.Drawing.Point(355, 79);
+            this.Label_ShadRes.Location = new System.Drawing.Point(366, 79);
             this.Label_ShadRes.Name = "Label_ShadRes";
             this.Label_ShadRes.Size = new System.Drawing.Size(99, 13);
             this.Label_ShadRes.TabIndex = 11;
@@ -364,7 +598,7 @@
             "2048x2048",
             "4096x4096",
             "8192x8192"});
-            this.Combo_ShadRes.Location = new System.Drawing.Point(260, 76);
+            this.Combo_ShadRes.Location = new System.Drawing.Point(271, 76);
             this.Combo_ShadRes.Name = "Combo_ShadRes";
             this.Combo_ShadRes.Size = new System.Drawing.Size(92, 21);
             this.Combo_ShadRes.TabIndex = 11;
@@ -373,7 +607,7 @@
             // Label_ShadQual
             // 
             this.Label_ShadQual.AutoSize = true;
-            this.Label_ShadQual.Location = new System.Drawing.Point(355, 51);
+            this.Label_ShadQual.Location = new System.Drawing.Point(366, 51);
             this.Label_ShadQual.Name = "Label_ShadQual";
             this.Label_ShadQual.Size = new System.Drawing.Size(81, 13);
             this.Label_ShadQual.TabIndex = 10;
@@ -391,7 +625,7 @@
             "High",
             "Very High",
             "Ultra"});
-            this.Combo_ShadQual.Location = new System.Drawing.Point(260, 48);
+            this.Combo_ShadQual.Location = new System.Drawing.Point(271, 48);
             this.Combo_ShadQual.Name = "Combo_ShadQual";
             this.Combo_ShadQual.Size = new System.Drawing.Size(92, 21);
             this.Combo_ShadQual.TabIndex = 10;
@@ -400,7 +634,7 @@
             // Label_Tonemap
             // 
             this.Label_Tonemap.AutoSize = true;
-            this.Label_Tonemap.Location = new System.Drawing.Point(355, 107);
+            this.Label_Tonemap.Location = new System.Drawing.Point(366, 107);
             this.Label_Tonemap.Name = "Label_Tonemap";
             this.Label_Tonemap.Size = new System.Drawing.Size(102, 13);
             this.Label_Tonemap.TabIndex = 12;
@@ -418,7 +652,7 @@
             "3",
             "4",
             "5"});
-            this.Combo_Tonemap.Location = new System.Drawing.Point(260, 104);
+            this.Combo_Tonemap.Location = new System.Drawing.Point(271, 104);
             this.Combo_Tonemap.Name = "Combo_Tonemap";
             this.Combo_Tonemap.Size = new System.Drawing.Size(92, 21);
             this.Combo_Tonemap.TabIndex = 12;
@@ -427,7 +661,7 @@
             // Label_FilmGrain
             // 
             this.Label_FilmGrain.AutoSize = true;
-            this.Label_FilmGrain.Location = new System.Drawing.Point(355, 23);
+            this.Label_FilmGrain.Location = new System.Drawing.Point(366, 23);
             this.Label_FilmGrain.Name = "Label_FilmGrain";
             this.Label_FilmGrain.Size = new System.Drawing.Size(53, 13);
             this.Label_FilmGrain.TabIndex = 9;
@@ -442,7 +676,7 @@
             this.Combo_FilmGrain.Items.AddRange(new object[] {
             "Enabled",
             "Disabled"});
-            this.Combo_FilmGrain.Location = new System.Drawing.Point(260, 20);
+            this.Combo_FilmGrain.Location = new System.Drawing.Point(271, 20);
             this.Combo_FilmGrain.Name = "Combo_FilmGrain";
             this.Combo_FilmGrain.Size = new System.Drawing.Size(92, 21);
             this.Combo_FilmGrain.TabIndex = 9;
@@ -451,7 +685,7 @@
             // Label_Distort
             // 
             this.Label_Distort.AutoSize = true;
-            this.Label_Distort.Location = new System.Drawing.Point(105, 247);
+            this.Label_Distort.Location = new System.Drawing.Point(116, 247);
             this.Label_Distort.Name = "Label_Distort";
             this.Label_Distort.Size = new System.Drawing.Size(125, 13);
             this.Label_Distort.TabIndex = 8;
@@ -465,7 +699,7 @@
             this.Combo_Distort.Items.AddRange(new object[] {
             "Enabled",
             "Disabled"});
-            this.Combo_Distort.Location = new System.Drawing.Point(10, 244);
+            this.Combo_Distort.Location = new System.Drawing.Point(21, 244);
             this.Combo_Distort.Name = "Combo_Distort";
             this.Combo_Distort.Size = new System.Drawing.Size(92, 21);
             this.Combo_Distort.TabIndex = 8;
@@ -474,7 +708,7 @@
             // Label_ChromAb
             // 
             this.Label_ChromAb.AutoSize = true;
-            this.Label_ChromAb.Location = new System.Drawing.Point(105, 219);
+            this.Label_ChromAb.Location = new System.Drawing.Point(116, 219);
             this.Label_ChromAb.Name = "Label_ChromAb";
             this.Label_ChromAb.Size = new System.Drawing.Size(105, 13);
             this.Label_ChromAb.TabIndex = 7;
@@ -490,7 +724,7 @@
             this.Combo_ChromAb.Items.AddRange(new object[] {
             "Disabled",
             "Enabled"});
-            this.Combo_ChromAb.Location = new System.Drawing.Point(10, 216);
+            this.Combo_ChromAb.Location = new System.Drawing.Point(21, 216);
             this.Combo_ChromAb.Name = "Combo_ChromAb";
             this.Combo_ChromAb.Size = new System.Drawing.Size(92, 21);
             this.Combo_ChromAb.TabIndex = 7;
@@ -499,7 +733,7 @@
             // Label_VFog
             // 
             this.Label_VFog.AutoSize = true;
-            this.Label_VFog.Location = new System.Drawing.Point(105, 191);
+            this.Label_VFog.Location = new System.Drawing.Point(116, 191);
             this.Label_VFog.Name = "Label_VFog";
             this.Label_VFog.Size = new System.Drawing.Size(77, 13);
             this.Label_VFog.TabIndex = 6;
@@ -514,7 +748,7 @@
             this.Combo_VFog.Items.AddRange(new object[] {
             "Enabled",
             "Disabled"});
-            this.Combo_VFog.Location = new System.Drawing.Point(10, 188);
+            this.Combo_VFog.Location = new System.Drawing.Point(21, 188);
             this.Combo_VFog.Name = "Combo_VFog";
             this.Combo_VFog.Size = new System.Drawing.Size(92, 21);
             this.Combo_VFog.TabIndex = 6;
@@ -523,7 +757,7 @@
             // Label_Fog
             // 
             this.Label_Fog.AutoSize = true;
-            this.Label_Fog.Location = new System.Drawing.Point(105, 163);
+            this.Label_Fog.Location = new System.Drawing.Point(116, 163);
             this.Label_Fog.Name = "Label_Fog";
             this.Label_Fog.Size = new System.Drawing.Size(25, 13);
             this.Label_Fog.TabIndex = 5;
@@ -537,7 +771,7 @@
             this.Combo_Fog.Items.AddRange(new object[] {
             "Enabled",
             "Disabled"});
-            this.Combo_Fog.Location = new System.Drawing.Point(10, 160);
+            this.Combo_Fog.Location = new System.Drawing.Point(21, 160);
             this.Combo_Fog.Name = "Combo_Fog";
             this.Combo_Fog.Size = new System.Drawing.Size(92, 21);
             this.Combo_Fog.TabIndex = 5;
@@ -546,7 +780,7 @@
             // Label_LensFlare
             // 
             this.Label_LensFlare.AutoSize = true;
-            this.Label_LensFlare.Location = new System.Drawing.Point(105, 135);
+            this.Label_LensFlare.Location = new System.Drawing.Point(116, 135);
             this.Label_LensFlare.Name = "Label_LensFlare";
             this.Label_LensFlare.Size = new System.Drawing.Size(61, 13);
             this.Label_LensFlare.TabIndex = 4;
@@ -563,7 +797,7 @@
             "Low",
             "Medium",
             "High"});
-            this.Combo_LensFlare.Location = new System.Drawing.Point(10, 132);
+            this.Combo_LensFlare.Location = new System.Drawing.Point(21, 132);
             this.Combo_LensFlare.Name = "Combo_LensFlare";
             this.Combo_LensFlare.Size = new System.Drawing.Size(92, 21);
             this.Combo_LensFlare.TabIndex = 4;
@@ -572,7 +806,7 @@
             // Label_MBlur
             // 
             this.Label_MBlur.AutoSize = true;
-            this.Label_MBlur.Location = new System.Drawing.Point(105, 107);
+            this.Label_MBlur.Location = new System.Drawing.Point(116, 107);
             this.Label_MBlur.Name = "Label_MBlur";
             this.Label_MBlur.Size = new System.Drawing.Size(60, 13);
             this.Label_MBlur.TabIndex = 3;
@@ -590,7 +824,7 @@
             "Medium",
             "High",
             "Very High"});
-            this.Combo_MBlur.Location = new System.Drawing.Point(10, 104);
+            this.Combo_MBlur.Location = new System.Drawing.Point(21, 104);
             this.Combo_MBlur.Name = "Combo_MBlur";
             this.Combo_MBlur.Size = new System.Drawing.Size(92, 21);
             this.Combo_MBlur.TabIndex = 3;
@@ -599,7 +833,7 @@
             // Label_Bloom
             // 
             this.Label_Bloom.AutoSize = true;
-            this.Label_Bloom.Location = new System.Drawing.Point(105, 79);
+            this.Label_Bloom.Location = new System.Drawing.Point(116, 79);
             this.Label_Bloom.Name = "Label_Bloom";
             this.Label_Bloom.Size = new System.Drawing.Size(36, 13);
             this.Label_Bloom.TabIndex = 2;
@@ -618,7 +852,7 @@
             "High",
             "Very High",
             "Ultra"});
-            this.Combo_Bloom.Location = new System.Drawing.Point(10, 76);
+            this.Combo_Bloom.Location = new System.Drawing.Point(21, 76);
             this.Combo_Bloom.Name = "Combo_Bloom";
             this.Combo_Bloom.Size = new System.Drawing.Size(92, 21);
             this.Combo_Bloom.TabIndex = 2;
@@ -627,7 +861,7 @@
             // Label_DoF
             // 
             this.Label_DoF.AutoSize = true;
-            this.Label_DoF.Location = new System.Drawing.Point(105, 51);
+            this.Label_DoF.Location = new System.Drawing.Point(116, 51);
             this.Label_DoF.Name = "Label_DoF";
             this.Label_DoF.Size = new System.Drawing.Size(73, 13);
             this.Label_DoF.TabIndex = 1;
@@ -645,7 +879,7 @@
             "Medium",
             "High",
             "Very High"});
-            this.Combo_DoF.Location = new System.Drawing.Point(10, 48);
+            this.Combo_DoF.Location = new System.Drawing.Point(21, 48);
             this.Combo_DoF.Name = "Combo_DoF";
             this.Combo_DoF.Size = new System.Drawing.Size(92, 21);
             this.Combo_DoF.TabIndex = 1;
@@ -654,7 +888,7 @@
             // Label_AF
             // 
             this.Label_AF.AutoSize = true;
-            this.Label_AF.Location = new System.Drawing.Point(104, 23);
+            this.Label_AF.Location = new System.Drawing.Point(115, 23);
             this.Label_AF.Name = "Label_AF";
             this.Label_AF.Size = new System.Drawing.Size(98, 13);
             this.Label_AF.TabIndex = 0;
@@ -672,7 +906,7 @@
             "4x",
             "8x",
             "16x"});
-            this.Combo_AF.Location = new System.Drawing.Point(10, 20);
+            this.Combo_AF.Location = new System.Drawing.Point(21, 20);
             this.Combo_AF.Name = "Combo_AF";
             this.Combo_AF.Size = new System.Drawing.Size(92, 21);
             this.Combo_AF.TabIndex = 0;
@@ -816,7 +1050,7 @@
             // StripItem_CreateBackup
             // 
             this.StripItem_CreateBackup.Name = "StripItem_CreateBackup";
-            this.StripItem_CreateBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_CreateBackup.Size = new System.Drawing.Size(168, 22);
             this.StripItem_CreateBackup.Text = "Backup Engine.ini";
             this.StripItem_CreateBackup.ToolTipText = "Creates a backup of the current\r\nINI file and settings and appends\r\nthe extension" +
     " (.bak) to the file.";
@@ -825,7 +1059,7 @@
             // StripItem_RestoreBackup
             // 
             this.StripItem_RestoreBackup.Name = "StripItem_RestoreBackup";
-            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(168, 22);
             this.StripItem_RestoreBackup.Text = "Restore Engine.ini";
             this.StripItem_RestoreBackup.ToolTipText = "Restores a backup of Engine.ini\r\nwhich replaces the current one\r\n(all current set" +
     "tings will be lost).";
@@ -928,10 +1162,24 @@
             this.MainStripItem_Help.Size = new System.Drawing.Size(44, 20);
             this.MainStripItem_Help.Text = "Help";
             // 
+            // StripItem_GitHub
+            // 
+            this.StripItem_GitHub.Name = "StripItem_GitHub";
+            this.StripItem_GitHub.Size = new System.Drawing.Size(165, 22);
+            this.StripItem_GitHub.Text = "GitHub Page";
+            this.StripItem_GitHub.Click += new System.EventHandler(this.StripItem_GitHub_Click);
+            // 
+            // StripItem_NexusMods
+            // 
+            this.StripItem_NexusMods.Name = "StripItem_NexusMods";
+            this.StripItem_NexusMods.Size = new System.Drawing.Size(165, 22);
+            this.StripItem_NexusMods.Text = "NexusMods Page";
+            this.StripItem_NexusMods.Click += new System.EventHandler(this.StripItem_NexusMods_Click);
+            // 
             // StripItem_HelpAbout
             // 
             this.StripItem_HelpAbout.Name = "StripItem_HelpAbout";
-            this.StripItem_HelpAbout.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_HelpAbout.Size = new System.Drawing.Size(165, 22);
             this.StripItem_HelpAbout.Text = "About";
             this.StripItem_HelpAbout.Click += new System.EventHandler(this.StripItem_HelpAbout_Click);
             // 
@@ -1000,20 +1248,6 @@
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
-            // StripItem_NexusMods
-            // 
-            this.StripItem_NexusMods.Name = "StripItem_NexusMods";
-            this.StripItem_NexusMods.Size = new System.Drawing.Size(180, 22);
-            this.StripItem_NexusMods.Text = "NexusMods Page";
-            this.StripItem_NexusMods.Click += new System.EventHandler(this.StripItem_NexusMods_Click);
-            // 
-            // StripItem_GitHub
-            // 
-            this.StripItem_GitHub.Name = "StripItem_GitHub";
-            this.StripItem_GitHub.Size = new System.Drawing.Size(180, 22);
-            this.StripItem_GitHub.Text = "GitHub Page";
-            this.StripItem_GitHub.Click += new System.EventHandler(this.StripItem_GitHub_Click);
-            // 
             // Form_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1071,7 +1305,7 @@
         private System.Windows.Forms.Label Label_Distort;
         private System.Windows.Forms.Label Label_ChromAb;
         private System.Windows.Forms.Label Label_VFog;
-        private System.Windows.Forms.Label Label_FolDistance;
+        private System.Windows.Forms.Label Label_FolDist;
         private System.Windows.Forms.Label Label_ShadDist;
         public System.Windows.Forms.NumericUpDown Num_FolDist;
         public System.Windows.Forms.NumericUpDown Num_ShadDist;
@@ -1118,19 +1352,37 @@
         public System.Windows.Forms.Button Button_Reload;
         public System.Windows.Forms.GroupBox GroupBox_Main;
         public System.Windows.Forms.ToolStripMenuItem StripItem_SaveINI;
-        private System.Windows.Forms.ToolTip GlobalToolTip;
-        private System.Windows.Forms.ToolStripSeparator ToolStripSeperatorA;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_AppData;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_Base;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_EngineINI;
-        private System.Windows.Forms.GroupBox GroupBox_GameVer;
+        public System.Windows.Forms.ToolTip GlobalToolTip;
+        public System.Windows.Forms.ToolStripSeparator ToolStripSeperatorA;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_AppData;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_Base;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_EngineINI;
+        public System.Windows.Forms.GroupBox GroupBox_GameVer;
         public System.Windows.Forms.RadioButton Radio_GamePass;
         public System.Windows.Forms.RadioButton Radio_Steam;
-        private System.Windows.Forms.ToolStripMenuItem MainStripItem_Backup;
+        public System.Windows.Forms.ToolStripMenuItem MainStripItem_Backup;
         public System.Windows.Forms.ToolStripMenuItem StripItem_CreateBackup;
         public System.Windows.Forms.ToolStripMenuItem StripItem_RestoreBackup;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_GitHub;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_NexusMods;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_GitHub;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_NexusMods;
+        public System.Windows.Forms.CheckBox CheckBox_FolDist;
+        public System.Windows.Forms.CheckBox CheckBox_ShadDist;
+        public System.Windows.Forms.CheckBox CheckBox_ViewDist;
+        public System.Windows.Forms.CheckBox CheckBox_Sharpen;
+        public System.Windows.Forms.CheckBox CheckBox_GrainQuant;
+        public System.Windows.Forms.CheckBox CheckBox_Tonemap;
+        public System.Windows.Forms.CheckBox CheckBox_ShadRes;
+        public System.Windows.Forms.CheckBox CheckBox_ShadQual;
+        public System.Windows.Forms.CheckBox CheckBox_FilmGrain;
+        public System.Windows.Forms.CheckBox CheckBox_Distort;
+        public System.Windows.Forms.CheckBox CheckBox_ChromAb;
+        public System.Windows.Forms.CheckBox CheckBox_VFog;
+        public System.Windows.Forms.CheckBox CheckBox_Fog;
+        public System.Windows.Forms.CheckBox CheckBox_LensFlare;
+        public System.Windows.Forms.CheckBox CheckBox_MBlur;
+        public System.Windows.Forms.CheckBox CheckBox_Bloom;
+        public System.Windows.Forms.CheckBox CheckBox_DoF;
+        public System.Windows.Forms.CheckBox CheckBox_AF;
     }
 }
 

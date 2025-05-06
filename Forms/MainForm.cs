@@ -81,6 +81,114 @@ namespace ClairObscurConfig
             }
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Main Dialog - Options CheckBoxes
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void CheckBox_CheckAllClicked(object sender, MouseEventArgs e)
+        {
+            bool CheckState = (sender as CheckBox).Checked;
+
+            if (this.ControlHeld)
+            {
+                foreach (Control Checkbox in this.GroupBox_Main.Controls)
+                {
+                    if (Checkbox.GetType() == typeof(CheckBox))
+                    {
+                        (Checkbox as CheckBox).Checked = CheckState;
+                    }
+                }
+            }
+        }
+        private void CheckBox_AF_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_AF.Enabled = !(sender as CheckBox).Checked;
+            this.Label_AF.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_DoF_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_DoF.Enabled = !(sender as CheckBox).Checked;
+            this.Label_DoF.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_Bloom_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_Bloom.Enabled = !(sender as CheckBox).Checked;
+            this.Label_Bloom.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_MBlur_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_MBlur.Enabled = !(sender as CheckBox).Checked;
+            this.Label_MBlur.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_LensFlare_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_LensFlare.Enabled = !(sender as CheckBox).Checked;
+            this.Label_LensFlare.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_Fog_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_Fog.Enabled = !(sender as CheckBox).Checked;
+            this.Label_Fog.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_VFog_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_VFog.Enabled = !(sender as CheckBox).Checked;
+            this.Label_VFog.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_ChromAb_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_ChromAb.Enabled = !(sender as CheckBox).Checked;
+            this.Label_ChromAb.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_Distort_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_Distort.Enabled = !(sender as CheckBox).Checked;
+            this.Label_Distort.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_FilmGrain_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_FilmGrain.Enabled = !(sender as CheckBox).Checked;
+            this.Label_FilmGrain.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_ShadQual_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_ShadQual.Enabled = !(sender as CheckBox).Checked;
+            this.Label_ShadQual.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_ShadRes_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_ShadRes.Enabled = !(sender as CheckBox).Checked;
+            this.Label_ShadRes.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_Tonemap_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_Tonemap.Enabled = !(sender as CheckBox).Checked;
+            this.Label_Tonemap.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_GrainQuant_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Combo_GrainQuant.Enabled = !(sender as CheckBox).Checked;
+            this.Label_GrainQuant.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_Sharpen_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Num_Sharpen.Enabled   = !(sender as CheckBox).Checked;
+            this.Label_Sharpen.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_ViewDist_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Num_ViewDist.Enabled   = !(sender as CheckBox).Checked;
+            this.Label_ViewDist.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_ShadDist_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Num_ShadDist.Enabled   = !(sender as CheckBox).Checked;
+            this.Label_ShadDist.Enabled = !(sender as CheckBox).Checked;
+        }
+        private void CheckBox_FolDist_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Num_FolDist.Enabled   = !(sender as CheckBox).Checked;
+            this.Label_FolDist.Enabled = !(sender as CheckBox).Checked;
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Options GroupBox
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void Combo_AF_SelectedIndexChanged(object sender, EventArgs e)
@@ -333,5 +441,6 @@ namespace ClairObscurConfig
                 Forms.MainDialog.Button_ExitSave.Text = "Save / Exit";
             }
         }
+
     }
 }
