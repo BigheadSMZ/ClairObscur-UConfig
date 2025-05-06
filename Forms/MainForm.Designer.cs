@@ -125,6 +125,8 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
+            this.MainStripItem_Options = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_HideCheckBox = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -929,6 +931,7 @@
             this.MainStripItem_Backup,
             this.MainStripItem_Presets,
             this.MainStripItem_Game,
+            this.MainStripItem_Options,
             this.MainStripItem_Help});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
@@ -1050,7 +1053,7 @@
             // StripItem_CreateBackup
             // 
             this.StripItem_CreateBackup.Name = "StripItem_CreateBackup";
-            this.StripItem_CreateBackup.Size = new System.Drawing.Size(168, 22);
+            this.StripItem_CreateBackup.Size = new System.Drawing.Size(180, 22);
             this.StripItem_CreateBackup.Text = "Backup Engine.ini";
             this.StripItem_CreateBackup.ToolTipText = "Creates a backup of the current\r\nINI file and settings and appends\r\nthe extension" +
     " (.bak) to the file.";
@@ -1059,7 +1062,7 @@
             // StripItem_RestoreBackup
             // 
             this.StripItem_RestoreBackup.Name = "StripItem_RestoreBackup";
-            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(168, 22);
+            this.StripItem_RestoreBackup.Size = new System.Drawing.Size(180, 22);
             this.StripItem_RestoreBackup.Text = "Restore Engine.ini";
             this.StripItem_RestoreBackup.ToolTipText = "Restores a backup of Engine.ini\r\nwhich replaces the current one\r\n(all current set" +
     "tings will be lost).";
@@ -1165,21 +1168,21 @@
             // StripItem_GitHub
             // 
             this.StripItem_GitHub.Name = "StripItem_GitHub";
-            this.StripItem_GitHub.Size = new System.Drawing.Size(165, 22);
+            this.StripItem_GitHub.Size = new System.Drawing.Size(180, 22);
             this.StripItem_GitHub.Text = "GitHub Page";
             this.StripItem_GitHub.Click += new System.EventHandler(this.StripItem_GitHub_Click);
             // 
             // StripItem_NexusMods
             // 
             this.StripItem_NexusMods.Name = "StripItem_NexusMods";
-            this.StripItem_NexusMods.Size = new System.Drawing.Size(165, 22);
+            this.StripItem_NexusMods.Size = new System.Drawing.Size(180, 22);
             this.StripItem_NexusMods.Text = "NexusMods Page";
             this.StripItem_NexusMods.Click += new System.EventHandler(this.StripItem_NexusMods_Click);
             // 
             // StripItem_HelpAbout
             // 
             this.StripItem_HelpAbout.Name = "StripItem_HelpAbout";
-            this.StripItem_HelpAbout.Size = new System.Drawing.Size(165, 22);
+            this.StripItem_HelpAbout.Size = new System.Drawing.Size(180, 22);
             this.StripItem_HelpAbout.Text = "About";
             this.StripItem_HelpAbout.Click += new System.EventHandler(this.StripItem_HelpAbout_Click);
             // 
@@ -1248,6 +1251,21 @@
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
+            // MainStripItem_Options
+            // 
+            this.MainStripItem_Options.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripItem_HideCheckBox});
+            this.MainStripItem_Options.Name = "MainStripItem_Options";
+            this.MainStripItem_Options.Size = new System.Drawing.Size(61, 20);
+            this.MainStripItem_Options.Text = "Options";
+            // 
+            // StripItem_HideCheckBox
+            // 
+            this.StripItem_HideCheckBox.Name = "StripItem_HideCheckBox";
+            this.StripItem_HideCheckBox.Size = new System.Drawing.Size(208, 22);
+            this.StripItem_HideCheckBox.Text = "Hide/Disable Checkboxes";
+            this.StripItem_HideCheckBox.Click += new System.EventHandler(this.StripItem_HideCheckBox_Click);
+            // 
             // Form_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1288,25 +1306,25 @@
         }
         #endregion
 
-        private System.Windows.Forms.PictureBox PictureBox_GameArt;
-        private System.Windows.Forms.Label Label_DoF;
-        private System.Windows.Forms.Label Label_AF;
-        private System.Windows.Forms.Label Label_Fog;
-        private System.Windows.Forms.Label Label_LensFlare;
-        private System.Windows.Forms.Label Label_MBlur;
-        private System.Windows.Forms.Label Label_Bloom;
-        private System.Windows.Forms.Label Label_ViewDist;
-        private System.Windows.Forms.Label Label_GrainQuant;
-        private System.Windows.Forms.Label Label_Sharpen;
-        private System.Windows.Forms.Label Label_ShadRes;
-        private System.Windows.Forms.Label Label_ShadQual;
-        private System.Windows.Forms.Label Label_Tonemap;
-        private System.Windows.Forms.Label Label_FilmGrain;
-        private System.Windows.Forms.Label Label_Distort;
-        private System.Windows.Forms.Label Label_ChromAb;
-        private System.Windows.Forms.Label Label_VFog;
-        private System.Windows.Forms.Label Label_FolDist;
-        private System.Windows.Forms.Label Label_ShadDist;
+        public System.Windows.Forms.PictureBox PictureBox_GameArt;
+        public System.Windows.Forms.Label Label_DoF;
+        public System.Windows.Forms.Label Label_AF;
+        public System.Windows.Forms.Label Label_Fog;
+        public System.Windows.Forms.Label Label_LensFlare;
+        public System.Windows.Forms.Label Label_MBlur;
+        public System.Windows.Forms.Label Label_Bloom;
+        public System.Windows.Forms.Label Label_ViewDist;
+        public System.Windows.Forms.Label Label_GrainQuant;
+        public System.Windows.Forms.Label Label_Sharpen;
+        public System.Windows.Forms.Label Label_ShadRes;
+        public System.Windows.Forms.Label Label_ShadQual;
+        public System.Windows.Forms.Label Label_Tonemap;
+        public System.Windows.Forms.Label Label_FilmGrain;
+        public System.Windows.Forms.Label Label_Distort;
+        public System.Windows.Forms.Label Label_ChromAb;
+        public System.Windows.Forms.Label Label_VFog;
+        public System.Windows.Forms.Label Label_FolDist;
+        public System.Windows.Forms.Label Label_ShadDist;
         public System.Windows.Forms.NumericUpDown Num_FolDist;
         public System.Windows.Forms.NumericUpDown Num_ShadDist;
         public System.Windows.Forms.NumericUpDown Num_ViewDist;
@@ -1383,6 +1401,8 @@
         public System.Windows.Forms.CheckBox CheckBox_Bloom;
         public System.Windows.Forms.CheckBox CheckBox_DoF;
         public System.Windows.Forms.CheckBox CheckBox_AF;
+        private System.Windows.Forms.ToolStripMenuItem MainStripItem_Options;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_HideCheckBox;
     }
 }
 

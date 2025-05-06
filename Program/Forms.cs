@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
@@ -131,6 +132,37 @@ namespace ClairObscurConfig
             {
                 case true:  { Forms.MainDialog.Button_ExitSave.Text = "Save / Exit"; break; }
                 case false: { Forms.MainDialog.Button_ExitSave.Text = "Exit"; break; }
+            }
+        }
+        public static void ToggleCheckBoxes(bool State)
+        {
+            // The amount to nudge the controls.
+            int Nudge = 14;
+
+            // Let's use this to save some text. My fingers are tired.
+            Form_MainForm MainForm = Forms.MainDialog;
+
+            // Toggle the visibility of checkboxes.
+            foreach (CheckBox LoopBox in ToggleOptions)
+            {
+                // We could loop by type but we already have an array of them.
+                LoopBox.Visible = State;
+            }
+            // Invert it depending on the state.
+            if (!State) { Nudge = -14; }
+
+            // Move the controls based on the nudge value.
+            foreach (Control ComboLabelNumeric in MainForm.GroupBox_Main.Controls)
+            {
+                // Get the type of the control.
+                Type ControlType = ComboLabelNumeric.GetType();
+
+                // Check the type against the three controls we want to move.
+                if (ControlType == typeof(ComboBox) || ControlType == typeof(Label) || ControlType == typeof(NumericUpDown))
+                {
+                    // If it matches, move the control.
+                    ComboLabelNumeric.Location = new Point(ComboLabelNumeric.Location.X + Nudge, ComboLabelNumeric.Location.Y);
+                }
             }
         }
         public static void ClearCheckBoxes()

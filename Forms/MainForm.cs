@@ -404,6 +404,22 @@ namespace ClairObscurConfig
             Game.EndProcess();
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   MenuStrip - Options
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void StripItem_HideCheckBox_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
+
+            // Get the check state of the option.
+            bool CheckState = MenuOption.Checked;
+
+            // Invert the check state.
+            MenuOption.Checked = !CheckState;
+
+            // Toggle the CheckBoxes.
+            Forms.ToggleCheckBoxes(CheckState);
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - Help
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void StripItem_HelpAbout_Click(object sender, EventArgs e)
