@@ -22,43 +22,14 @@ namespace ClairObscurConfig
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Game Type GroupBox
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
+        private void Radio_CheckedChanged(bool Checked, string Version, string INIPath)
         {
             // Get the check state.
-            if ((sender as RadioButton).Checked & this.AllowToggle)
+            if (Checked & this.AllowToggle)
             {
                 // Update the INI properties.
-                EngineINI.Type = "Steam";
-                EngineINI.Path = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\Engine.ini";
-                EngineINI.File = new IniFile(EngineINI.Path);
-
-                // Try to load and toggle the GUI based on existence.
-                switch (EngineINI.Path.TestPath())
-                {
-                    case true:  
-                    {
-                        EngineINI.LoadINIValues(); 
-                        Forms.ToggleGUI(true); 
-                        Forms.UpdateValues(); 
-                        break; 
-                    }
-                    case false: 
-                    {
-                        Forms.PromptININotExist();
-                        Forms.ToggleGUI(false); 
-                        break; 
-                    }
-                }
-            }
-        }
-        private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
-        {
-            // Get the check state.
-            if ((sender as RadioButton).Checked & this.AllowToggle)
-            {
-                // Update the INI properties.
-                EngineINI.Type = "GamePass";
-                EngineINI.Path = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK\\Engine.ini";
+                EngineINI.Type = Version;
+                EngineINI.Path = INIPath;
                 EngineINI.File = new IniFile(EngineINI.Path);
 
                 // Try to load and toggle the GUI based on existence.
@@ -80,15 +51,34 @@ namespace ClairObscurConfig
                 }
             }
         }
+        private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
+        {
+            // Steam version of the game was toggled.
+            bool   Checked  = (sender as RadioButton).Checked;
+            string Version = "Steam";
+            string INIPath  = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows\\Engine.ini";
+            this.Radio_CheckedChanged(Checked, Version, INIPath);
+        }
+        private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
+        {
+            // GamePass version of the game was toggled.
+            bool   Checked = (sender as RadioButton).Checked;
+            string Version = "GamePass";
+            string INIPath = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK\\Engine.ini";
+            this.Radio_CheckedChanged(Checked, Version, INIPath);
+        }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Options CheckBoxes
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void CheckBox_CheckAllClicked(object sender, MouseEventArgs e)
         {
+            // Get state of checkbox.
             bool CheckState = (sender as CheckBox).Checked;
 
+            // Check for the control key being held.
             if (this.ControlHeld)
             {
+                // If it is, copy the check state to all checkboxes.
                 foreach (Control Checkbox in this.GroupBox_Main.Controls)
                 {
                     if (Checkbox.GetType() == typeof(CheckBox))
@@ -286,34 +276,63 @@ namespace ClairObscurConfig
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void StripItem_CreateINI_Click(object sender, EventArgs e)
         {
-            Forms.PromptCreateNewINI();
+            // If INI file exists.
+            if (EngineINI.Path.TestPath())
+            {
+                // Prompt the user to overwrite.
+                switch (Forms.PromptOverwriteINI())
+                {
+                    // If they do not wish to overwrite, get out of here.
+                    case true:  { EngineINI.DeleteINIFile(); break; }
+                    case false: { return; }
+                }
+            }
+            // Create the new INI file.
+            EngineINI.CreateNewINIFile();
         }
         private void StripItem_SaveINI_Click(object sender, EventArgs e)
         {
+            // Save the INI and let the user know it was saved.
+            EngineINI.WriteINIValues();
             Forms.PromptSaveINI();
         }
         private void StripItem_ReloadINI_Click(object sender, EventArgs e)
         {
-            Forms.PromptReloadINI();
+            // If the user wants to reload it.
+            if (Forms.PromptReloadINI())
+            {
+                // Reload the INI values and update the GUI.
+                EngineINI.LoadINIValues();
+                Forms.UpdateValues();
+            }
         }
         private void StripItem_DeleteINI_Click(object sender, EventArgs e)
         {
-            Forms.PromptDeleteINI();
+            // If the user wants to delete it.
+            if (Forms.PromptDeleteINI())
+            {
+                // Delete the INI and disable the GUI.
+                EngineINI.DeleteINIFile();
+                Forms.ToggleGUI(false);
+            }
         }
         private void StripItem_Base_Click(object sender, EventArgs e)
         {
+            // Open the folder this application is located in file explorer.
             if (!Config.BasePath.TestPath()) { return; }
-            Forms.OpenFileExplorer(Config.BasePath);
+            Functions.OpenFileExplorer(Config.BasePath);
         }
         private void StripItem_AppData_Click(object sender, EventArgs e)
         {
+            // Open the base AppData\Sandfall folder in file explorer.
             if (!(Config.AppData + "\\Sandfall").TestPath()) { return; }
-            Forms.OpenFileExplorer(Config.AppData + "\\Sandfall");
+            Functions.OpenFileExplorer(Config.AppData + "\\Sandfall");
         }
         private void StripItem_EngineINI_Click(object sender, EventArgs e)
         {
+            // Open the INI file location in AppData\Sandfall in file explorer.
             if (!EngineINI.Path.TestPath()) { return; }
-            Forms.OpenFileExplorer(EngineINI.Path.GetFilePath());
+            Functions.OpenFileExplorer(EngineINI.Path.GetFilePath());
         }
         private void StripItem_ExitNoSave_Click(object sender, EventArgs e)
         {
@@ -400,10 +419,15 @@ namespace ClairObscurConfig
         private void Button_Save_Click(object sender, EventArgs e)
         {
             Forms.PromptSaveINI();
+            EngineINI.WriteINIValues();
         }
         private void Button_Reload_Click(object sender, EventArgs e)
         {
-            Forms.PromptReloadINI();
+            if (Forms.PromptReloadINI())
+            {
+                EngineINI.LoadINIValues();
+                Forms.UpdateValues();
+            }
         }
         private void Button_Launch_Click(object sender, EventArgs e)
         {

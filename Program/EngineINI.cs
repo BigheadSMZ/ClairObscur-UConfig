@@ -73,19 +73,7 @@ namespace ClairObscurConfig
             EngineINI.File = new IniFile(SteamPath);
         }
 
-        public static void DeleteINIFile()
-        {
-            // If the INI doesn't exist, it's best to not outright crash.
-            if (!EngineINI.Path.TestPath()) { return; }
-
-            // Remove the read only attribute.
-            System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
-
-            // Delete the INI file.
-            EngineINI.Path.RemovePath();
-        }
-
-        public static void WriteNewINIFile()
+        public static void CreateNewINIFile()
         {
             // Set the default values.
             EngineINI.Anist_Val = "4";
@@ -108,7 +96,32 @@ namespace ClairObscurConfig
             EngineINI.ViewF_Val = "0.75";
 
             // Write the values to the INI file.
-            EngineINI.WriteINIValues(true);
+            EngineINI.WriteINIValues();
+
+            // All values will exist for a new INI file so uncheck everything.
+            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            {
+                EngineINI.NullTracker[i] = false;
+                Forms.ToggleOptions[i].Checked = false;
+            }
+            // If the dialog was created then update that too.
+            if (Forms.MainDialog != null)
+            {
+                Forms.UpdateValues();
+                Forms.ToggleGUI(true);
+            }
+        }
+
+        public static void DeleteINIFile()
+        {
+            // If the INI doesn't exist, it's best to not outright crash.
+            if (!EngineINI.Path.TestPath()) { return; }
+
+            // Remove the read only attribute.
+            System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+
+            // Delete the INI file.
+            EngineINI.Path.RemovePath();
         }
 
         public static void ValidateValues()
@@ -191,10 +204,10 @@ namespace ClairObscurConfig
             EngineINI.ValidateValues();
         }
 
-        public static void WriteINIValues(bool NewINI = false)
+        public static void WriteINIValues()
         {
             // We'll throw an exception if the file doesn't already exist.
-            if (!NewINI)
+            if (EngineINI.Path.TestPath())
             {
                 // Remove the read only attribute.
                 System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);

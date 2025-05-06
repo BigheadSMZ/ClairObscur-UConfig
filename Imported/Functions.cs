@@ -1,10 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace ClairObscurConfig
 {
     internal class Functions
     {
+        public static void OpenFileExplorer(string Location)
+        {
+            Process FileExplorer = new Process();
+            FileExplorer.StartInfo.FileName = Location;
+            FileExplorer.StartInfo.UseShellExecute = true;
+            FileExplorer.StartInfo.Verb = "open";
+            FileExplorer.Start();
+        }
+
         public static decimal FormatStringDecimal(string Value)
         {
             // The value that will be returned.

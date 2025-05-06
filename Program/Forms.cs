@@ -133,14 +133,5 @@ namespace ClairObscurConfig
                 case false: { Forms.MainDialog.Button_ExitSave.Text = "Exit"; break; }
             }
         }
-
-        public static void OpenFileExplorer(string Location)
-        {
-            Process FileExplorer = new Process();
-            FileExplorer.StartInfo.FileName = Location;
-            FileExplorer.StartInfo.UseShellExecute = true;
-            FileExplorer.StartInfo.Verb = "open";
-            FileExplorer.Start();
-        }
     }
 }
