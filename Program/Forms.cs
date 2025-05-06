@@ -10,7 +10,7 @@ namespace ClairObscurConfig
         public static Form_MainForm  MainDialog;
         public static Form_OkayForm  OkayDialog;
         public static Form_YesNoForm YesNoDialog;
-        public static CheckBox[]     ToggleOptions;
+        public static CheckBox[]     ChkBoxArray;
 
         public static void Initialize()
         {
@@ -41,25 +41,25 @@ namespace ClairObscurConfig
             Forms.MainDialog.StripItem_RestoreBackup.Enabled = BackupPath.TestPath();
 
             // Create a checkbox array so it's easier to loop through them.
-            Forms.ToggleOptions = new CheckBox[18];
-            Forms.ToggleOptions[0]  = Forms.MainDialog.CheckBox_AF;
-            Forms.ToggleOptions[1]  = Forms.MainDialog.CheckBox_DoF;
-            Forms.ToggleOptions[2]  = Forms.MainDialog.CheckBox_Bloom;
-            Forms.ToggleOptions[3]  = Forms.MainDialog.CheckBox_MBlur;
-            Forms.ToggleOptions[4]  = Forms.MainDialog.CheckBox_LensFlare;
-            Forms.ToggleOptions[5]  = Forms.MainDialog.CheckBox_Fog;
-            Forms.ToggleOptions[6]  = Forms.MainDialog.CheckBox_VFog;
-            Forms.ToggleOptions[7]  = Forms.MainDialog.CheckBox_ChromAb;
-            Forms.ToggleOptions[8]  = Forms.MainDialog.CheckBox_Distort;
-            Forms.ToggleOptions[9]  = Forms.MainDialog.CheckBox_FilmGrain;
-            Forms.ToggleOptions[10] = Forms.MainDialog.CheckBox_ShadQual;
-            Forms.ToggleOptions[11] = Forms.MainDialog.CheckBox_ShadRes;
-            Forms.ToggleOptions[12] = Forms.MainDialog.CheckBox_Tonemap;
-            Forms.ToggleOptions[13] = Forms.MainDialog.CheckBox_GrainQuant;
-            Forms.ToggleOptions[14] = Forms.MainDialog.CheckBox_Sharpen;
-            Forms.ToggleOptions[15] = Forms.MainDialog.CheckBox_ViewDist;
-            Forms.ToggleOptions[16] = Forms.MainDialog.CheckBox_ShadDist;
-            Forms.ToggleOptions[17] = Forms.MainDialog.CheckBox_FolDist;
+            Forms.ChkBoxArray = new CheckBox[18];
+            Forms.ChkBoxArray[0]  = Forms.MainDialog.CheckBox_AF;
+            Forms.ChkBoxArray[1]  = Forms.MainDialog.CheckBox_DoF;
+            Forms.ChkBoxArray[2]  = Forms.MainDialog.CheckBox_Bloom;
+            Forms.ChkBoxArray[3]  = Forms.MainDialog.CheckBox_MBlur;
+            Forms.ChkBoxArray[4]  = Forms.MainDialog.CheckBox_LensFlare;
+            Forms.ChkBoxArray[5]  = Forms.MainDialog.CheckBox_Fog;
+            Forms.ChkBoxArray[6]  = Forms.MainDialog.CheckBox_VFog;
+            Forms.ChkBoxArray[7]  = Forms.MainDialog.CheckBox_ChromAb;
+            Forms.ChkBoxArray[8]  = Forms.MainDialog.CheckBox_Distort;
+            Forms.ChkBoxArray[9]  = Forms.MainDialog.CheckBox_FilmGrain;
+            Forms.ChkBoxArray[10] = Forms.MainDialog.CheckBox_ShadQual;
+            Forms.ChkBoxArray[11] = Forms.MainDialog.CheckBox_ShadRes;
+            Forms.ChkBoxArray[12] = Forms.MainDialog.CheckBox_Tonemap;
+            Forms.ChkBoxArray[13] = Forms.MainDialog.CheckBox_GrainQuant;
+            Forms.ChkBoxArray[14] = Forms.MainDialog.CheckBox_Sharpen;
+            Forms.ChkBoxArray[15] = Forms.MainDialog.CheckBox_ViewDist;
+            Forms.ChkBoxArray[16] = Forms.MainDialog.CheckBox_ShadDist;
+            Forms.ChkBoxArray[17] = Forms.MainDialog.CheckBox_FolDist;
 
             // Make sure the INI exists before attempting to update values.
             switch (EngineINI.Path.TestPath())
@@ -96,10 +96,15 @@ namespace ClairObscurConfig
             Forms.MainDialog.Num_ShadDist.Value = Functions.FormatStringDecimal(EngineINI.ViewS_Val);
             Forms.MainDialog.Num_FolDist.Value  = Functions.FormatStringDecimal(EngineINI.ViewF_Val);
 
-            // Toggle options based on whether or not values were found in the INI file.
-            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            // See if checkboxes are enabled.
+            if (Config.ChkBoxes)
             {
-                 Forms.ToggleOptions[i].Checked = EngineINI.NullTracker[i];
+                // Loop through the array of checkboxes.
+                for (int i = 0; i < Forms.ChkBoxArray.Length; i++)
+                {
+                    // Toggle options based on whether or not values were found in the INI file.
+                    Forms.ChkBoxArray[i].Checked = EngineINI.EmptyValue[i];
+                }
             }
         }
 
@@ -134,16 +139,20 @@ namespace ClairObscurConfig
                 case false: { Forms.MainDialog.Button_ExitSave.Text = "Exit"; break; }
             }
         }
+
         public static void ToggleCheckBoxes(bool State)
         {
             // The amount to nudge the controls.
             int Nudge = 14;
 
             // Toggle the visibility of checkboxes.
-            foreach (CheckBox LoopBox in ToggleOptions)
+            foreach (CheckBox LoopBox in Forms.ChkBoxArray)
             {
                 // We could loop by type but we already have an array of them.
                 LoopBox.Visible = State;
+
+                // Negative state is hiding checkboxes. Force them unchecked.
+                if (!State) { LoopBox.Checked = false; }
             }
             // Invert it depending on the state.
             if (!State) { Nudge = -14; }
@@ -161,15 +170,17 @@ namespace ClairObscurConfig
                     ComboLabelNumeric.Location = new Point(ComboLabelNumeric.Location.X + Nudge, ComboLabelNumeric.Location.Y);
                 }
             }
+            // Update the values on the GUI.
+            Forms.UpdateValues();
         }
         public static void ClearCheckBoxes()
         {
             // Loop through the number of checkboxes.
-            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            for (int i = 0; i < Forms.ChkBoxArray.Length; i++)
             {
                 // Reset the tracker and the checkbox states.
-                EngineINI.NullTracker[i] = false;
-                Forms.ToggleOptions[i].Checked = false;
+                EngineINI.EmptyValue[i] = false;
+                Forms.ChkBoxArray[i].Checked = false;
             }
         }
     }

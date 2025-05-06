@@ -413,6 +413,9 @@ namespace ClairObscurConfig
             // Get the check state of the option.
             bool CheckState = MenuOption.Checked;
 
+            // Track through a variable to make it simpler.
+            Config.ChkBoxes = CheckState;
+
             // Invert the check state.
             MenuOption.Checked = !CheckState;
 

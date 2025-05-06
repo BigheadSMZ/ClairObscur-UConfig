@@ -13,6 +13,7 @@ namespace ClairObscurConfig
         public static string  AppVersion;
         public static string  BasePath;
         public static string  GamePath;
+        public static bool    ChkBoxes;
 
         public static void SetApplicationValues()
         {
@@ -22,6 +23,7 @@ namespace ClairObscurConfig
             Config.AppData  = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             Config.BasePath = Path.GetDirectoryName(Config.AppPath);
             Config.GamePath = Game.GetExecutable();
+            Config.ChkBoxes = true;
 
             // Initialize the INI file.
             EngineINI.InitializeINI();
