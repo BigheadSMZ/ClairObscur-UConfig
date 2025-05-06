@@ -15,7 +15,9 @@ namespace ClairObscurConfig
         public static void Initialize()
         {
             // Create the dialogs.
-            Forms.MainDialog = new Form_MainForm();
+            Forms.MainDialog  = new Form_MainForm();
+            Forms.OkayDialog  = new Form_OkayForm();
+            Forms.YesNoDialog = new Form_YesNoForm();
 
             // Set the title of the window to include the current version.
             Forms.MainDialog.Text = Game.Name + " - Unreal Config v" + Config.AppVersion;

@@ -67,6 +67,9 @@ namespace ClairObscurConfig
             // Set the path and create the class.
             EngineINI.Path = BasePath + "\\Engine.ini";
             EngineINI.File = new IniFile(EngineINI.Path);
+
+            // Try to load the values.
+            EngineINI.LoadINIValues();
         }
 
         public static void CreateNewINIFile()

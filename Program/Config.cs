@@ -39,17 +39,6 @@ namespace ClairObscurConfig
 
             // Initialize the INI file.
             EngineINI.InitializeINI(Config.GameVersion);
-
-            // We might need these earlier than I planned.
-            Forms.OkayDialog  = new Form_OkayForm();
-            Forms.YesNoDialog = new Form_YesNoForm();
-
-            // If the INI exists, load the values. If it doesn't exist alert the user.
-            switch (EngineINI.Path.TestPath())
-            {
-                case true : { EngineINI.LoadINIValues(); break; }
-                case false: { Forms.PromptININotExist(); break; }
-            }
         }
     }
 }
