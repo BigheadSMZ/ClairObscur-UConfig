@@ -175,25 +175,28 @@ namespace ClairObscurConfig
                 // Remove the read only attribute.
                 System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
             }
+            // Reduce some bloat by storing this in a variable.
+            Form_MainForm MD = Forms.MainDialog;
+
             // Write the values to the INI file.
-            EngineINI.File.Write(EngineINI.Anist_Str, EngineINI.Anist_Val, "SystemSettings"); // - r.MaxAnisotropy
-            EngineINI.File.Write(EngineINI.Depth_Str, EngineINI.Depth_Val, "SystemSettings"); // - r.DepthOfFieldQuality
-            EngineINI.File.Write(EngineINI.Bloom_Str, EngineINI.Bloom_Val, "SystemSettings"); // - r.BloomQuality
-            EngineINI.File.Write(EngineINI.MBlur_Str, EngineINI.MBlur_Val, "SystemSettings"); // - r.MotionBlurQuality
-            EngineINI.File.Write(EngineINI.LenFl_Str, EngineINI.LenFl_Val, "SystemSettings"); // - r.LensFlareQuality
-            EngineINI.File.Write(EngineINI.FogEf_Str, EngineINI.FogEf_Val, "SystemSettings"); // - r.Fog
-            EngineINI.File.Write(EngineINI.VoFog_Str, EngineINI.VoFog_Val, "SystemSettings"); // - r.VolumetricFog
-            EngineINI.File.Write(EngineINI.SCoFr_Str, EngineINI.SCoFr_Val, "SystemSettings"); // - r.SceneColorFringeQuality
-            EngineINI.File.Write(EngineINI.Distr_Str, EngineINI.Distr_Val, "SystemSettings"); // - r.DisableDistortion
-            EngineINI.File.Write(EngineINI.Grain_Str, EngineINI.Grain_Val, "SystemSettings"); // - r.FilmGrain
-            EngineINI.File.Write(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings"); // - r.ShadowQuality
-            EngineINI.File.Write(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings"); // - r.Shadow.MaxResolution
-            EngineINI.File.Write(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings"); // - r.Tonemapper.Quality
-            EngineINI.File.Write(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings"); // - r.Tonemapper.GrainQuantization
-            EngineINI.File.Write(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings"); // - r.Tonemapper.Sharpen
-            EngineINI.File.Write(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings"); // - r.ViewDistanceScale
-            EngineINI.File.Write(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings"); // - r.DFDistanceScale
-            EngineINI.File.Write(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings"); // - foliage.LODDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Anist_Str, EngineINI.Anist_Val, "SystemSettings", !MD.CheckBox_AF.Checked);         // - r.MaxAnisotropy
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Depth_Str, EngineINI.Depth_Val, "SystemSettings", !MD.CheckBox_DoF.Checked);        // - r.DepthOfFieldQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Bloom_Str, EngineINI.Bloom_Val, "SystemSettings", !MD.CheckBox_Bloom.Checked);      // - r.BloomQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.MBlur_Str, EngineINI.MBlur_Val, "SystemSettings", !MD.CheckBox_MBlur.Checked);      // - r.MotionBlurQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.LenFl_Str, EngineINI.LenFl_Val, "SystemSettings", !MD.CheckBox_LensFlare.Checked);  // - r.LensFlareQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.FogEf_Str, EngineINI.FogEf_Val, "SystemSettings", !MD.CheckBox_Fog.Checked);        // - r.Fog
+            EngineINI.File.ConditionalWriteDelete(EngineINI.VoFog_Str, EngineINI.VoFog_Val, "SystemSettings", !MD.CheckBox_VFog.Checked);       // - r.VolumetricFog
+            EngineINI.File.ConditionalWriteDelete(EngineINI.SCoFr_Str, EngineINI.SCoFr_Val, "SystemSettings", !MD.CheckBox_ChromAb.Checked);    // - r.SceneColorFringeQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Distr_Str, EngineINI.Distr_Val, "SystemSettings", !MD.CheckBox_Distort.Checked);    // - r.DisableDistortion
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Grain_Str, EngineINI.Grain_Val, "SystemSettings", !MD.CheckBox_FilmGrain.Checked);  // - r.FilmGrain
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings", !MD.CheckBox_ShadQual.Checked);   // - r.ShadowQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings", !MD.CheckBox_ShadRes.Checked);    // - r.Shadow.MaxResolution
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings", !MD.CheckBox_Tonemap.Checked);    // - r.Tonemapper.Quality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings", !MD.CheckBox_GrainQuant.Checked); // - r.Tonemapper.GrainQuantization
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings", !MD.CheckBox_Sharpen.Checked);    // - r.Tonemapper.Sharpen
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings", !MD.CheckBox_ViewDist.Checked);   // - r.ViewDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings", !MD.CheckBox_ShadDist.Checked);   // - r.DFDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings", !MD.CheckBox_FolDist.Checked);    // - foliage.LODDistanceScale
 
             // Add the read only attribute.
             System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
