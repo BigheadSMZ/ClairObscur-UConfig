@@ -133,5 +133,15 @@ namespace ClairObscurConfig
                 case false: { Forms.MainDialog.Button_ExitSave.Text = "Exit"; break; }
             }
         }
+        public static void ClearCheckBoxes()
+        {
+            // Loop through the number of checkboxes.
+            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            {
+                // Reset the tracker and the checkbox states.
+                EngineINI.NullTracker[i] = false;
+                Forms.ToggleOptions[i].Checked = false;
+            }
+        }
     }
 }

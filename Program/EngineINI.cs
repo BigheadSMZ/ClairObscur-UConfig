@@ -97,19 +97,6 @@ namespace ClairObscurConfig
 
             // Write the values to the INI file.
             EngineINI.WriteINIValues();
-
-            // All values will exist for a new INI file so uncheck everything.
-            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
-            {
-                EngineINI.NullTracker[i] = false;
-                Forms.ToggleOptions[i].Checked = false;
-            }
-            // If the dialog was created then update that too.
-            if (Forms.MainDialog != null)
-            {
-                Forms.UpdateValues();
-                Forms.ToggleGUI(true);
-            }
         }
 
         public static void DeleteINIFile()

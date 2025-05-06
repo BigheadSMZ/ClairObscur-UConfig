@@ -289,6 +289,11 @@ namespace ClairObscurConfig
             }
             // Create the new INI file.
             EngineINI.CreateNewINIFile();
+
+            // Reset checkboxes, update values, and enable the GUI.
+            Forms.ClearCheckBoxes();
+            Forms.UpdateValues();
+            Forms.ToggleGUI(true);
         }
         private void StripItem_SaveINI_Click(object sender, EventArgs e)
         {
