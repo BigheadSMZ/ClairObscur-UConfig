@@ -51,14 +51,10 @@ namespace ClairObscurConfig
         public static void InitializeINI()
         {
             // The paths the INI can be found.
-            string SteamBase    = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows";
-            string GamePassBase = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK";
+            string SteamBase    = (Config.AppData + "\\Sandfall\\Saved\\Config\\Windows").CreatePath();
+            string GamePassBase = (Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK").CreatePath();
             string SteamPath    = SteamBase + "\\Engine.ini";
             string GamePassPath = GamePassBase + "\\Engine.ini";
-
-            // Just to be safe, create the base paths if they don't exist.
-            SteamBase.CreatePath(true);
-            GamePassBase.CreatePath(true);
 
             // Try the GamePass path first.
             if (GamePassPath.TestPath()) 
