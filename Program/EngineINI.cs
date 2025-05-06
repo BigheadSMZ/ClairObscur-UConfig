@@ -4,9 +4,13 @@ namespace ClairObscurConfig
 {
     internal partial class EngineINI
     {
+        // Stores info about the Engine.ini file.
         public static string  Path;
         public static string  Type;
         public static IniFile File;
+
+        // Used to track if values existed when INI was loaded.
+        public static bool[] NullTracker = new bool[18];
 
         // Short vars to store the strings as they are in the INI.
         public static string Anist_Str = "r.MaxAnisotropy";
@@ -134,6 +138,10 @@ namespace ClairObscurConfig
             EngineINI.ViewF_Val = Validate.RangeDec(EngineINI.ViewF_Val, 0.40, 10.00, "0.75");
         }
 
+        // NOTE: Eventually rewrite the INI keys and values to be stored in an ordered dictionary, which would allow
+        // looping in the majority of functions here. But for now, take the lazy way out and check each value one by one.
+        // I always make myself the victim of feature creep and fail to foresee these situations...
+
         public static void LoadINIValues()
         {
             // If the INI doesn't exist, it's best to not outright crash.
@@ -159,6 +167,26 @@ namespace ClairObscurConfig
             EngineINI.ViewS_Val = EngineINI.File.Read(EngineINI.ViewS_Str, "SystemSettings"); // - r.DFDistanceScale
             EngineINI.ViewF_Val = EngineINI.File.Read(EngineINI.ViewF_Str, "SystemSettings"); // - foliage.LODDistanceScale
 
+            // Tracks if keys were in the INI by checking if values were set.
+            EngineINI.NullTracker[0]  = (EngineINI.Anist_Val == "");
+            EngineINI.NullTracker[1]  = (EngineINI.Depth_Val == "");
+            EngineINI.NullTracker[2]  = (EngineINI.Bloom_Val == "");
+            EngineINI.NullTracker[3]  = (EngineINI.MBlur_Val == "");
+            EngineINI.NullTracker[4]  = (EngineINI.LenFl_Val == "");
+            EngineINI.NullTracker[5]  = (EngineINI.FogEf_Val == "");
+            EngineINI.NullTracker[6]  = (EngineINI.VoFog_Val == "");
+            EngineINI.NullTracker[7]  = (EngineINI.SCoFr_Val == "");
+            EngineINI.NullTracker[8]  = (EngineINI.Distr_Val == "");
+            EngineINI.NullTracker[9]  = (EngineINI.Grain_Val == "");
+            EngineINI.NullTracker[10] = (EngineINI.ShadQ_Val == "");
+            EngineINI.NullTracker[11] = (EngineINI.ShadR_Val == "");
+            EngineINI.NullTracker[12] = (EngineINI.TMQua_Val == "");
+            EngineINI.NullTracker[13] = (EngineINI.TMGra_Val == "");
+            EngineINI.NullTracker[14] = (EngineINI.TMSha_Val == "");
+            EngineINI.NullTracker[15] = (EngineINI.ViewD_Val == "");
+            EngineINI.NullTracker[16] = (EngineINI.ViewS_Val == "");
+            EngineINI.NullTracker[17] = (EngineINI.ViewF_Val == "");
+
             // Make sure the values are not ones that can crash the GUI.
             EngineINI.ValidateValues();
         }
@@ -172,27 +200,27 @@ namespace ClairObscurConfig
                 System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
             }
             // Reduce some bloat by storing this in a variable.
-            Form_MainForm MD = Forms.MainDialog;
+            Form_MainForm MainForm = Forms.MainDialog;
 
             // Write the values to the INI file.
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Anist_Str, EngineINI.Anist_Val, "SystemSettings", !MD.CheckBox_AF.Checked);         // - r.MaxAnisotropy
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Depth_Str, EngineINI.Depth_Val, "SystemSettings", !MD.CheckBox_DoF.Checked);        // - r.DepthOfFieldQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Bloom_Str, EngineINI.Bloom_Val, "SystemSettings", !MD.CheckBox_Bloom.Checked);      // - r.BloomQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.MBlur_Str, EngineINI.MBlur_Val, "SystemSettings", !MD.CheckBox_MBlur.Checked);      // - r.MotionBlurQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.LenFl_Str, EngineINI.LenFl_Val, "SystemSettings", !MD.CheckBox_LensFlare.Checked);  // - r.LensFlareQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.FogEf_Str, EngineINI.FogEf_Val, "SystemSettings", !MD.CheckBox_Fog.Checked);        // - r.Fog
-            EngineINI.File.ConditionalWriteDelete(EngineINI.VoFog_Str, EngineINI.VoFog_Val, "SystemSettings", !MD.CheckBox_VFog.Checked);       // - r.VolumetricFog
-            EngineINI.File.ConditionalWriteDelete(EngineINI.SCoFr_Str, EngineINI.SCoFr_Val, "SystemSettings", !MD.CheckBox_ChromAb.Checked);    // - r.SceneColorFringeQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Distr_Str, EngineINI.Distr_Val, "SystemSettings", !MD.CheckBox_Distort.Checked);    // - r.DisableDistortion
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Grain_Str, EngineINI.Grain_Val, "SystemSettings", !MD.CheckBox_FilmGrain.Checked);  // - r.FilmGrain
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings", !MD.CheckBox_ShadQual.Checked);   // - r.ShadowQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings", !MD.CheckBox_ShadRes.Checked);    // - r.Shadow.MaxResolution
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings", !MD.CheckBox_Tonemap.Checked);    // - r.Tonemapper.Quality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings", !MD.CheckBox_GrainQuant.Checked); // - r.Tonemapper.GrainQuantization
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings", !MD.CheckBox_Sharpen.Checked);    // - r.Tonemapper.Sharpen
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings", !MD.CheckBox_ViewDist.Checked);   // - r.ViewDistanceScale
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings", !MD.CheckBox_ShadDist.Checked);   // - r.DFDistanceScale
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings", !MD.CheckBox_FolDist.Checked);    // - foliage.LODDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Anist_Str, EngineINI.Anist_Val, "SystemSettings", !MainForm.CheckBox_AF.Checked);         // - r.MaxAnisotropy
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Depth_Str, EngineINI.Depth_Val, "SystemSettings", !MainForm.CheckBox_DoF.Checked);        // - r.DepthOfFieldQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Bloom_Str, EngineINI.Bloom_Val, "SystemSettings", !MainForm.CheckBox_Bloom.Checked);      // - r.BloomQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.MBlur_Str, EngineINI.MBlur_Val, "SystemSettings", !MainForm.CheckBox_MBlur.Checked);      // - r.MotionBlurQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.LenFl_Str, EngineINI.LenFl_Val, "SystemSettings", !MainForm.CheckBox_LensFlare.Checked);  // - r.LensFlareQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.FogEf_Str, EngineINI.FogEf_Val, "SystemSettings", !MainForm.CheckBox_Fog.Checked);        // - r.Fog
+            EngineINI.File.ConditionalWriteDelete(EngineINI.VoFog_Str, EngineINI.VoFog_Val, "SystemSettings", !MainForm.CheckBox_VFog.Checked);       // - r.VolumetricFog
+            EngineINI.File.ConditionalWriteDelete(EngineINI.SCoFr_Str, EngineINI.SCoFr_Val, "SystemSettings", !MainForm.CheckBox_ChromAb.Checked);    // - r.SceneColorFringeQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Distr_Str, EngineINI.Distr_Val, "SystemSettings", !MainForm.CheckBox_Distort.Checked);    // - r.DisableDistortion
+            EngineINI.File.ConditionalWriteDelete(EngineINI.Grain_Str, EngineINI.Grain_Val, "SystemSettings", !MainForm.CheckBox_FilmGrain.Checked);  // - r.FilmGrain
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings", !MainForm.CheckBox_ShadQual.Checked);   // - r.ShadowQuality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings", !MainForm.CheckBox_ShadRes.Checked);    // - r.Shadow.MaxResolution
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings", !MainForm.CheckBox_Tonemap.Checked);    // - r.Tonemapper.Quality
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings", !MainForm.CheckBox_GrainQuant.Checked); // - r.Tonemapper.GrainQuantization
+            EngineINI.File.ConditionalWriteDelete(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings", !MainForm.CheckBox_Sharpen.Checked);    // - r.Tonemapper.Sharpen
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings", !MainForm.CheckBox_ViewDist.Checked);   // - r.ViewDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings", !MainForm.CheckBox_ShadDist.Checked);   // - r.DFDistanceScale
+            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings", !MainForm.CheckBox_FolDist.Checked);    // - foliage.LODDistanceScale
 
             // Add the read only attribute.
             System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);

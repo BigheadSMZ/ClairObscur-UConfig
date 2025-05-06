@@ -36,7 +36,7 @@ namespace ClairObscurConfig
                 switch (EngineINI.Path.TestPath())
                 {
                     case true:  
-                    { 
+                    {
                         EngineINI.LoadINIValues(); 
                         Forms.ToggleGUI(true); 
                         Forms.UpdateValues(); 
@@ -441,6 +441,5 @@ namespace ClairObscurConfig
                 Forms.MainDialog.Button_ExitSave.Text = "Save / Exit";
             }
         }
-
     }
 }

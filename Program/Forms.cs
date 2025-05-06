@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace ClairObscurConfig
 {
@@ -8,6 +9,7 @@ namespace ClairObscurConfig
         public static Form_MainForm  MainDialog;
         public static Form_OkayForm  OkayDialog;
         public static Form_YesNoForm YesNoDialog;
+        public static CheckBox[]     ToggleOptions;
 
         public static void Initialize()
         {
@@ -20,14 +22,8 @@ namespace ClairObscurConfig
             // Select the radio button based on INI type.
             switch (EngineINI.Type)
             {
-                case "Steam" :   { Forms.MainDialog.Radio_Steam.Checked = true;    break; }
+                case "Steam" :   { Forms.MainDialog.Radio_Steam.Checked = true; break; }
                 case "GamePass": { Forms.MainDialog.Radio_GamePass.Checked = true; break; }
-            }
-            // Make sure the INI exists before attempting to update values.
-            switch (EngineINI.Path.TestPath())
-            {
-                case true:  { Forms.UpdateValues() ;  break; }
-                case false: { Forms.ToggleGUI(false); break; }
             }
             // Check to see if the game executable is in the same path as the configurator.
             bool ExeExists = Config.GamePath.TestPath();
@@ -42,6 +38,34 @@ namespace ClairObscurConfig
             // Set availability of backup options depending on INI existence.
             Forms.MainDialog.StripItem_CreateBackup.Enabled = EngineINI.Path.TestPath();
             Forms.MainDialog.StripItem_RestoreBackup.Enabled = BackupPath.TestPath();
+
+            // Create a checkbox array so it's easier to loop through them.
+            Forms.ToggleOptions = new CheckBox[18];
+            Forms.ToggleOptions[0]  = Forms.MainDialog.CheckBox_AF;
+            Forms.ToggleOptions[1]  = Forms.MainDialog.CheckBox_DoF;
+            Forms.ToggleOptions[2]  = Forms.MainDialog.CheckBox_Bloom;
+            Forms.ToggleOptions[3]  = Forms.MainDialog.CheckBox_MBlur;
+            Forms.ToggleOptions[4]  = Forms.MainDialog.CheckBox_LensFlare;
+            Forms.ToggleOptions[5]  = Forms.MainDialog.CheckBox_Fog;
+            Forms.ToggleOptions[6]  = Forms.MainDialog.CheckBox_VFog;
+            Forms.ToggleOptions[7]  = Forms.MainDialog.CheckBox_ChromAb;
+            Forms.ToggleOptions[8]  = Forms.MainDialog.CheckBox_Distort;
+            Forms.ToggleOptions[9]  = Forms.MainDialog.CheckBox_FilmGrain;
+            Forms.ToggleOptions[10] = Forms.MainDialog.CheckBox_ShadQual;
+            Forms.ToggleOptions[11] = Forms.MainDialog.CheckBox_ShadRes;
+            Forms.ToggleOptions[12] = Forms.MainDialog.CheckBox_Tonemap;
+            Forms.ToggleOptions[13] = Forms.MainDialog.CheckBox_GrainQuant;
+            Forms.ToggleOptions[14] = Forms.MainDialog.CheckBox_Sharpen;
+            Forms.ToggleOptions[15] = Forms.MainDialog.CheckBox_ViewDist;
+            Forms.ToggleOptions[16] = Forms.MainDialog.CheckBox_ShadDist;
+            Forms.ToggleOptions[17] = Forms.MainDialog.CheckBox_FolDist;
+
+            // Make sure the INI exists before attempting to update values.
+            switch (EngineINI.Path.TestPath())
+            {
+                case true:  { Forms.UpdateValues();   break; }
+                case false: { Forms.ToggleGUI(false); break; }
+            }
         }
 
         public static void UpdateValues()
@@ -70,6 +94,12 @@ namespace ClairObscurConfig
             Forms.MainDialog.Num_ViewDist.Value = Functions.FormatStringDecimal(EngineINI.ViewD_Val);
             Forms.MainDialog.Num_ShadDist.Value = Functions.FormatStringDecimal(EngineINI.ViewS_Val);
             Forms.MainDialog.Num_FolDist.Value  = Functions.FormatStringDecimal(EngineINI.ViewF_Val);
+
+            // Toggle options based on whether or not values were found in the INI file.
+            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            {
+                 Forms.ToggleOptions[i].Checked = EngineINI.NullTracker[i];
+            }
         }
 
         public static void ToggleGUI(bool Enabled)

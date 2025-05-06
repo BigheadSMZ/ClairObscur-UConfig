@@ -11,7 +11,7 @@ namespace ClairObscurConfig
     internal class IniFile
     {
         // Store the full path to the INI file and the name of the program.
-        string Path;
+        public string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
 
         // Import dynamic link libraries responsible for INI functions.

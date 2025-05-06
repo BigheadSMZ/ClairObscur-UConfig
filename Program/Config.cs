@@ -34,7 +34,7 @@ namespace ClairObscurConfig
             switch (EngineINI.Path.TestPath())
             {
                 case true : { EngineINI.LoadINIValues(); break; }
-                case false: { Forms.PromptININotExist();   break; }
+                case false: { Forms.PromptININotExist(); break; }
             }
         }
     }
