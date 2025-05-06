@@ -9,7 +9,7 @@ namespace ClairObscurConfig
         public static string StrArray(string ToCheck, string[] StringArray, string Fallback)
         {
             // If the value is in the array, return the value.
-            if (StringArray.Any(ToCheck.Contains))
+            if (ToCheck != null && StringArray.Any(ToCheck.Contains))
             {
                 return ToCheck;
             }
@@ -24,7 +24,7 @@ namespace ClairObscurConfig
             int Parsed = 0;
 
             // Try to parse the string.
-            if (Int32.TryParse(ToCheck, out Parsed))
+            if (ToCheck != null && Int32.TryParse(ToCheck, out Parsed))
             {
                 // If the value was parsed and its in range, it's good.
                 if (Parsed >= Low & Parsed <= High)
@@ -43,7 +43,7 @@ namespace ClairObscurConfig
             double Parsed = 0;
 
             // Try to parse the string.
-            if (Double.TryParse(ToCheck, out Parsed))
+            if (ToCheck != null && Double.TryParse(ToCheck, out Parsed))
             {
                 // If the value was parsed and its in range, it's good.
                 if (Parsed >= Low & Parsed <= High)
