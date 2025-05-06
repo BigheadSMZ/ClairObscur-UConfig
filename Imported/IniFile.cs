@@ -56,6 +56,16 @@ namespace ClairObscurConfig
         {
             Write(Key, null, Section ?? this.EXE);
         }
+        // Combines functionality of Read/Write using condition.
+        public void ConditionalWriteDelete(string Key, string Value, string Section = null, bool DoWrite = true)
+        {
+            switch (DoWrite)
+            {
+                // If true write the value, if false delete the key.
+                case true:  { Write(Key, Value, Section); break; }
+                case false: { DeleteKey(Key, Section); break; }
+            }
+        }
         // Delete entire section from the INI file.
         public void DeleteSection(string Section = null)
         {
