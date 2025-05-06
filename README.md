@@ -1,7 +1,7 @@
 # Clair Obscur: Expedition 33 - Unreal Config
 Creates and configures "Engine.ini" for Clair Obscur: Expedition 33.
 
-![image](https://github.com/user-attachments/assets/5e17d35c-23a4-4739-ad13-ca163d066425)
+![image](https://github.com/user-attachments/assets/0d411e32-f02f-410d-ad6d-67ca64010639)
 
 # Installation
 
