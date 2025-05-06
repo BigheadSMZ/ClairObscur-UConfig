@@ -184,6 +184,12 @@ namespace ClairObscurConfig
                     case false: { return; }
                 }
             }
+            // All values will exist for a new INI file so uncheck everything.
+            for (int i = 0; i < Forms.ToggleOptions.Length; i++)
+            {
+                EngineINI.NullTracker[i] = false;
+                Forms.ToggleOptions[i].Checked = false;
+            }
             // Write a new INI file and update the GUI.
             EngineINI.WriteNewINIFile();
 
