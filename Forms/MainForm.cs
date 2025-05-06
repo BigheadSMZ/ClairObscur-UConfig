@@ -6,8 +6,8 @@ namespace ClairObscurConfig
 {
     public partial class Form_MainForm : Form
     {
+        // Is "true" when Control key is held to enable extra functions.
         bool ControlHeld;
-        bool AllowToggle;
 
         public Form_MainForm()
         {
@@ -15,41 +15,50 @@ namespace ClairObscurConfig
         }
         private void Form_MainForm_Shown(object sender, EventArgs e)
         {
-            // Prevents the radio button events from firing until after the dialog is shown. This is a cheap and dirty workaround to
-            // avoid "double loading" the INI files and also spamming the "INI doesn't exist" message if it's not found.
-            this.AllowToggle = true;
+            // If the option to hide checkboxes was pulled from the registry, call the function to toggle them. This can't be done
+            // until the form is visible, so no better time to apply the changes to the controls than when it's first shown.
+            if (Config.DisableCheckBoxes)
+            {
+                Forms.ToggleCheckBoxes(Config.DisableCheckBoxes);
+            }
+            // Select the radio button based on user selected value.
+            switch (Config.GameVersion)
+            {
+                case "Steam":    { Forms.MainDialog.Radio_Steam.Checked = true; break; }
+                case "GamePass": { Forms.MainDialog.Radio_GamePass.Checked = true; break; }
+            }
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Game Type GroupBox
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         private void Radio_CheckedChanged(bool Checked, string Version, string INIPath)
         {
-            // Get the check state.
-            if (Checked & this.AllowToggle)
-            {
-                // Update the INI properties.
-                EngineINI.Type = Version;
-                EngineINI.Path = INIPath;
-                EngineINI.File = new IniFile(EngineINI.Path);
+            // Cancel if it's not checked.
+            if (!Checked) { return; }
 
-                // Try to load and toggle the GUI based on existence.
-                switch (EngineINI.Path.TestPath())
+            // Update the INI properties.
+            EngineINI.Path = INIPath;
+            EngineINI.File = new IniFile(EngineINI.Path);
+
+            // Try to load and toggle the GUI based on existence.
+            switch (EngineINI.Path.TestPath())
+            {
+                case true:
                 {
-                    case true:
-                    {
-                        EngineINI.LoadINIValues();
-                        Forms.ToggleGUI(true);
-                        Forms.UpdateValues();
-                        break;
-                    }
-                    case false:
-                    {
-                        Forms.PromptININotExist();
-                        Forms.ToggleGUI(false);
-                        break;
-                    }
+                    EngineINI.LoadINIValues();
+                    Forms.ToggleGUI(true);
+                    Forms.UpdateValues();
+                    break;
+                }
+                case false:
+                {
+                    Forms.PromptININotExist();
+                    Forms.ToggleGUI(false);
+                    break;
                 }
             }
+            // Store the decision in the registry.
+            Functions.SetRegistryValue(Config.RegEntry, "GameVersion", Version);
         }
         private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
         {
@@ -413,14 +422,11 @@ namespace ClairObscurConfig
             // Get the check state of the option.
             bool CheckState = MenuOption.Checked;
 
-            // Track through a variable to make it simpler.
-            Config.ChkBoxes = CheckState;
-
             // Invert the check state.
             MenuOption.Checked = !CheckState;
 
             // Toggle the CheckBoxes.
-            Forms.ToggleCheckBoxes(CheckState);
+            Forms.ToggleCheckBoxes(!CheckState);
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - Help

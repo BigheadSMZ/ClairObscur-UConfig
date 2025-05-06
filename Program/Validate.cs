@@ -16,6 +16,7 @@ namespace ClairObscurConfig
             // If it's not in the array, return the fallback value.
             return Fallback;
         }
+
         // Checks if a string as an integer is within range of a low and high value. Low and High are valid.
         public static string RangeInt(string ToCheck, int Low, int High, string Fallback)
         {
@@ -34,6 +35,7 @@ namespace ClairObscurConfig
             // If it couldn't be parsed as an integer or is not within the range, return the fallback.
             return Fallback;
         }
+
         // Checks if a string as a double is within range of a low and high value. Low and High are valid.
         public static string RangeDec(string ToCheck, double Low, double High, string Fallback)
         {

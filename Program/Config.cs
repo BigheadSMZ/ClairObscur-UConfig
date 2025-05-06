@@ -6,6 +6,13 @@ namespace ClairObscurConfig
 {
     internal class Config
     {
+        // The registry key to where to store option settings.
+        public const  string  RegEntry = "HKEY_CURRENT_USER\\Software\\BigheadSoft\\E33 Unreal Edit\\";
+
+        // Stored values from the registry.
+        public static bool    DisableCheckBoxes;
+        public static string  GameVersion;
+
         // Values used across the application.
         public static string  AppName;
         public static string  AppPath;
@@ -13,7 +20,6 @@ namespace ClairObscurConfig
         public static string  AppVersion;
         public static string  BasePath;
         public static string  GamePath;
-        public static bool    ChkBoxes;
 
         public static void SetApplicationValues()
         {
@@ -23,10 +29,16 @@ namespace ClairObscurConfig
             Config.AppData  = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             Config.BasePath = Path.GetDirectoryName(Config.AppPath);
             Config.GamePath = Game.GetExecutable();
-            Config.ChkBoxes = true;
+
+            // Try to get the values from the registry.
+            Config.GameVersion = Functions.GetRegistryValue(Config.RegEntry, "GameVersion", "Steam");
+            string CheckBoxReg = Functions.GetRegistryValue(Config.RegEntry, "DisableCheckBoxes", "False");
+
+            // Try to translate the result for checkboxes.
+            Boolean.TryParse(CheckBoxReg, out Config.DisableCheckBoxes);
 
             // Initialize the INI file.
-            EngineINI.InitializeINI();
+            EngineINI.InitializeINI(Config.GameVersion);
 
             // We might need these earlier than I planned.
             Forms.OkayDialog  = new Form_OkayForm();

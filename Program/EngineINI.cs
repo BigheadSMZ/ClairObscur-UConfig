@@ -6,7 +6,6 @@ namespace ClairObscurConfig
     {
         // Stores info about the Engine.ini file.
         public static string  Path;
-        public static string  Type;
         public static IniFile File;
 
         // Used to track if values existed when INI was loaded.
@@ -52,25 +51,22 @@ namespace ClairObscurConfig
         public static string ViewS_Val; // - r.DFDistanceScale
         public static string ViewF_Val; // - foliage.LODDistanceScale
 
-        public static void InitializeINI()
+        public static void InitializeINI(string GameVersion)
         {
-            // The paths the INI can be found.
-            string SteamBase    = (Config.AppData + "\\Sandfall\\Saved\\Config\\Windows").CreatePath();
-            string GamePassBase = (Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK").CreatePath();
-            string SteamPath    = SteamBase + "\\Engine.ini";
-            string GamePassPath = GamePassBase + "\\Engine.ini";
+            // Default to Steam folder name.
+            string FolderName = "Windows";
 
-            // Try the GamePass path first.
-            if (GamePassPath.TestPath()) 
+            // If it's GamePass version change the folder name.
+            if (GameVersion == "GamePass") 
             {
-                EngineINI.Type = "GamePass";
-                EngineINI.Path = GamePassPath;
-                EngineINI.File = new IniFile(GamePassPath);
+                FolderName = "WinGDK";
             }
-            // If it doesn't exist, default to Steam path.
-            EngineINI.Type = "Steam";
-            EngineINI.Path = SteamPath;
-            EngineINI.File = new IniFile(SteamPath);
+            // Create the path to the INI if it doesn't exist.
+            string BasePath = (Config.AppData + "\\Sandfall\\Saved\\Config\\" + FolderName).CreatePath();
+
+            // Set the path and create the class.
+            EngineINI.Path = BasePath + "\\Engine.ini";
+            EngineINI.File = new IniFile(EngineINI.Path);
         }
 
         public static void CreateNewINIFile()

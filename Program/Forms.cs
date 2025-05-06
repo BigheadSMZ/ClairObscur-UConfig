@@ -20,14 +20,11 @@ namespace ClairObscurConfig
             // Set the title of the window to include the current version.
             Forms.MainDialog.Text = Game.Name + " - Unreal Config v" + Config.AppVersion;
 
-            // Select the radio button based on INI type.
-            switch (EngineINI.Type)
-            {
-                case "Steam" :   { Forms.MainDialog.Radio_Steam.Checked = true; break; }
-                case "GamePass": { Forms.MainDialog.Radio_GamePass.Checked = true; break; }
-            }
             // Check to see if the game executable is in the same path as the configurator.
             bool ExeExists = Config.GamePath.TestPath();
+
+            // Check the Hide CheckBoxes option if the value was True from the registry.
+            Forms.MainDialog.StripItem_HideCheckBox.Checked = Config.DisableCheckBoxes;
 
             // Toggle the game options accordingly.
             Forms.MainDialog.StripItem_LaunchGame.Enabled = ExeExists;
@@ -37,7 +34,7 @@ namespace ClairObscurConfig
             string BackupPath = EngineINI.Path + ".bak";
 
             // Set availability of backup options depending on INI existence.
-            Forms.MainDialog.StripItem_CreateBackup.Enabled = EngineINI.Path.TestPath();
+            Forms.MainDialog.StripItem_CreateBackup.Enabled  = EngineINI.Path.TestPath();
             Forms.MainDialog.StripItem_RestoreBackup.Enabled = BackupPath.TestPath();
 
             // Create a checkbox array so it's easier to loop through them.
@@ -97,7 +94,7 @@ namespace ClairObscurConfig
             Forms.MainDialog.Num_FolDist.Value  = Functions.FormatStringDecimal(EngineINI.ViewF_Val);
 
             // See if checkboxes are enabled.
-            if (Config.ChkBoxes)
+            if (!Config.DisableCheckBoxes)
             {
                 // Loop through the array of checkboxes.
                 for (int i = 0; i < Forms.ChkBoxArray.Length; i++)
@@ -140,8 +137,11 @@ namespace ClairObscurConfig
             }
         }
 
-        public static void ToggleCheckBoxes(bool State)
+        public static void ToggleCheckBoxes(bool ToggleState)
         {
+            // Track through a variable to make it simpler.
+            Config.DisableCheckBoxes = ToggleState;
+
             // The amount to nudge the controls.
             int Nudge = 14;
 
@@ -149,13 +149,13 @@ namespace ClairObscurConfig
             foreach (CheckBox LoopBox in Forms.ChkBoxArray)
             {
                 // We could loop by type but we already have an array of them.
-                LoopBox.Visible = State;
+                LoopBox.Visible = !ToggleState;
 
                 // Negative state is hiding checkboxes. Force them unchecked.
-                if (!State) { LoopBox.Checked = false; }
+                if (ToggleState) { LoopBox.Checked = false; }
             }
             // Invert it depending on the state.
-            if (!State) { Nudge = -14; }
+            if (ToggleState) { Nudge = -14; }
 
             // Move the controls based on the nudge value.
             foreach (Control ComboLabelNumeric in Forms.MainDialog.GroupBox_Main.Controls)
@@ -170,9 +170,13 @@ namespace ClairObscurConfig
                     ComboLabelNumeric.Location = new Point(ComboLabelNumeric.Location.X + Nudge, ComboLabelNumeric.Location.Y);
                 }
             }
+            // Store the decision in the registry.
+            Functions.SetRegistryValue(Config.RegEntry, "DisableCheckBoxes", (ToggleState).ToString());
+
             // Update the values on the GUI.
             Forms.UpdateValues();
         }
+
         public static void ClearCheckBoxes()
         {
             // Loop through the number of checkboxes.

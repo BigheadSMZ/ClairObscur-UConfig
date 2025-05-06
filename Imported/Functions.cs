@@ -1,11 +1,28 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Win32;
 
 namespace ClairObscurConfig
 {
     internal class Functions
     {
+        public static string GetRegistryValue(string RegKey, string SubKey, string Fallback)
+        {
+            object Result = Registry.GetValue(RegKey, SubKey, null);
+
+            if (Result != null)
+            {
+                return Result.ToString();
+            }
+            return Fallback;
+        }
+
+        public static void SetRegistryValue(string RegKey, string SubKey, string Value)
+        {
+            Registry.SetValue(RegKey, SubKey, Value);
+        }
+
         public static void OpenFileExplorer(string Location)
         {
             Process FileExplorer = new Process();
