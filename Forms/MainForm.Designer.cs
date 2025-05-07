@@ -127,6 +127,7 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
+            this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -1158,7 +1159,8 @@
             // MainStripItem_Options
             // 
             this.MainStripItem_Options.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripItem_HideCheckBox});
+            this.StripItem_HideCheckBox,
+            this.StripItem_LaunchClose});
             this.MainStripItem_Options.Name = "MainStripItem_Options";
             this.MainStripItem_Options.Size = new System.Drawing.Size(61, 20);
             this.MainStripItem_Options.Text = "Options";
@@ -1166,7 +1168,7 @@
             // StripItem_HideCheckBox
             // 
             this.StripItem_HideCheckBox.Name = "StripItem_HideCheckBox";
-            this.StripItem_HideCheckBox.Size = new System.Drawing.Size(208, 22);
+            this.StripItem_HideCheckBox.Size = new System.Drawing.Size(235, 22);
             this.StripItem_HideCheckBox.Text = "Hide/Disable Checkboxes";
             this.StripItem_HideCheckBox.Click += new System.EventHandler(this.StripItem_HideCheckBox_Click);
             // 
@@ -1265,6 +1267,13 @@
             this.Radio_Steam.Text = "Steam Version";
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
+            // 
+            // StripItem_LaunchClose
+            // 
+            this.StripItem_LaunchClose.Name = "StripItem_LaunchClose";
+            this.StripItem_LaunchClose.Size = new System.Drawing.Size(235, 22);
+            this.StripItem_LaunchClose.Text = "Close Config on Game Launch";
+            this.StripItem_LaunchClose.Click += new System.EventHandler(this.StripItem_LaunchClose_Click);
             // 
             // Form_MainForm
             // 
@@ -1403,6 +1412,7 @@
         public System.Windows.Forms.CheckBox CheckBox_AF;
         public System.Windows.Forms.ToolStripMenuItem MainStripItem_Options;
         public System.Windows.Forms.ToolStripMenuItem StripItem_HideCheckBox;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchClose;
     }
 }
 

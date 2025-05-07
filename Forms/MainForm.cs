@@ -66,9 +66,9 @@ namespace ClairObscurConfig
         private void Radio_Steam_CheckedChanged(object sender, EventArgs e)
         {
             // Steam version of the game was toggled.
-            bool   Checked  = (sender as RadioButton).Checked;
+            bool   Checked = (sender as RadioButton).Checked;
             string Version = "Steam";
-            string INIPath  = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows";
+            string INIPath = Config.AppData + "\\Sandfall\\Saved\\Config\\Windows";
             this.Radio_CheckedChanged(Checked, Version, INIPath);
         }
         private void Radio_GamePass_CheckedChanged(object sender, EventArgs e)
@@ -430,6 +430,19 @@ namespace ClairObscurConfig
 
             // Toggle the CheckBoxes.
             Forms.ToggleCheckBoxes(!CheckState);
+        }
+        private void StripItem_LaunchClose_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
+
+            // Get the check state of the option.
+            bool CheckState = MenuOption.Checked;
+
+            // Invert the check state.
+            MenuOption.Checked = !CheckState;
+
+            // Toggle the option.
+            Forms.ToggleLaunchClose(!CheckState);
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - Help

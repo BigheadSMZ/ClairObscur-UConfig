@@ -25,12 +25,13 @@ namespace ClairObscurConfig
             // Check to see if the game executable is in the same path as the configurator.
             bool ExeExists = Config.GamePath.TestPath();
 
-            // Check the Hide CheckBoxes option if the value was True from the registry.
-            Forms.MainDialog.StripItem_HideCheckBox.Checked = Config.DisableCheckBoxes;
-
             // Toggle the game options accordingly.
             Forms.MainDialog.StripItem_LaunchGame.Enabled = ExeExists;
-            Forms.MainDialog.StripItem_CloseGame.Enabled  = ExeExists;
+            Forms.MainDialog.StripItem_CloseGame.Enabled = ExeExists;
+
+            // Set the check state for "Options" toolstrip items.
+            Forms.MainDialog.StripItem_HideCheckBox.Checked = Config.DisableCheckBoxes;
+            Forms.MainDialog.StripItem_LaunchClose.Checked  = Config.CloseOnLaunch;
 
             // Set the INI backup path.
             string BackupPath = EngineINI.Path + ".bak";
@@ -177,6 +178,12 @@ namespace ClairObscurConfig
 
             // Update the values on the GUI.
             Forms.UpdateValues();
+        }
+
+        public static void ToggleLaunchClose(bool ToggleState)
+        {
+            // Store the decision in the registry.
+            Functions.SetRegistryValue(Config.RegEntry, "CloseOnLaunch", (ToggleState).ToString());
         }
 
         public static void ClearCheckBoxes()

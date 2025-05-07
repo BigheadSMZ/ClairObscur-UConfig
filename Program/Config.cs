@@ -11,6 +11,7 @@ namespace ClairObscurConfig
 
         // Stored values from the registry.
         public static bool    DisableCheckBoxes;
+        public static bool    CloseOnLaunch;
         public static string  GameVersion;
 
         // Values used across the application.
@@ -32,9 +33,11 @@ namespace ClairObscurConfig
 
             // Try to get the values from the registry.
             Config.GameVersion = Functions.GetRegistryValue(Config.RegEntry, "GameVersion", "Steam");
+            string LaunchClose = Functions.GetRegistryValue(Config.RegEntry, "CloseOnLaunch", "False");
             string CheckBoxReg = Functions.GetRegistryValue(Config.RegEntry, "DisableCheckBoxes", "False");
 
-            // Try to translate the result for checkboxes.
+            // Try to translate the result for strip item options.
+            Boolean.TryParse(LaunchClose, out Config.CloseOnLaunch);
             Boolean.TryParse(CheckBoxReg, out Config.DisableCheckBoxes);
 
             // Initialize the INI file.

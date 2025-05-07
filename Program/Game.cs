@@ -64,6 +64,12 @@ namespace ClairObscurConfig
                 GameProcess.StartInfo.RedirectStandardOutput = false;
                 GameProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 GameProcess.Start();
+
+                // Close the main dialog if the option to do so was toggled.
+                if (Config.CloseOnLaunch)
+                {
+                    Forms.MainDialog.Close();
+                }
             }
             // Let the user know it should be within the same folder.
             else
