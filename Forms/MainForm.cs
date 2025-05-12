@@ -431,6 +431,21 @@ namespace ClairObscurConfig
             // Toggle the CheckBoxes.
             Forms.ToggleCheckBoxes(!CheckState);
         }
+
+        private void StripItem_LaunchSave_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
+
+            // Get the check state of the option.
+            bool CheckState = MenuOption.Checked;
+
+            // Invert the check state.
+            MenuOption.Checked = !CheckState;
+
+            // Toggle the option.
+            Forms.ToggleLaunchSave(!CheckState);
+        }
+
         private void StripItem_LaunchClose_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
@@ -481,8 +496,8 @@ namespace ClairObscurConfig
         }
         private void Button_Exit_Click(object sender, EventArgs e)
         {
-            // The INI must exist and the Control key not held.
-            if (EngineINI.Path.TestPath() & !this.ControlHeld)
+            // The Control key must not be held.
+            if (!this.ControlHeld)
             {
                 // Update the INI file.
                 EngineINI.WriteINIValues();

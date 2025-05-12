@@ -116,6 +116,7 @@
             this.StripItem_CloseGame = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Options = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_HideCheckBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,7 +128,7 @@
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
-            this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -1160,6 +1161,7 @@
             // 
             this.MainStripItem_Options.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_HideCheckBox,
+            this.StripItem_LaunchSave,
             this.StripItem_LaunchClose});
             this.MainStripItem_Options.Name = "MainStripItem_Options";
             this.MainStripItem_Options.Size = new System.Drawing.Size(61, 20);
@@ -1168,9 +1170,18 @@
             // StripItem_HideCheckBox
             // 
             this.StripItem_HideCheckBox.Name = "StripItem_HideCheckBox";
-            this.StripItem_HideCheckBox.Size = new System.Drawing.Size(235, 22);
+            this.StripItem_HideCheckBox.Size = new System.Drawing.Size(240, 22);
             this.StripItem_HideCheckBox.Text = "Hide/Disable Checkboxes";
+            this.StripItem_HideCheckBox.ToolTipText = "Disables both the visibility and \r\nfunctionality of the checkboxes.";
             this.StripItem_HideCheckBox.Click += new System.EventHandler(this.StripItem_HideCheckBox_Click);
+            // 
+            // StripItem_LaunchClose
+            // 
+            this.StripItem_LaunchClose.Name = "StripItem_LaunchClose";
+            this.StripItem_LaunchClose.Size = new System.Drawing.Size(240, 22);
+            this.StripItem_LaunchClose.Text = "Close Config on Game Launch";
+            this.StripItem_LaunchClose.ToolTipText = "Also close this configurator\r\nwhen launching the game.";
+            this.StripItem_LaunchClose.Click += new System.EventHandler(this.StripItem_LaunchClose_Click);
             // 
             // MainStripItem_Help
             // 
@@ -1268,12 +1279,13 @@
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
-            // StripItem_LaunchClose
+            // StripItem_LaunchSave
             // 
-            this.StripItem_LaunchClose.Name = "StripItem_LaunchClose";
-            this.StripItem_LaunchClose.Size = new System.Drawing.Size(235, 22);
-            this.StripItem_LaunchClose.Text = "Close Config on Game Launch";
-            this.StripItem_LaunchClose.Click += new System.EventHandler(this.StripItem_LaunchClose_Click);
+            this.StripItem_LaunchSave.Name = "StripItem_LaunchSave";
+            this.StripItem_LaunchSave.Size = new System.Drawing.Size(240, 22);
+            this.StripItem_LaunchSave.Text = "Save Changes on Game Launch";
+            this.StripItem_LaunchSave.ToolTipText = "Save all options to the INI\r\nwhen launching the game.";
+            this.StripItem_LaunchSave.Click += new System.EventHandler(this.StripItem_LaunchSave_Click);
             // 
             // Form_MainForm
             // 
@@ -1413,6 +1425,7 @@
         public System.Windows.Forms.ToolStripMenuItem MainStripItem_Options;
         public System.Windows.Forms.ToolStripMenuItem StripItem_HideCheckBox;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchClose;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchSave;
     }
 }
 

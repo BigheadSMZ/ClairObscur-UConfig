@@ -27,10 +27,11 @@ namespace ClairObscurConfig
 
             // Toggle the game options accordingly.
             Forms.MainDialog.StripItem_LaunchGame.Enabled = ExeExists;
-            Forms.MainDialog.StripItem_CloseGame.Enabled = ExeExists;
+            Forms.MainDialog.StripItem_CloseGame.Enabled  = ExeExists;
 
             // Set the check state for "Options" toolstrip items.
             Forms.MainDialog.StripItem_HideCheckBox.Checked = Config.DisableCheckBoxes;
+            Forms.MainDialog.StripItem_LaunchSave.Checked   = Config.SaveOnLaunch;
             Forms.MainDialog.StripItem_LaunchClose.Checked  = Config.CloseOnLaunch;
 
             // Set the INI backup path.
@@ -180,6 +181,12 @@ namespace ClairObscurConfig
             Forms.UpdateValues();
         }
 
+        public static void ToggleLaunchSave(bool ToggleState)
+        {
+            // Store the decision in the registry.
+            Functions.SetRegistryValue(Config.RegEntry, "SaveOnLaunch", (ToggleState).ToString());
+        }
+        
         public static void ToggleLaunchClose(bool ToggleState)
         {
             // Store the decision in the registry.
