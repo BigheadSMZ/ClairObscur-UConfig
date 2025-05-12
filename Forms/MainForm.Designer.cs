@@ -129,6 +129,7 @@
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
             this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_EditINI = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -948,6 +949,7 @@
             this.StripItem_SaveINI,
             this.StripItem_ReloadINI,
             this.StripItem_DeleteINI,
+            this.StripItem_EditINI,
             this.ToolStripSeperatorA,
             this.StripItem_Base,
             this.StripItem_AppData,
@@ -1287,6 +1289,14 @@
             this.StripItem_LaunchSave.ToolTipText = "Save all options to the INI\r\nwhen launching the game.";
             this.StripItem_LaunchSave.Click += new System.EventHandler(this.StripItem_LaunchSave_Click);
             // 
+            // StripItem_EditINI
+            // 
+            this.StripItem_EditINI.Name = "StripItem_EditINI";
+            this.StripItem_EditINI.Size = new System.Drawing.Size(196, 22);
+            this.StripItem_EditINI.Text = "Edit Engine.ini";
+            this.StripItem_EditINI.ToolTipText = resources.GetString("StripItem_EditINI.ToolTipText");
+            this.StripItem_EditINI.Click += new System.EventHandler(this.StripItem_EditINI_Click);
+            // 
             // Form_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1426,6 +1436,7 @@
         public System.Windows.Forms.ToolStripMenuItem StripItem_HideCheckBox;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchClose;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchSave;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_EditINI;
     }
 }
 

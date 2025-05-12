@@ -181,6 +181,14 @@ the options can be configured.
 Use this option if you no longer
 wish to apply manual settings.</value>
   </data>
+  <data name="StripItem_EditINI.ToolTipText" xml:space="preserve">
+    <value>Open the Engine.ini file in the default
+text editor currently set in Windows.
+
+Note: This removes the read-only flag
+from the INI file. You must manually 
+set it or reload/save it in this program.</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>

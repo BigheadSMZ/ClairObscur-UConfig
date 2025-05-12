@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
@@ -331,6 +332,18 @@ namespace ClairObscurConfig
                 // Delete the INI and disable the GUI.
                 EngineINI.DeleteINIFile();
                 Forms.ToggleGUI(false);
+            }
+        }
+        private void StripItem_EditINI_Click(object sender, EventArgs e)
+        {
+            // Test the path to the INI.
+            if (EngineINI.Path.TestPath())
+            {
+                // Remove the read-only flag so it can be edited.
+                File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+
+                // Launch it with the default Windows app for editing INI files.
+                Functions.OpenFileExplorer(EngineINI.Path);
             }
         }
         private void StripItem_Base_Click(object sender, EventArgs e)
