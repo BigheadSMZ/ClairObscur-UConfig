@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
@@ -158,6 +158,7 @@
             this.StripItem_UltiHighEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_6GBVRAM = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Clear = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Engine33 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -1390,33 +1391,33 @@
             this.StripItem_Delete,
             this.StripItem_Clear});
             this.CMenuStrip_TextEdit.Name = "CMenuStrip_TextEdit";
-            this.CMenuStrip_TextEdit.Size = new System.Drawing.Size(181, 136);
+            this.CMenuStrip_TextEdit.Size = new System.Drawing.Size(108, 114);
             // 
             // StripItem_Cut
             // 
             this.StripItem_Cut.Name = "StripItem_Cut";
-            this.StripItem_Cut.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Cut.Size = new System.Drawing.Size(107, 22);
             this.StripItem_Cut.Text = "Cut";
             this.StripItem_Cut.Click += new System.EventHandler(this.StripItem_Cut_Click);
             // 
             // StripItem_Copy
             // 
             this.StripItem_Copy.Name = "StripItem_Copy";
-            this.StripItem_Copy.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Copy.Size = new System.Drawing.Size(107, 22);
             this.StripItem_Copy.Text = "Copy";
             this.StripItem_Copy.Click += new System.EventHandler(this.StripItem_Copy_Click);
             // 
             // StripItem_Paste
             // 
             this.StripItem_Paste.Name = "StripItem_Paste";
-            this.StripItem_Paste.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Paste.Size = new System.Drawing.Size(107, 22);
             this.StripItem_Paste.Text = "Paste";
             this.StripItem_Paste.Click += new System.EventHandler(this.StripItem_Paste_Click);
             // 
             // StripItem_Delete
             // 
             this.StripItem_Delete.Name = "StripItem_Delete";
-            this.StripItem_Delete.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Delete.Size = new System.Drawing.Size(107, 22);
             this.StripItem_Delete.Text = "Delete";
             this.StripItem_Delete.Click += new System.EventHandler(this.StripItem_Delete_Click);
             // 
@@ -1426,14 +1427,14 @@
             this.GridView_Options.AllowUserToDeleteRows = false;
             this.GridView_Options.AllowUserToResizeColumns = false;
             this.GridView_Options.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OptionName,
@@ -1444,8 +1445,8 @@
             this.GridView_Options.Name = "GridView_Options";
             this.GridView_Options.RowHeadersVisible = false;
             this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.GridView_Options.ShowCellErrors = false;
             this.GridView_Options.ShowCellToolTips = false;
@@ -1573,9 +1574,10 @@
             this.StripItem_EnhLumen,
             this.StripItem_Clarity,
             this.StripItem_UltiHighEnd,
-            this.StripItem_6GBVRAM});
+            this.StripItem_6GBVRAM,
+            this.StripItem_Engine33});
             this.CMenuStrip_Collections.Name = "contextMenuStrip6";
-            this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 114);
+            this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 158);
             // 
             // StripItem_NoLumen
             // 
@@ -1624,9 +1626,19 @@
             // StripItem_Clear
             // 
             this.StripItem_Clear.Name = "StripItem_Clear";
-            this.StripItem_Clear.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Clear.Size = new System.Drawing.Size(107, 22);
             this.StripItem_Clear.Text = "Clear";
             this.StripItem_Clear.Click += new System.EventHandler(this.StripItem_Clear_Click);
+            // 
+            // StripItem_Engine33
+            // 
+            this.StripItem_Engine33.Name = "StripItem_Engine33";
+            this.StripItem_Engine33.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_Engine33.Text = "Engine33";
+            this.StripItem_Engine33.ToolTipText = "Engine33 is a carefully crafted set of tweaks \r\nfocused on delivering the smoothe" +
+    "st, most \r\nstable, and clearest gameplay without any \r\nvisual quality loss.\r\n\r\nC" +
+    "redit: itsbttq";
+            this.StripItem_Engine33.Click += new System.EventHandler(this.StripItem_Engine33_Click);
             // 
             // Form_MainForm
             // 
@@ -1803,6 +1815,7 @@
         private System.Windows.Forms.ToolStripMenuItem StripItem_6GBVRAM;
         public System.Windows.Forms.GroupBox GroupBox_Advanced;
         private System.Windows.Forms.ToolStripMenuItem StripItem_Clear;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Engine33;
     }
 }
 

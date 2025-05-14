@@ -703,6 +703,14 @@ namespace ClairObscurConfig
             // Set on the textbox.
             this.RichTextBox_AddOptions.Text = EngineINI.Collection_6GBVRAM();
         }
+        private void StripItem_Engine33_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_Engine33();
+        }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Advanced Dialog: RichTextBox StripMenu
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
