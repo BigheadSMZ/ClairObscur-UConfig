@@ -4,113 +4,113 @@
     {
         public static void LoadPreset_Low()
         {
-            EngineINI.Anist_Val = "2";
-            EngineINI.Depth_Val = "1";
-            EngineINI.Bloom_Val = "1";
-            EngineINI.MBlur_Val = "1";
-            EngineINI.LenFl_Val = "1";
-            EngineINI.FogEf_Val = "1";
-            EngineINI.VoFog_Val = "1";
-            EngineINI.SCoFr_Val = "0";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "0";
-            EngineINI.ShadQ_Val = "0";
-            EngineINI.ShadR_Val = "1024";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "1";
-            EngineINI.TMSha_Val = "0.4";
-            EngineINI.ViewD_Val = "0.50";
-            EngineINI.ViewS_Val = "0.50";
-            EngineINI.ViewF_Val = "0.35";
+            EngineINI.MainEntries[0]  = "2";        // r.MaxAnisotropy
+            EngineINI.MainEntries[1]  = "1";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "1";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "1";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "1";        // r.LensFlareQuality
+            EngineINI.MainEntries[5]  = "1";        // r.Fog
+            EngineINI.MainEntries[6]  = "1";        // r.VolumetricFog
+            EngineINI.MainEntries[7]  = "0";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "0";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "0";        // r.FilmGrain
+            EngineINI.MainEntries[10] = "0";        // r.ShadowQuality
+            EngineINI.MainEntries[11] = "1024";     // r.Shadow.MaxResolution
+            EngineINI.MainEntries[12] = "5";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "1";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "0.4";      // r.Tonemapper.Sharpen
+            EngineINI.MainEntries[15] = "0.50";     // r.ViewDistanceScale
+            EngineINI.MainEntries[16] = "0.50";     // r.DFDistanceScale
+            EngineINI.MainEntries[17] = "0.35";     // foliage.LODDistanceScale
         }
         public static void LoadPreset_Medium()
         {
-            EngineINI.Anist_Val = "4";
-            EngineINI.Depth_Val = "2";
-            EngineINI.Bloom_Val = "2";
-            EngineINI.MBlur_Val = "2";
-            EngineINI.LenFl_Val = "2";
-            EngineINI.FogEf_Val = "1";
-            EngineINI.VoFog_Val = "1";
-            EngineINI.SCoFr_Val = "0";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "0";
-            EngineINI.ShadQ_Val = "1";
-            EngineINI.ShadR_Val = "1024";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "1";
-            EngineINI.TMSha_Val = "0.6";
-            EngineINI.ViewD_Val = "1.00";
-            EngineINI.ViewS_Val = "1.00";
-            EngineINI.ViewF_Val = "0.75";
+            EngineINI.MainEntries[0]  = "4";        // r.MaxAnisotropy
+            EngineINI.MainEntries[1]  = "2";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "2";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "2";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "2";        // r.LensFlareQuality
+            EngineINI.MainEntries[5]  = "1";        // r.Fog
+            EngineINI.MainEntries[6]  = "1";        // r.VolumetricFog
+            EngineINI.MainEntries[7]  = "0";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "0";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "0";        // r.FilmGrain
+            EngineINI.MainEntries[10] = "1";        // r.ShadowQuality
+            EngineINI.MainEntries[11] = "1024";     // r.Shadow.MaxResolution
+            EngineINI.MainEntries[12] = "5";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "1";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "0.6";      // r.Tonemapper.Sharpen
+            EngineINI.MainEntries[15] = "1.00";     // r.ViewDistanceScale
+            EngineINI.MainEntries[16] = "1.00";     // r.DFDistanceScale
+            EngineINI.MainEntries[17] = "0.75";     // foliage.LODDistanceScale
         }
         public static void LoadPreset_High()
         {
-            EngineINI.Anist_Val = "8";
-            EngineINI.Depth_Val = "3";
-            EngineINI.Bloom_Val = "3";
-            EngineINI.MBlur_Val = "3";
-            EngineINI.LenFl_Val = "2";
-            EngineINI.FogEf_Val = "1";
-            EngineINI.VoFog_Val = "1";
-            EngineINI.SCoFr_Val = "1";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "1";
-            EngineINI.ShadQ_Val = "3";
-            EngineINI.ShadR_Val = "2048";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "0";
-            EngineINI.TMSha_Val = "0.8";
-            EngineINI.ViewD_Val = "2.00";
-            EngineINI.ViewS_Val = "2.00";
-            EngineINI.ViewF_Val = "1.75";
+            EngineINI.MainEntries[0]  = "8";        // r.MaxAnisotropy
+            EngineINI.MainEntries[1]  = "3";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "3";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "3";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "2";        // r.LensFlareQuality
+            EngineINI.MainEntries[5]  = "1";        // r.Fog
+            EngineINI.MainEntries[6]  = "1";        // r.VolumetricFog
+            EngineINI.MainEntries[7]  = "1";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "0";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "1";        // r.FilmGrain
+            EngineINI.MainEntries[10] = "3";        // r.ShadowQuality
+            EngineINI.MainEntries[11] = "2048";     // r.Shadow.MaxResolution
+            EngineINI.MainEntries[12] = "5";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "0";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "0.8";      // r.Tonemapper.Sharpen
+            EngineINI.MainEntries[15] = "2.00";     // r.ViewDistanceScale
+            EngineINI.MainEntries[16] = "2.00";     // r.DFDistanceScale
+            EngineINI.MainEntries[17] = "1.75";     // foliage.LODDistanceScale
         }
         public static void LoadPreset_Ultra()
         {
-            EngineINI.Anist_Val = "16";
-            EngineINI.Depth_Val = "4";
-            EngineINI.Bloom_Val = "4";
-            EngineINI.MBlur_Val = "4";
-            EngineINI.LenFl_Val = "3";
-            EngineINI.FogEf_Val = "1";
-            EngineINI.VoFog_Val = "1";
-            EngineINI.SCoFr_Val = "1";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "1";
-            EngineINI.ShadQ_Val = "4";
-            EngineINI.ShadR_Val = "4096";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "0";
-            EngineINI.TMSha_Val = "1.0";
-            EngineINI.ViewD_Val = "2.75";
-            EngineINI.ViewS_Val = "2.75";
-            EngineINI.ViewF_Val = "2.50";
+            EngineINI.MainEntries[0]  = "16";       // r.MaxAnisotropy
+            EngineINI.MainEntries[1]  = "4";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "4";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "4";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "3";        // r.LensFlareQuality
+            EngineINI.MainEntries[5]  = "1";        // r.Fog
+            EngineINI.MainEntries[6]  = "1";        // r.VolumetricFog
+            EngineINI.MainEntries[7]  = "1";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "0";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "1";        // r.FilmGrain
+            EngineINI.MainEntries[10] = "4";        // r.ShadowQuality
+            EngineINI.MainEntries[11] = "4096";     // r.Shadow.MaxResolution
+            EngineINI.MainEntries[12] = "5";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "0";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "1.0";      // r.Tonemapper.Sharpen
+            EngineINI.MainEntries[15] = "2.75";     // r.ViewDistanceScale
+            EngineINI.MainEntries[16] = "2.75";     // r.DFDistanceScale
+            EngineINI.MainEntries[17] = "2.50";     // foliage.LODDistanceScale
         }
         public static void LoadPreset_SharpClear()
         {
-            EngineINI.Depth_Val = "0";
-            EngineINI.Bloom_Val = "0";
-            EngineINI.MBlur_Val = "0";
-            EngineINI.LenFl_Val = "0";
-            EngineINI.SCoFr_Val = "0";
-            EngineINI.Distr_Val = "1";
-            EngineINI.Grain_Val = "0";
-            EngineINI.TMQua_Val = "0";
-            EngineINI.TMGra_Val = "0";
-            EngineINI.TMSha_Val = "1.2";
+            EngineINI.MainEntries[1]  = "0";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "0";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "0";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "0";        // r.LensFlareQuality
+            EngineINI.MainEntries[7]  = "0";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "1";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "0";        // r.FilmGrain
+            EngineINI.MainEntries[12] = "0";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "0";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "1.2";      // r.Tonemapper.Sharpen
         }
         public static void LoadPreset_SoftAmbient()
         {
-            EngineINI.Depth_Val = "3";
-            EngineINI.Bloom_Val = "2";
-            EngineINI.MBlur_Val = "0";
-            EngineINI.LenFl_Val = "3";
-            EngineINI.SCoFr_Val = "1";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "1";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "1";
-            EngineINI.TMSha_Val = "0.5";
+            EngineINI.MainEntries[1]  = "3";        // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = "2";        // r.BloomQuality
+            EngineINI.MainEntries[3]  = "0";        // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = "3";        // r.LensFlareQuality
+            EngineINI.MainEntries[7]  = "1";        // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = "0";        // r.DisableDistortion
+            EngineINI.MainEntries[9]  = "1";        // r.FilmGrain
+            EngineINI.MainEntries[12] = "5";        // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = "1";        // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = "0.5";      // r.Tonemapper.Sharpen
         }
     }
 }

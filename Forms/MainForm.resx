@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="GlobalToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>152, 10</value>
+    <value>188, 10</value>
   </metadata>
   <metadata name="GlobalToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>152, 10</value>
+    <value>188, 10</value>
   </metadata>
   <data name="Label_FolDist.ToolTip" xml:space="preserve">
     <value>Affects the draw distance of foliage
@@ -169,7 +169,7 @@ affects multiple effects. Use a value of
 Each value also enables all preceding
 options. May affect other options.</value>
   </data>
-  <metadata name="MainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="MenuStrip_MainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 10</value>
   </metadata>
   <data name="StripItem_DeleteINI.ToolTipText" xml:space="preserve">
@@ -189,8 +189,34 @@ Note: This removes the read-only flag
 from the INI file. You must manually 
 set it or reload/save it in this program.</value>
   </data>
+  <metadata name="CMenuStrip_TextEdit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>497, 10</value>
+  </metadata>
+  <data name="RichTextBox_AddOptions.Text" xml:space="preserve">
+    <value>Copy and paste multiple lines of "Engine.ini" options and values here 
+and click "Parse" to import them into the options above. Any potential
+duplicate entries will be automatically excluded. When saving the INI,
+all options and values above will also be written to the INI file.</value>
+  </data>
+  <metadata name="OptionName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Value.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="GridView_Options.ToolTip" xml:space="preserve">
+    <value>Allows entering and editing advanced
+Unreal engine variables and values. Do
+note that this is at your own risk as this
+configurator does little verification on
+these settings and values. Meaning it's
+very posible to enter invalid settings. </value>
+  </data>
+  <metadata name="CMenuStrip_Collections.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>316, 10</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>40</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

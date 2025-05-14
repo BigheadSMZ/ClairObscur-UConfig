@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
 {
     public partial class Form_MainForm : Form
     {
-        // Is "true" when Control key is held to enable extra functions.
-        bool ControlHeld;
+        // Set "true" when Control key is held to enable extra functions.
+        private bool ControlHeld = false;
+
+        // Tracks the click of the rich textbox.
+        private bool ClickClear = false;      
 
         public Form_MainForm()
         {
             InitializeComponent();
         }
-        private void Form_MainForm_Shown(object sender, EventArgs e)
+        private void Form_MainForm_Load(object sender, EventArgs e)
         {
             // If the option to hide checkboxes was pulled from the registry, call the function to toggle them. This can't be done
             // until the form is visible, so no better time to apply the changes to the controls than when it's first shown.
@@ -22,12 +26,26 @@ namespace ClairObscurConfig
             {
                 Forms.ToggleCheckBoxes(Config.DisableCheckBoxes);
             }
-            // Select the radio button based on user selected value.
+            // If the user disabled tooltips, now is a decent time to apply it.
+            if (Config.DisableToolTips)
+            {
+                Forms.MainDialog.GlobalToolTip.Active = false;
+            }
+            // Select the game version radio button based on stored user value. This will also perform the initial INI load and update the GUI.
             switch (Config.GameVersion)
             {
-                case "Steam":    { Forms.MainDialog.Radio_Steam.Checked = true; break; }
-                case "GamePass": { Forms.MainDialog.Radio_GamePass.Checked = true; break; }
+                case "Steam":    { this.Radio_Steam.Checked    = true; break; }
+                case "GamePass": { this.Radio_GamePass.Checked = true; break; }
             }
+            // Select the advanced options radio button based on stored user value. This will also set the initial GUI size.
+            switch (Config.ShowAdvanced)
+            {
+                case true:  { this.Radio_AdvShow.Checked = true; break; }
+                case false: { this.Radio_AdvHide.Checked = true; break; }
+            }
+            // This is the one safe place to call the center to screen function. We need to resize after the dialog has
+            // been created but before it is shown. This should give the correct results no matter the users settings.
+            this.CenterToScreen();
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Game Type GroupBox
@@ -42,14 +60,14 @@ namespace ClairObscurConfig
 
             // Update the INI properties.
             EngineINI.Path = INIPath + "\\Engine.ini";
-            EngineINI.File = new IniFile(EngineINI.Path);
+            EngineINI.Class = new IniFile(EngineINI.Path);
 
             // Try to load and toggle the GUI based on existence.
             switch (EngineINI.Path.TestPath())
             {
                 case true:
                 {
-                    EngineINI.LoadINIValues();
+                    EngineINI.LoadValues();
                     Forms.ToggleGUI(true);
                     Forms.UpdateValues();
                     break;
@@ -80,6 +98,34 @@ namespace ClairObscurConfig
             string INIPath = Config.AppData + "\\Sandfall\\Saved\\Config\\WinGDK";
             this.Radio_CheckedChanged(Checked, Version, INIPath);
         }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Main Dialog - Advanced Options GroupBox
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+        private void Radio_AdvShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                Functions.SetRegistryValue(Config.RegEntry, "ShowAdvanced", "True");
+            }
+            this.Button_Launch.Location = new Point(798, 600);
+            this.Button_ExitSave.Location = new Point(924, 600);
+            this.Size = new Size(1072, 676);
+            this.CenterToScreen();
+        }
+
+        private void Radio_AdvHide_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                Functions.SetRegistryValue(Config.RegEntry, "ShowAdvanced", "False");
+            }
+            this.Button_Launch.Location = new Point(263, 600);
+            this.Button_ExitSave.Location = new Point(389, 600);
+            this.Size = new Size(536, 676);
+            this.CenterToScreen();
+        }
+
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   Main Dialog - Options CheckBoxes
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -197,92 +243,92 @@ namespace ClairObscurConfig
         private void Combo_AF_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.Anist_Val = ValueSwap.Translate_AA(NewValue);
+            EngineINI.MainEntries[0] = ValueSwap.Translate_AA(NewValue);
         }
         private void Combo_DoF_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.Depth_Val = ValueSwap.Translate_Scale(NewValue);
+            EngineINI.MainEntries[1] = ValueSwap.Translate_Scale(NewValue);
         }
         private void Combo_Bloom_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.Bloom_Val = ValueSwap.Translate_Scale(NewValue);
+            EngineINI.MainEntries[2] = ValueSwap.Translate_Scale(NewValue);
         }
         private void Combo_MBlur_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.MBlur_Val = ValueSwap.Translate_Scale(NewValue);
+            EngineINI.MainEntries[3] = ValueSwap.Translate_Scale(NewValue);
         }
         private void Combo_LensFlare_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.LenFl_Val = ValueSwap.Translate_Scale(NewValue);
+            EngineINI.MainEntries[4] = ValueSwap.Translate_Scale(NewValue);
         }
         private void Combo_Fog_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.FogEf_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[5] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Combo_VFog_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.VoFog_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[6] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Combo_ChromAb_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.SCoFr_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[7] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Combo_Distort_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.Distr_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[8] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Combo_FilmGrain_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.Grain_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[9] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Combo_ShadQual_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.ShadQ_Val = ValueSwap.Translate_ShadQual(NewValue);
+            EngineINI.MainEntries[10] = ValueSwap.Translate_ShadQual(NewValue);
         }
         private void Combo_ShadRes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.ShadR_Val = ValueSwap.Translate_ShadRes(NewValue);
+            EngineINI.MainEntries[11] = ValueSwap.Translate_ShadRes(NewValue);
         }
         private void Combo_Tonemap_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.TMQua_Val = NewValue;
+            EngineINI.MainEntries[12] = NewValue;
         }
         private void Combo_GrainQuant_SelectedIndexChanged(object sender, EventArgs e)
         {
             string NewValue = (sender as ComboBox).SelectedItem.ToString();
-            EngineINI.TMGra_Val = ValueSwap.Translate_Binary(NewValue);
+            EngineINI.MainEntries[13] = ValueSwap.Translate_Binary(NewValue);
         }
         private void Num_Sharpen_ValueChanged(object sender, EventArgs e)
         {
             string NewValue = Convert.ToString((sender as NumericUpDown).Value);
-            EngineINI.TMSha_Val = NewValue;
+            EngineINI.MainEntries[14] = NewValue;
         }
         private void Num_ViewDist_ValueChanged(object sender, EventArgs e)
         {
             string NewValue = Convert.ToString((sender as NumericUpDown).Value);
-            EngineINI.ViewD_Val = NewValue;
+            EngineINI.MainEntries[15] = NewValue;
         }
         private void Num_ShadDist_ValueChanged(object sender, EventArgs e)
         {
             string NewValue = Convert.ToString((sender as NumericUpDown).Value);
-            EngineINI.ViewS_Val = NewValue;
+            EngineINI.MainEntries[16] = NewValue;
         }
         private void Num_FolDist_ValueChanged(object sender, EventArgs e)
         {
             string NewValue = Convert.ToString((sender as NumericUpDown).Value);
-            EngineINI.ViewF_Val = NewValue;
+            EngineINI.MainEntries[17] = NewValue;
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - File
@@ -296,12 +342,12 @@ namespace ClairObscurConfig
                 switch (Forms.PromptOverwriteINI())
                 {
                     // If they do not wish to overwrite, get out of here.
-                    case true:  { EngineINI.DeleteINIFile(); break; }
+                    case true:  { EngineINI.Delete(); break; }
                     case false: { return; }
                 }
             }
             // Create the new INI file.
-            EngineINI.CreateNewINIFile();
+            EngineINI.CreateNew();
 
             // Reset checkboxes, update values, and enable the GUI.
             Forms.ClearCheckBoxes();
@@ -311,7 +357,7 @@ namespace ClairObscurConfig
         private void StripItem_SaveINI_Click(object sender, EventArgs e)
         {
             // Save the INI and let the user know it was saved.
-            EngineINI.WriteINIValues();
+            EngineINI.WriteValues();
             Forms.PromptSaveINI();
         }
         private void StripItem_ReloadINI_Click(object sender, EventArgs e)
@@ -320,7 +366,7 @@ namespace ClairObscurConfig
             if (Forms.PromptReloadINI())
             {
                 // Reload the INI values and update the GUI.
-                EngineINI.LoadINIValues();
+                EngineINI.LoadValues();
                 Forms.UpdateValues();
             }
         }
@@ -330,7 +376,7 @@ namespace ClairObscurConfig
             if (Forms.PromptDeleteINI())
             {
                 // Delete the INI and disable the GUI.
-                EngineINI.DeleteINIFile();
+                EngineINI.Delete();
                 Forms.ToggleGUI(false);
             }
         }
@@ -370,7 +416,7 @@ namespace ClairObscurConfig
         }
         private void StripItem_ExitSave_Click(object sender, EventArgs e)
         {
-            EngineINI.WriteINIValues();
+            EngineINI.WriteValues();
             this.Close();
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -444,7 +490,6 @@ namespace ClairObscurConfig
             // Toggle the CheckBoxes.
             Forms.ToggleCheckBoxes(!CheckState);
         }
-
         private void StripItem_LaunchSave_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
@@ -458,7 +503,6 @@ namespace ClairObscurConfig
             // Toggle the option.
             Forms.ToggleLaunchSave(!CheckState);
         }
-
         private void StripItem_LaunchClose_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
@@ -471,6 +515,19 @@ namespace ClairObscurConfig
 
             // Toggle the option.
             Forms.ToggleLaunchClose(!CheckState);
+        }
+        private void StripItem_NoToolTips_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem MenuOption = (sender as ToolStripMenuItem);
+
+            // Get the check state of the option.
+            bool CheckState = MenuOption.Checked;
+
+            // Invert the check state.
+            MenuOption.Checked = !CheckState;
+
+            // Toggle the option.
+            Forms.ToggleGlobalToolTips(!CheckState);
         }
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         //   MenuStrip - Help
@@ -493,13 +550,13 @@ namespace ClairObscurConfig
         private void Button_Save_Click(object sender, EventArgs e)
         {
             Forms.PromptSaveINI();
-            EngineINI.WriteINIValues();
+            EngineINI.WriteValues();
         }
         private void Button_Reload_Click(object sender, EventArgs e)
         {
             if (Forms.PromptReloadINI())
             {
-                EngineINI.LoadINIValues();
+                EngineINI.LoadValues();
                 Forms.UpdateValues();
             }
         }
@@ -509,11 +566,11 @@ namespace ClairObscurConfig
         }
         private void Button_Exit_Click(object sender, EventArgs e)
         {
-            // The Control key must not be held.
-            if (!this.ControlHeld)
+            // The INI must exist and the Control key must not be held.
+            if (EngineINI.Path.TestPath() && !this.ControlHeld)
             {
                 // Update the INI file.
-                EngineINI.WriteINIValues();
+                EngineINI.WriteValues();
             }
             // Close the dialog no matter what.
             this.Close();
@@ -526,7 +583,7 @@ namespace ClairObscurConfig
                 // Change the button text of the Exit button to not save.
                 e.SuppressKeyPress = true;
                 this.ControlHeld = true;
-                Forms.MainDialog.Button_ExitSave.Text = "Exit";
+                this.Button_ExitSave.Text = "Exit";
             }
         }
         private void Form_MainForm_KeyUp(object sender, KeyEventArgs e)
@@ -536,8 +593,134 @@ namespace ClairObscurConfig
             {
                 // Restore the save text on the Exit button.
                 this.ControlHeld = false;
-                Forms.MainDialog.Button_ExitSave.Text = "Save / Exit";
+                this.Button_ExitSave.Text = "Save / Exit";
             }
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Advanced Dialog
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void RichTextBox_AddOptions_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Clear the text on the first click.
+            if (!this.ClickClear)
+            {
+                this.RichTextBox_AddOptions.Text = "";
+                this.ClickClear = true;
+            }
+        }
+        private void GridView_Options_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle the delete key being pressed.
+            Forms.DataGridView_DeleteEntry(e.KeyCode);
+        }
+        private void GridView_Options_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Handle when a value on the datagridview changes.
+            Forms.DataGridView_ValueChanged(e.RowIndex);
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Advanced Dialog: Buttons
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void Button_Bonus_Click(object sender, EventArgs e)
+        {
+            // Get the button.
+            Button BonusButton = (sender as Button);
+
+            // If the menu isn't currently visible.
+            if (!this.CMenuStrip_Collections.Visible)
+            {
+                // Show it twice. This works around an initial bug where it has no size since it wasn't already shown.
+                this.CMenuStrip_Collections.Show();
+                this.CMenuStrip_Collections.Show(BonusButton, new Point(0, -1 * this.CMenuStrip_Collections.Size.Height));
+            }
+        }
+        private void Button_ClearAll_Click(object sender, EventArgs e)
+        {
+            // Ask the user to clear all options.
+            if (Forms.PromptClearAll())
+            {
+                // If they accepted than do it.
+                Forms.DataGridView_ClearAll();
+            }
+        }
+        private void Button_RestoreText_Click(object sender, EventArgs e)
+        {
+            // Allow wiping out the text on a click again.
+            this.ClickClear = false;
+
+            // The text that was on the textbox before it was wiped.
+            string TextBoxText = "Copy and paste multiple lines of \"Engine.ini\" options and values here\r\n" +
+                                 "and click \"Parse\" to import them into the options above.Any potential\r\n" +
+                                 "duplicate entries will be automatically excluded. When saving the INI,\r\n" +
+                                 "all options and values above will also be written to the INI file.";
+            // Restore the text.
+            this.RichTextBox_AddOptions.Text = TextBoxText;
+        }
+        private void Button_Parse_Click(object sender, EventArgs e)
+        {
+            Forms.DataGridView_ParseTextBoxText();
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Advanced Dialog: Collections StripMenu
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void StripItem_NoLumen_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_DisableLumen(); ;
+        }
+        private void StripItem_EnhLumen_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_EnhLumen();
+        }
+        private void StripItem_Clarity_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_PerfectClarity();
+        }
+        private void StripItem_UltiHighEnd_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_UltimateHighEnd();
+        }
+        private void StripItem_6GBVRAM_Click(object sender, EventArgs e)
+        {
+            // Don't let a click wipe it out.
+            this.ClickClear = true;
+
+            // Set on the textbox.
+            this.RichTextBox_AddOptions.Text = EngineINI.Collection_6GBVRAM();
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //   Advanced Dialog: RichTextBox StripMenu
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void StripItem_Cut_Click(object sender, EventArgs e)
+        {
+            this.RichTextBox_AddOptions.Cut();
+        }
+        private void StripItem_Copy_Click(object sender, EventArgs e)
+        {
+            this.RichTextBox_AddOptions.Copy();
+        }
+        private void StripItem_Paste_Click(object sender, EventArgs e)
+        {
+            this.RichTextBox_AddOptions.Paste(DataFormats.GetFormat(DataFormats.Text));
+        }
+        private void StripItem_Delete_Click(object sender, EventArgs e)
+        {
+            this.RichTextBox_AddOptions.SelectedText = "";
         }
     }
 }

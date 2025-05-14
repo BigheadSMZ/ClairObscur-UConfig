@@ -18,6 +18,9 @@ namespace ClairObscurConfig
             // Set the initial values.
             Config.SetApplicationValues();
 
+            // Initialize the INI file.
+            EngineINI.Initialize();
+
             // Create the dialog and show it.
             Forms.Initialize();
             Forms.MainDialog.ShowDialog();

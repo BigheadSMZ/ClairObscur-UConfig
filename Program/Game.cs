@@ -55,7 +55,7 @@ namespace ClairObscurConfig
                 // If the option was checked to save on launch.
                 if (Config.SaveOnLaunch)
                 {
-                    EngineINI.WriteINIValues();
+                    EngineINI.WriteValues();
                 }
                 // Get info on the game executable.
                 FileItem GameItem = new FileItem(Config.GamePath);

@@ -75,6 +75,7 @@
     <Compile Include="Imported\Wildcard.cs" />
     <Compile Include="Initialization.cs" />
     <Compile Include="Program\Config.cs" />
+    <Compile Include="Program\EngineINI_Collections.cs" />
     <Compile Include="Program\Forms.cs" />
     <Compile Include="Program\EngineINI.cs" />
     <Compile Include="Program\Forms_Prompts.cs" />

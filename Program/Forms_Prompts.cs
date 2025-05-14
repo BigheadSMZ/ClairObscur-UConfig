@@ -42,6 +42,14 @@
             Forms.OkayDialog.Display(Title, Message, 280, 32, 30, 20, 10);
         }
 
+        public static void PromptEntryExists()
+        {
+            // Let the user know their changes were saved.
+            string Title = "Entry Exists";
+            string Message = "The entered entry already exists in the INI file.";
+            Forms.OkayDialog.Display(Title, Message, 280, 32, 40, 24, 10);
+        }
+
         public static bool PromptReloadINI()
         {
             // Ask the user if they wish to reload the INI.
@@ -80,6 +88,13 @@
             string Title = "Restore Engine.ini?";
             string Message = "Do you wish to restore the \"Engine.ini\" from backup? This will overwrite your current INI file settings.";
             return Forms.YesNoDialog.Display(Title, Message, 260, 32, 22, 16, true);
+        }
+        public static bool PromptClearAll()
+        {
+            // Ask the user if they wish to backup the INI.
+            string Title = "Clear Advanced Options?";
+            string Message = "Are you sure you wish to clear all options? This can be undone before saving by reloading Engine.ini.";
+            return Forms.YesNoDialog.Display(Title, Message, 260, 32, 28, 16, true);
         }
     }
 }

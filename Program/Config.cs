@@ -11,9 +11,11 @@ namespace ClairObscurConfig
 
         // Stored values from the registry.
         public static bool    DisableCheckBoxes;
+        public static bool    DisableToolTips;
         public static bool    SaveOnLaunch;
         public static bool    CloseOnLaunch;
         public static string  GameVersion;
+        public static bool    ShowAdvanced;
 
         // Values used across the application.
         public static string  AppName;
@@ -37,14 +39,15 @@ namespace ClairObscurConfig
             string LaunchSave  = Functions.GetRegistryValue(Config.RegEntry, "SaveOnLaunch", "False");
             string LaunchClose = Functions.GetRegistryValue(Config.RegEntry, "CloseOnLaunch", "False");
             string CheckBoxReg = Functions.GetRegistryValue(Config.RegEntry, "DisableCheckBoxes", "False");
+            string ToolTipReg  = Functions.GetRegistryValue(Config.RegEntry, "DisableToolTips", "False");
+            string ShowAdvReg  = Functions.GetRegistryValue(Config.RegEntry, "ShowAdvanced", "False");
 
             // Try to translate the result for strip item options.
             Boolean.TryParse(LaunchSave,  out Config.SaveOnLaunch);
             Boolean.TryParse(LaunchClose, out Config.CloseOnLaunch);
             Boolean.TryParse(CheckBoxReg, out Config.DisableCheckBoxes);
-
-            // Initialize the INI file.
-            EngineINI.InitializeINI(Config.GameVersion);
+            Boolean.TryParse(ToolTipReg,  out Config.DisableToolTips);
+            Boolean.TryParse(ShowAdvReg,  out Config.ShowAdvanced);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace ClairObscurConfig
                 Value += ".00";
             }
             // Now split on the period. This will be used to fix any values with a leading 0 (such as 01.25) or a missing 0 (such as .25).
-            string[] PeriodSplit = Value.Split(new char[] { '.' }, 2);
+            string[] PeriodSplit = Value.Split(new char[] {'.'}, 2);
 
             // Convert the integer part of the string into an actual integer, then back into a string. This will remove any leading 0s, or make it 0 if a number was not found.
             string IntValue = PeriodSplit[0];

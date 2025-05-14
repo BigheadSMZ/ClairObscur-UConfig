@@ -1,63 +1,37 @@
 ﻿using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Collections;
+using System.Linq;
 
 namespace ClairObscurConfig
 {
     internal partial class EngineINI
     {
-        // Stores info about the Engine.ini file.
-        public static string  Path;
-        public static IniFile File;
+        // The path to the INI file.
+        public static string Path;
+            
+        // Instance of the INI file class.
+        public static IniFile Class;
 
         // Used to track if values existed when INI was loaded.
         public static bool[] EmptyValue = new bool[18];
 
-        // Short vars to store the strings as they are in the INI.
-        public static string Anist_Str = "r.MaxAnisotropy";
-        public static string Depth_Str = "r.DepthOfFieldQuality";
-        public static string Bloom_Str = "r.BloomQuality";
-        public static string MBlur_Str = "r.MotionBlurQuality";
-        public static string LenFl_Str = "r.LensFlareQuality";
-        public static string FogEf_Str = "r.Fog";
-        public static string VoFog_Str = "r.VolumetricFog";
-        public static string SCoFr_Str = "r.SceneColorFringeQuality";
-        public static string Distr_Str = "r.DisableDistortion";
-        public static string Grain_Str = "r.FilmGrain";
-        public static string ShadQ_Str = "r.ShadowQuality";
-        public static string ShadR_Str = "r.Shadow.MaxResolution";
-        public static string TMQua_Str = "r.Tonemapper.Quality";
-        public static string TMSha_Str = "r.Tonemapper.Sharpen";
-        public static string TMGra_Str = "r.Tonemapper.GrainQuantization";
-        public static string ViewD_Str = "r.ViewDistanceScale";
-        public static string ViewS_Str = "r.DFDistanceScale";
-        public static string ViewF_Str = "foliage.LODDistanceScale";
+        // Stores the names of all "main" entries and their default values.
+        public static List<string> EntriesList;
+        public static List<string> DefaultValues;
 
-        // Vars to store the values.
-        public static string Anist_Val; // - r.MaxAnisotropy
-        public static string Depth_Val; // - r.DepthOfFieldQuality
-        public static string Bloom_Val; // - r.BloomQuality
-        public static string MBlur_Val; // - r.MotionBlurQuality
-        public static string LenFl_Val; // - r.LensFlareQuality
-        public static string FogEf_Val; // - r.Fog
-        public static string VoFog_Val; // - r.VolumetricFog
-        public static string SCoFr_Val; // - r.SceneColorFringeQuality
-        public static string Distr_Val; // - r.DisableDistortion
-        public static string Grain_Val; // - r.FilmGrain
-        public static string ShadQ_Val; // - r.ShadowQuality
-        public static string ShadR_Val; // - r.Shadow.MaxResolution
-        public static string TMQua_Val; // - r.Tonemapper.Quality
-        public static string TMGra_Val; // - r.Tonemapper.GrainQuantization
-        public static string TMSha_Val; // - r.Tonemapper.Sharpen
-        public static string ViewD_Val; // - r.ViewDistanceScale
-        public static string ViewS_Val; // - r.DFDistanceScale
-        public static string ViewF_Val; // - foliage.LODDistanceScale
+        // Stores INI entries and active values.
+        public static OrderedDictionary MainEntries;
+        public static OrderedDictionary MoreEntries;
 
-        public static void InitializeINI(string GameVersion)
+        public static void Initialize()
         {
             // Default to Steam folder name.
             string FolderName = "Windows";
 
             // If it's GamePass version change the folder name.
-            if (GameVersion == "GamePass") 
+            if (Config.GameVersion == "GamePass")
             {
                 FolderName = "WinGDK";
             }
@@ -66,45 +40,121 @@ namespace ClairObscurConfig
 
             // Set the path and create the class.
             EngineINI.Path = BasePath + "\\Engine.ini";
-            EngineINI.File = new IniFile(EngineINI.Path);
+            EngineINI.Class = new IniFile(EngineINI.Path);
 
-            // Try to load the values.
-            EngineINI.LoadINIValues();
+            // Create the list of entries and the hashtables.
+            EngineINI.EntriesList   = new List<string> { };
+            EngineINI.DefaultValues = new List<string> { };
+            EngineINI.MainEntries   = new OrderedDictionary();
+            EngineINI.MoreEntries   = new OrderedDictionary();
+
+            // No matter how many times I went over it in my head, I could not think of a way
+            // to avoid generating this list. It's just easier to have it around for reference.
+            EngineINI.EntriesList.Add("r.MaxAnisotropy");
+            EngineINI.EntriesList.Add("r.DepthOfFieldQuality");
+            EngineINI.EntriesList.Add("r.BloomQuality");
+            EngineINI.EntriesList.Add("r.MotionBlurQuality");
+            EngineINI.EntriesList.Add("r.LensFlareQuality");
+            EngineINI.EntriesList.Add("r.Fog");
+            EngineINI.EntriesList.Add("r.VolumetricFog");
+            EngineINI.EntriesList.Add("r.SceneColorFringeQuality");
+            EngineINI.EntriesList.Add("r.DisableDistortion");
+            EngineINI.EntriesList.Add("r.FilmGrain");
+            EngineINI.EntriesList.Add("r.ShadowQuality");
+            EngineINI.EntriesList.Add("r.Shadow.MaxResolution");
+            EngineINI.EntriesList.Add("r.Tonemapper.Quality");
+            EngineINI.EntriesList.Add("r.Tonemapper.GrainQuantization");
+            EngineINI.EntriesList.Add("r.Tonemapper.Sharpen");
+            EngineINI.EntriesList.Add("r.ViewDistanceScale");
+            EngineINI.EntriesList.Add("r.DFDistanceScale");
+            EngineINI.EntriesList.Add("foliage.LODDistanceScale");
+
+            // Set the default values.
+            EngineINI.DefaultValues.Add("4");
+            EngineINI.DefaultValues.Add("2");
+            EngineINI.DefaultValues.Add("2");
+            EngineINI.DefaultValues.Add("2");
+            EngineINI.DefaultValues.Add("2");
+            EngineINI.DefaultValues.Add("1");
+            EngineINI.DefaultValues.Add("1");
+            EngineINI.DefaultValues.Add("0");
+            EngineINI.DefaultValues.Add("0");
+            EngineINI.DefaultValues.Add("0");
+            EngineINI.DefaultValues.Add("1");
+            EngineINI.DefaultValues.Add("1024");
+            EngineINI.DefaultValues.Add("5");
+            EngineINI.DefaultValues.Add("1");
+            EngineINI.DefaultValues.Add("0.6");
+            EngineINI.DefaultValues.Add("1.00");
+            EngineINI.DefaultValues.Add("1.00");
+            EngineINI.DefaultValues.Add("0.75");
+
+            // Use the list to add the various fields to the hashtable.
+            for (int i = 0; i < EngineINI.EntriesList.Count; i++)
+            {
+                EngineINI.MainEntries.Add(EngineINI.EntriesList[i], EngineINI.DefaultValues[i]);
+            }
         }
 
-        public static void CreateNewINIFile()
+        public static void ReloadAdvancedOptions()
+        {
+            // Clear the values from the advanced hashtable.
+            EngineINI.MoreEntries.Clear();
+
+            // Get all keys from the INI file.
+            List<string> Keys = EngineINI.Class.GetSectionKeys("SystemSettings");
+
+            // Loop through the keys in the list.
+            foreach (string Key in Keys)
+            {
+                // We only want keys that are not in the list above.
+                if (!EngineINI.EntriesList.Contains(Key))
+                {
+                    // Add it to the other hashtable.
+                    EngineINI.MoreEntries.Add(Key, "");
+                }
+            }
+        }
+
+        public static void RebuildAdvancedOptions()
+        {
+            // Clear out the hashtable so we can rebuild it from scratch.
+            EngineINI.MoreEntries.Clear();
+
+            // Loop through all potential entries.
+            for (int i = 0; i < Forms.MaxRows; i++)
+            {
+                // Get the key and value from the datagridview.
+                object Key   = Forms.MainDialog.GridView_Options[0, i].Value;
+                object Value = Forms.MainDialog.GridView_Options[1, i].Value;
+
+                // Make sure both of them are not empty or null.
+                if ((Key != null) & (Value != null) && (Key.ToString() != "") & (Value.ToString() != ""))
+                {
+                    // Add the line to the dictionary.
+                    EngineINI.MoreEntries.Add(Key, Value);
+                }
+            }
+        }
+
+        public static void CreateNew()
         {
             // Set the default values.
-            EngineINI.Anist_Val = "4";
-            EngineINI.Depth_Val = "2";
-            EngineINI.Bloom_Val = "2";
-            EngineINI.MBlur_Val = "2";
-            EngineINI.LenFl_Val = "2";
-            EngineINI.FogEf_Val = "1";
-            EngineINI.VoFog_Val = "1";
-            EngineINI.SCoFr_Val = "0";
-            EngineINI.Distr_Val = "0";
-            EngineINI.Grain_Val = "0";
-            EngineINI.ShadQ_Val = "1";
-            EngineINI.ShadR_Val = "1024";
-            EngineINI.TMQua_Val = "5";
-            EngineINI.TMGra_Val = "1";
-            EngineINI.TMSha_Val = "0.6";
-            EngineINI.ViewD_Val = "1.00";
-            EngineINI.ViewS_Val = "1.00";
-            EngineINI.ViewF_Val = "0.75";
-
+            for (int i = 0; i < EngineINI.MainEntries.Count; ++i)
+            {
+                EngineINI.MainEntries[i] = EngineINI.DefaultValues[i];
+            }
             // Write the values to the INI file.
-            EngineINI.WriteINIValues();
+            EngineINI.WriteValues();
         }
 
-        public static void DeleteINIFile()
+        public static void Delete()
         {
             // If the INI doesn't exist, it's best to not outright crash.
             if (!EngineINI.Path.TestPath()) { return; }
 
             // Remove the read only attribute.
-            System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+            File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
 
             // Delete the INI file.
             EngineINI.Path.RemovePath();
@@ -117,112 +167,114 @@ namespace ClairObscurConfig
             string[] ShadValues = new string[] { "1024", "2048", "4096", "8192" };
 
             // If the values are not within a certain range, they will crash the GUI.
-            EngineINI.Anist_Val = Validate.StrArray(EngineINI.Anist_Val, AFValues, "4");
-            EngineINI.Depth_Val = Validate.RangeInt(EngineINI.Depth_Val, 0, 4, "2");
-            EngineINI.Bloom_Val = Validate.RangeInt(EngineINI.Bloom_Val, 0, 5, "2");
-            EngineINI.MBlur_Val = Validate.RangeInt(EngineINI.MBlur_Val, 0, 4, "2");
-            EngineINI.LenFl_Val = Validate.RangeInt(EngineINI.LenFl_Val, 0, 3, "2");
-            EngineINI.FogEf_Val = Validate.RangeInt(EngineINI.FogEf_Val, 0, 1, "1");
-            EngineINI.VoFog_Val = Validate.RangeInt(EngineINI.VoFog_Val, 0, 1, "1");
-            EngineINI.SCoFr_Val = Validate.RangeInt(EngineINI.SCoFr_Val, 0, 1, "0");
-            EngineINI.Distr_Val = Validate.RangeInt(EngineINI.Distr_Val, 0, 1, "0");
-            EngineINI.Grain_Val = Validate.RangeInt(EngineINI.Grain_Val, 0, 1, "0");
-            EngineINI.ShadQ_Val = Validate.RangeInt(EngineINI.ShadQ_Val, 1, 5, "1");
-            EngineINI.ShadR_Val = Validate.StrArray(EngineINI.ShadR_Val, ShadValues, "1024");
-            EngineINI.TMQua_Val = Validate.RangeInt(EngineINI.TMQua_Val, 0, 5, "5");
-            EngineINI.TMGra_Val = Validate.RangeInt(EngineINI.TMGra_Val, 0, 1, "1");
-            EngineINI.TMSha_Val = Validate.RangeDec(EngineINI.TMSha_Val, 0, 10.0, "0.6");
-            EngineINI.ViewD_Val = Validate.RangeDec(EngineINI.ViewD_Val, 0.40, 10.00, "1.00");
-            EngineINI.ViewS_Val = Validate.RangeDec(EngineINI.ViewS_Val, 0.40, 10.00, "1.00");
-            EngineINI.ViewF_Val = Validate.RangeDec(EngineINI.ViewF_Val, 0.40, 10.00, "0.75");
+            EngineINI.MainEntries[0]  = Validate.StrArray(EngineINI.MainEntries[0].ToString(), AFValues, "4");          // r.MaxAnisotropy
+            EngineINI.MainEntries[1]  = Validate.RangeInt(EngineINI.MainEntries[1].ToString(), 0, 4, "2");              // r.DepthOfFieldQuality
+            EngineINI.MainEntries[2]  = Validate.RangeInt(EngineINI.MainEntries[2].ToString(), 0, 5, "2");              // r.BloomQuality
+            EngineINI.MainEntries[3]  = Validate.RangeInt(EngineINI.MainEntries[3].ToString(), 0, 4, "2");              // r.MotionBlurQuality
+            EngineINI.MainEntries[4]  = Validate.RangeInt(EngineINI.MainEntries[4].ToString(), 0, 3, "2");              // r.LensFlareQuality
+            EngineINI.MainEntries[5]  = Validate.RangeInt(EngineINI.MainEntries[5].ToString(), 0, 1, "1");              // r.Fog
+            EngineINI.MainEntries[6]  = Validate.RangeInt(EngineINI.MainEntries[6].ToString(), 0, 1, "1");              // r.VolumetricFog
+            EngineINI.MainEntries[7]  = Validate.RangeInt(EngineINI.MainEntries[7].ToString(), 0, 1, "0");              // r.SceneColorFringeQuality
+            EngineINI.MainEntries[8]  = Validate.RangeInt(EngineINI.MainEntries[8].ToString(), 0, 1, "0");              // r.DisableDistortion
+            EngineINI.MainEntries[9]  = Validate.RangeInt(EngineINI.MainEntries[9].ToString(), 0, 1, "0");              // r.FilmGrain
+            EngineINI.MainEntries[10] = Validate.RangeInt(EngineINI.MainEntries[10].ToString(), 1, 5, "1");             // r.ShadowQuality
+            EngineINI.MainEntries[11] = Validate.StrArray(EngineINI.MainEntries[11].ToString(), ShadValues, "1024");    // r.Shadow.MaxResolution
+            EngineINI.MainEntries[12] = Validate.RangeInt(EngineINI.MainEntries[12].ToString(), 0, 5, "5");             // r.Tonemapper.Quality
+            EngineINI.MainEntries[13] = Validate.RangeInt(EngineINI.MainEntries[13].ToString(), 0, 1, "1");             // r.Tonemapper.GrainQuantization
+            EngineINI.MainEntries[14] = Validate.RangeDec(EngineINI.MainEntries[14].ToString(), 0, 10.0, "0.6");        // r.Tonemapper.Sharpen
+            EngineINI.MainEntries[15] = Validate.RangeDec(EngineINI.MainEntries[15].ToString(), 0.40, 10.00, "1.00");   // r.ViewDistanceScale
+            EngineINI.MainEntries[16] = Validate.RangeDec(EngineINI.MainEntries[16].ToString(), 0.40, 10.00, "1.00");   // r.DFDistanceScale
+            EngineINI.MainEntries[17] = Validate.RangeDec(EngineINI.MainEntries[17].ToString(), 0.40, 10.00, "0.75");   // foliage.LODDistanceScale
         }
 
-        // NOTE: Eventually rewrite the INI keys and values to be stored in an ordered dictionary, which would allow
-        // looping in the majority of functions here. But for now, take the lazy way out and check each value one by one.
-        // I always make myself the victim of feature creep and fail to foresee these situations...
-
-        public static void LoadINIValues()
+        public static void LoadValues()
         {
             // If the INI doesn't exist, it's best to not outright crash.
             if (!EngineINI.Path.TestPath()) { return; }
 
-            // Load the values from the INI file.
-            EngineINI.Anist_Val = EngineINI.File.Read(EngineINI.Anist_Str, "SystemSettings"); // - r.MaxAnisotropy
-            EngineINI.Depth_Val = EngineINI.File.Read(EngineINI.Depth_Str, "SystemSettings"); // - r.DepthOfFieldQuality
-            EngineINI.Bloom_Val = EngineINI.File.Read(EngineINI.Bloom_Str, "SystemSettings"); // - r.BloomQuality
-            EngineINI.MBlur_Val = EngineINI.File.Read(EngineINI.MBlur_Str, "SystemSettings"); // - r.MotionBlurQuality
-            EngineINI.LenFl_Val = EngineINI.File.Read(EngineINI.LenFl_Str, "SystemSettings"); // - r.LensFlareQuality
-            EngineINI.FogEf_Val = EngineINI.File.Read(EngineINI.FogEf_Str, "SystemSettings"); // - r.Fog
-            EngineINI.VoFog_Val = EngineINI.File.Read(EngineINI.VoFog_Str, "SystemSettings"); // - r.VolumetricFog
-            EngineINI.SCoFr_Val = EngineINI.File.Read(EngineINI.SCoFr_Str, "SystemSettings"); // - r.SceneColorFringeQuality
-            EngineINI.Distr_Val = EngineINI.File.Read(EngineINI.Distr_Str, "SystemSettings"); // - r.DisableDistortion
-            EngineINI.Grain_Val = EngineINI.File.Read(EngineINI.Grain_Str, "SystemSettings"); // - r.FilmGrain
-            EngineINI.ShadQ_Val = EngineINI.File.Read(EngineINI.ShadQ_Str, "SystemSettings"); // - r.ShadowQuality
-            EngineINI.ShadR_Val = EngineINI.File.Read(EngineINI.ShadR_Str, "SystemSettings"); // - r.Shadow.MaxResolution
-            EngineINI.TMQua_Val = EngineINI.File.Read(EngineINI.TMQua_Str, "SystemSettings"); // - r.Tonemapper.Quality
-            EngineINI.TMGra_Val = EngineINI.File.Read(EngineINI.TMGra_Str, "SystemSettings"); // - r.Tonemapper.GrainQuantization
-            EngineINI.TMSha_Val = EngineINI.File.Read(EngineINI.TMSha_Str, "SystemSettings"); // - r.Tonemapper.Sharpen
-            EngineINI.ViewD_Val = EngineINI.File.Read(EngineINI.ViewD_Str, "SystemSettings"); // - r.ViewDistanceScale
-            EngineINI.ViewS_Val = EngineINI.File.Read(EngineINI.ViewS_Str, "SystemSettings"); // - r.DFDistanceScale
-            EngineINI.ViewF_Val = EngineINI.File.Read(EngineINI.ViewF_Str, "SystemSettings"); // - foliage.LODDistanceScale
+            // Before we load the values we need to figure out which values are actually in the INI file.
+            EngineINI.ReloadAdvancedOptions();
 
-            // Tracks if keys were in the INI by checking if values were set.
-            EngineINI.EmptyValue[0]  = (EngineINI.Anist_Val == "");
-            EngineINI.EmptyValue[1]  = (EngineINI.Depth_Val == "");
-            EngineINI.EmptyValue[2]  = (EngineINI.Bloom_Val == "");
-            EngineINI.EmptyValue[3]  = (EngineINI.MBlur_Val == "");
-            EngineINI.EmptyValue[4]  = (EngineINI.LenFl_Val == "");
-            EngineINI.EmptyValue[5]  = (EngineINI.FogEf_Val == "");
-            EngineINI.EmptyValue[6]  = (EngineINI.VoFog_Val == "");
-            EngineINI.EmptyValue[7]  = (EngineINI.SCoFr_Val == "");
-            EngineINI.EmptyValue[8]  = (EngineINI.Distr_Val == "");
-            EngineINI.EmptyValue[9]  = (EngineINI.Grain_Val == "");
-            EngineINI.EmptyValue[10] = (EngineINI.ShadQ_Val == "");
-            EngineINI.EmptyValue[11] = (EngineINI.ShadR_Val == "");
-            EngineINI.EmptyValue[12] = (EngineINI.TMQua_Val == "");
-            EngineINI.EmptyValue[13] = (EngineINI.TMGra_Val == "");
-            EngineINI.EmptyValue[14] = (EngineINI.TMSha_Val == "");
-            EngineINI.EmptyValue[15] = (EngineINI.ViewD_Val == "");
-            EngineINI.EmptyValue[16] = (EngineINI.ViewS_Val == "");
-            EngineINI.EmptyValue[17] = (EngineINI.ViewF_Val == "");
+            // Loop through the main hashtable entries.
+            for (int i = 0; i < EngineINI.MainEntries.Count; i++)
+            {
+                // Get the name of the key.
+                string KeyName = EngineINI.MainEntries.Cast<DictionaryEntry>().ElementAt(i).Key.ToString();
 
+                // Use the key to reference the position and retrieve the INI value.
+                EngineINI.MainEntries[KeyName] = EngineINI.Class.Read(KeyName, "SystemSettings");
+
+                // Tracks if keys were in the INI by checking if values were set.
+                EngineINI.EmptyValue[i] = (EngineINI.MainEntries[KeyName].ToString() == "");
+            }
+            // Loop through the additional hashtable entries if they exist.
+            for (int i = 0; i < EngineINI.MoreEntries.Count; i++)
+            {
+                // Get the name of the key.
+                string KeyName = EngineINI.MoreEntries.Cast<DictionaryEntry>().ElementAt(i).Key.ToString();
+
+                // Use the key to reference the position and retrieve the INI value.
+                EngineINI.MoreEntries[KeyName] = EngineINI.Class.Read(KeyName, "SystemSettings");
+            }
             // Make sure the values are not ones that can crash the GUI.
             EngineINI.ValidateValues();
         }
 
-        public static void WriteINIValues()
+        public static void WriteValues()
         {
             // We'll throw an exception if the file doesn't already exist.
             if (EngineINI.Path.TestPath())
             {
                 // Remove the read only attribute.
-                System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+                File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
             }
-            // Reduce some bloat by storing this in a variable.
-            Form_MainForm MainForm = Forms.MainDialog;
+            // Compile the two keys from the two hashtables together into a single list.
+            List<string> ValidEntries = new List<string> { };
 
-            // Write the values to the INI file.
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Anist_Str, EngineINI.Anist_Val, "SystemSettings", !MainForm.CheckBox_AF.Checked);         // - r.MaxAnisotropy
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Depth_Str, EngineINI.Depth_Val, "SystemSettings", !MainForm.CheckBox_DoF.Checked);        // - r.DepthOfFieldQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Bloom_Str, EngineINI.Bloom_Val, "SystemSettings", !MainForm.CheckBox_Bloom.Checked);      // - r.BloomQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.MBlur_Str, EngineINI.MBlur_Val, "SystemSettings", !MainForm.CheckBox_MBlur.Checked);      // - r.MotionBlurQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.LenFl_Str, EngineINI.LenFl_Val, "SystemSettings", !MainForm.CheckBox_LensFlare.Checked);  // - r.LensFlareQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.FogEf_Str, EngineINI.FogEf_Val, "SystemSettings", !MainForm.CheckBox_Fog.Checked);        // - r.Fog
-            EngineINI.File.ConditionalWriteDelete(EngineINI.VoFog_Str, EngineINI.VoFog_Val, "SystemSettings", !MainForm.CheckBox_VFog.Checked);       // - r.VolumetricFog
-            EngineINI.File.ConditionalWriteDelete(EngineINI.SCoFr_Str, EngineINI.SCoFr_Val, "SystemSettings", !MainForm.CheckBox_ChromAb.Checked);    // - r.SceneColorFringeQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Distr_Str, EngineINI.Distr_Val, "SystemSettings", !MainForm.CheckBox_Distort.Checked);    // - r.DisableDistortion
-            EngineINI.File.ConditionalWriteDelete(EngineINI.Grain_Str, EngineINI.Grain_Val, "SystemSettings", !MainForm.CheckBox_FilmGrain.Checked);  // - r.FilmGrain
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadQ_Str, EngineINI.ShadQ_Val, "SystemSettings", !MainForm.CheckBox_ShadQual.Checked);   // - r.ShadowQuality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ShadR_Str, EngineINI.ShadR_Val, "SystemSettings", !MainForm.CheckBox_ShadRes.Checked);    // - r.Shadow.MaxResolution
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMQua_Str, EngineINI.TMQua_Val, "SystemSettings", !MainForm.CheckBox_Tonemap.Checked);    // - r.Tonemapper.Quality
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMGra_Str, EngineINI.TMGra_Val, "SystemSettings", !MainForm.CheckBox_GrainQuant.Checked); // - r.Tonemapper.GrainQuantization
-            EngineINI.File.ConditionalWriteDelete(EngineINI.TMSha_Str, EngineINI.TMSha_Val, "SystemSettings", !MainForm.CheckBox_Sharpen.Checked);    // - r.Tonemapper.Sharpen
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewD_Str, EngineINI.ViewD_Val, "SystemSettings", !MainForm.CheckBox_ViewDist.Checked);   // - r.ViewDistanceScale
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewS_Str, EngineINI.ViewS_Val, "SystemSettings", !MainForm.CheckBox_ShadDist.Checked);   // - r.DFDistanceScale
-            EngineINI.File.ConditionalWriteDelete(EngineINI.ViewF_Str, EngineINI.ViewF_Val, "SystemSettings", !MainForm.CheckBox_FolDist.Checked);    // - foliage.LODDistanceScale
+            // Rebuild the hashtable from the datagridview just before updating the INI to get the most recent values.
+            EngineINI.RebuildAdvancedOptions();
 
+            // Loop through the main hashtable entries.
+            for (int i = 0; i < EngineINI.MainEntries.Count; i++)
+            {
+                // Get the name of the key.
+                string Key   = EngineINI.MainEntries.Cast<DictionaryEntry>().ElementAt(i).Key.ToString();
+                string Value = EngineINI.MainEntries[Key].ToString();
+
+                // Use the key to reference the position and store the new value.
+                EngineINI.Class.ConditionalWriteDelete(Key, Value, "SystemSettings", !Forms.ChkBoxArray[i].Checked);
+
+                // Add all active main entries to the list.
+                ValidEntries.Add(Key);
+            }
+            // Loop through the advanced hashtable entries.
+            for (int i = 0; i < EngineINI.MoreEntries.Count; i++)
+            {
+                // Get the name of the key.
+                string Key   = EngineINI.MoreEntries.Cast<DictionaryEntry>().ElementAt(i).Key.ToString();
+                string Value = EngineINI.MoreEntries[Key].ToString();
+
+                // Use the key to reference the position and store the new value.
+                EngineINI.Class.ConditionalWriteDelete(Key, Value, "SystemSettings", !Forms.ChkBoxArray[i].Checked);
+
+                // Add all active advanced entries to the list.
+                ValidEntries.Add(Key);
+            }
+            // Get a list of all entries currently in the INI file.
+            List<string> ExistEntries = EngineINI.Class.GetSectionKeys("SystemSettings");
+
+            // Loop through those entries.
+            foreach (string Entry in ExistEntries)
+            {
+                // Use the valid entries list as a filter to know which entries to remove.
+                if (!ValidEntries.Contains(Entry))
+                {
+                    // If the key is not in the validation list then remove it from the INI.
+                    EngineINI.Class.DeleteKey(Entry, "SystemSettings");
+                }
+            }
             // Add the read only attribute.
-            System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
+            File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
         }
 
         public static void Backup()
@@ -234,17 +286,17 @@ namespace ClairObscurConfig
             if (EngineINI.Path.TestPath() & Forms.PromptBackupINI())
             {
                 // Save current values when creating a backup.
-                EngineINI.WriteINIValues();
+                EngineINI.WriteValues();
                  
                 // If a backup exists, remove it before creating a new one.
                 if (BackupPath.TestPath())
                 {
                     // If the read-only attribute was retained, remove it so it can be deleted.
-                    System.IO.File.SetAttributes(BackupPath, ~FileAttributes.ReadOnly);
-                    System.IO.File.Delete(BackupPath);
+                    File.SetAttributes(BackupPath, ~FileAttributes.ReadOnly);
+                    BackupPath.RemovePath();
                 }
                 // Copy it using ".bak" extension.
-                System.IO.File.Copy(EngineINI.Path, BackupPath, true);
+                File.Copy(EngineINI.Path, BackupPath, true);
 
                 // Disable the backup option since a backup no longer exists.
                 Forms.MainDialog.StripItem_RestoreBackup.Enabled = true;
@@ -259,18 +311,22 @@ namespace ClairObscurConfig
             // Make sure the backup file exists.
             if (BackupPath.TestPath() & Forms.PromptRestoreINI())
             {
-                // Delete the current INI and remove the ".bak" extension from the backup.
-                System.IO.File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
-                System.IO.File.Delete(EngineINI.Path);
-                System.IO.File.Move(BackupPath, EngineINI.Path);
-                System.IO.File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
+                // Make sure the INI exists before setting attributes.
+                if (EngineINI.Path.TestPath())
+                {
+                    File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+                }
+                // Rename the backup to the main INI file.
+                BackupPath.RenamePath(EngineINI.Path, true);
+                File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
 
                 // Disable the backup option since a backup no longer exists.
                 Forms.MainDialog.StripItem_RestoreBackup.Enabled = false;
 
                 // Reload the values and update the values on the GUI.
-                EngineINI.LoadINIValues();
+                EngineINI.LoadValues();
                 Forms.UpdateValues();
+                Forms.ToggleGUI(true);
             }
         }
     }

@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
@@ -87,12 +89,13 @@
             this.Label_AF = new System.Windows.Forms.Label();
             this.Combo_AF = new System.Windows.Forms.ComboBox();
             this.Button_ExitSave = new System.Windows.Forms.Button();
-            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip_MainMenu = new System.Windows.Forms.MenuStrip();
             this.MainStripItem_File = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_CreateINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_SaveINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_ReloadINI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_DeleteINI = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_EditINI = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeperatorA = new System.Windows.Forms.ToolStripSeparator();
             this.StripItem_Base = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_AppData = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +119,7 @@
             this.StripItem_CloseGame = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Options = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_HideCheckBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,26 +129,55 @@
             this.Button_Save = new System.Windows.Forms.Button();
             this.Button_Reload = new System.Windows.Forms.Button();
             this.GlobalToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.Button_ClearAll = new System.Windows.Forms.Button();
+            this.Button_Bonus = new System.Windows.Forms.Button();
+            this.Button_RestoreText = new System.Windows.Forms.Button();
+            this.Button_Parse = new System.Windows.Forms.Button();
+            this.RichTextBox_AddOptions = new System.Windows.Forms.RichTextBox();
+            this.CMenuStrip_TextEdit = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.StripItem_Cut = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
-            this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripItem_EditINI = new System.Windows.Forms.ToolStripMenuItem();
+            this.GroupBox_Misc = new System.Windows.Forms.GroupBox();
+            this.Radio_AdvHide = new System.Windows.Forms.RadioButton();
+            this.Radio_AdvShow = new System.Windows.Forms.RadioButton();
+            this.GroupBox_MoreOptions = new System.Windows.Forms.GroupBox();
+            this.GroupBox_Advanced = new System.Windows.Forms.GroupBox();
+            this.GridView_Options = new System.Windows.Forms.DataGridView();
+            this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMenuStrip_Collections = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.StripItem_EnhLumen = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_NoLumen = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Clarity = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_NoToolTips = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_UltiHighEnd = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_6GBVRAM = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_ShadDist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_ViewDist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_Sharpen)).BeginInit();
-            this.MainMenuStrip.SuspendLayout();
+            this.MenuStrip_MainMenu.SuspendLayout();
+            this.CMenuStrip_TextEdit.SuspendLayout();
             this.GroupBox_GameVer.SuspendLayout();
+            this.GroupBox_Misc.SuspendLayout();
+            this.GroupBox_MoreOptions.SuspendLayout();
+            this.GroupBox_Advanced.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).BeginInit();
+            this.CMenuStrip_Collections.SuspendLayout();
             this.SuspendLayout();
             // 
             // PictureBox_GameArt
             // 
             this.PictureBox_GameArt.Image = global::ClairObscurConfig.Properties.Resources.clairobscur;
             this.PictureBox_GameArt.InitialImage = global::ClairObscurConfig.Properties.Resources.clairobscur;
-            this.PictureBox_GameArt.Location = new System.Drawing.Point(12, 24);
+            this.PictureBox_GameArt.Location = new System.Drawing.Point(10, 24);
             this.PictureBox_GameArt.Name = "PictureBox_GameArt";
             this.PictureBox_GameArt.Size = new System.Drawing.Size(500, 237);
             this.PictureBox_GameArt.TabIndex = 0;
@@ -206,7 +239,7 @@
             this.GroupBox_Main.Controls.Add(this.Combo_DoF);
             this.GroupBox_Main.Controls.Add(this.Label_AF);
             this.GroupBox_Main.Controls.Add(this.Combo_AF);
-            this.GroupBox_Main.Location = new System.Drawing.Point(12, 320);
+            this.GroupBox_Main.Location = new System.Drawing.Point(10, 320);
             this.GroupBox_Main.Name = "GroupBox_Main";
             this.GroupBox_Main.Size = new System.Drawing.Size(500, 275);
             this.GroupBox_Main.TabIndex = 1;
@@ -919,7 +952,7 @@
             // 
             // Button_ExitSave
             // 
-            this.Button_ExitSave.Location = new System.Drawing.Point(391, 600);
+            this.Button_ExitSave.Location = new System.Drawing.Point(389, 600);
             this.Button_ExitSave.Name = "Button_ExitSave";
             this.Button_ExitSave.Size = new System.Drawing.Size(120, 30);
             this.Button_ExitSave.TabIndex = 21;
@@ -927,20 +960,21 @@
             this.Button_ExitSave.UseVisualStyleBackColor = true;
             this.Button_ExitSave.Click += new System.EventHandler(this.Button_Exit_Click);
             // 
-            // MainMenuStrip
+            // MenuStrip_MainMenu
             // 
-            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuStrip_MainMenu.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.MenuStrip_MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MainStripItem_File,
             this.MainStripItem_Backup,
             this.MainStripItem_Presets,
             this.MainStripItem_Game,
             this.MainStripItem_Options,
             this.MainStripItem_Help});
-            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(524, 24);
-            this.MainMenuStrip.TabIndex = 4;
-            this.MainMenuStrip.Text = "menuStrip1";
+            this.MenuStrip_MainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip_MainMenu.Name = "MenuStrip_MainMenu";
+            this.MenuStrip_MainMenu.Size = new System.Drawing.Size(1056, 24);
+            this.MenuStrip_MainMenu.TabIndex = 4;
+            this.MenuStrip_MainMenu.Text = "menuStrip1";
             // 
             // MainStripItem_File
             // 
@@ -963,6 +997,7 @@
             // 
             // StripItem_CreateINI
             // 
+            this.StripItem_CreateINI.BackColor = System.Drawing.SystemColors.Control;
             this.StripItem_CreateINI.Name = "StripItem_CreateINI";
             this.StripItem_CreateINI.Size = new System.Drawing.Size(196, 22);
             this.StripItem_CreateINI.Text = "Create Engine.ini";
@@ -972,6 +1007,7 @@
             // 
             // StripItem_SaveINI
             // 
+            this.StripItem_SaveINI.BackColor = System.Drawing.SystemColors.Control;
             this.StripItem_SaveINI.Name = "StripItem_SaveINI";
             this.StripItem_SaveINI.Size = new System.Drawing.Size(196, 22);
             this.StripItem_SaveINI.Text = "Save Engine.ini";
@@ -980,6 +1016,7 @@
             // 
             // StripItem_ReloadINI
             // 
+            this.StripItem_ReloadINI.BackColor = System.Drawing.SystemColors.Control;
             this.StripItem_ReloadINI.Name = "StripItem_ReloadINI";
             this.StripItem_ReloadINI.Size = new System.Drawing.Size(196, 22);
             this.StripItem_ReloadINI.Text = "Reload Engine.ini";
@@ -988,19 +1025,32 @@
             // 
             // StripItem_DeleteINI
             // 
+            this.StripItem_DeleteINI.BackColor = System.Drawing.SystemColors.Control;
             this.StripItem_DeleteINI.Name = "StripItem_DeleteINI";
             this.StripItem_DeleteINI.Size = new System.Drawing.Size(196, 22);
             this.StripItem_DeleteINI.Text = "Delete Engine.ini";
             this.StripItem_DeleteINI.ToolTipText = resources.GetString("StripItem_DeleteINI.ToolTipText");
             this.StripItem_DeleteINI.Click += new System.EventHandler(this.StripItem_DeleteINI_Click);
             // 
+            // StripItem_EditINI
+            // 
+            this.StripItem_EditINI.BackColor = System.Drawing.SystemColors.Control;
+            this.StripItem_EditINI.Name = "StripItem_EditINI";
+            this.StripItem_EditINI.Size = new System.Drawing.Size(196, 22);
+            this.StripItem_EditINI.Text = "Edit Engine.ini";
+            this.StripItem_EditINI.ToolTipText = resources.GetString("StripItem_EditINI.ToolTipText");
+            this.StripItem_EditINI.Click += new System.EventHandler(this.StripItem_EditINI_Click);
+            // 
             // ToolStripSeperatorA
             // 
+            this.ToolStripSeperatorA.BackColor = System.Drawing.SystemColors.Control;
             this.ToolStripSeperatorA.Name = "ToolStripSeperatorA";
             this.ToolStripSeperatorA.Size = new System.Drawing.Size(193, 6);
             // 
             // StripItem_Base
             // 
+            this.StripItem_Base.BackColor = System.Drawing.SystemColors.Control;
+            this.StripItem_Base.ForeColor = System.Drawing.SystemColors.ControlText;
             this.StripItem_Base.Name = "StripItem_Base";
             this.StripItem_Base.Size = new System.Drawing.Size(196, 22);
             this.StripItem_Base.Text = "Open Base Folder";
@@ -1010,6 +1060,7 @@
             // 
             // StripItem_AppData
             // 
+            this.StripItem_AppData.BackColor = System.Drawing.SystemColors.Control;
             this.StripItem_AppData.Name = "StripItem_AppData";
             this.StripItem_AppData.Size = new System.Drawing.Size(196, 22);
             this.StripItem_AppData.Text = "Open AppData Folder";
@@ -1164,7 +1215,8 @@
             this.MainStripItem_Options.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripItem_HideCheckBox,
             this.StripItem_LaunchSave,
-            this.StripItem_LaunchClose});
+            this.StripItem_LaunchClose,
+            this.StripItem_NoToolTips});
             this.MainStripItem_Options.Name = "MainStripItem_Options";
             this.MainStripItem_Options.Size = new System.Drawing.Size(61, 20);
             this.MainStripItem_Options.Text = "Options";
@@ -1176,6 +1228,14 @@
             this.StripItem_HideCheckBox.Text = "Hide/Disable Checkboxes";
             this.StripItem_HideCheckBox.ToolTipText = "Disables both the visibility and \r\nfunctionality of the checkboxes.";
             this.StripItem_HideCheckBox.Click += new System.EventHandler(this.StripItem_HideCheckBox_Click);
+            // 
+            // StripItem_LaunchSave
+            // 
+            this.StripItem_LaunchSave.Name = "StripItem_LaunchSave";
+            this.StripItem_LaunchSave.Size = new System.Drawing.Size(240, 22);
+            this.StripItem_LaunchSave.Text = "Save Changes on Game Launch";
+            this.StripItem_LaunchSave.ToolTipText = "Save all options to the INI\r\nwhen launching the game.";
+            this.StripItem_LaunchSave.Click += new System.EventHandler(this.StripItem_LaunchSave_Click);
             // 
             // StripItem_LaunchClose
             // 
@@ -1218,7 +1278,7 @@
             // 
             // Button_Launch
             // 
-            this.Button_Launch.Location = new System.Drawing.Point(265, 600);
+            this.Button_Launch.Location = new System.Drawing.Point(263, 600);
             this.Button_Launch.Name = "Button_Launch";
             this.Button_Launch.Size = new System.Drawing.Size(120, 30);
             this.Button_Launch.TabIndex = 20;
@@ -1228,7 +1288,7 @@
             // 
             // Button_Save
             // 
-            this.Button_Save.Location = new System.Drawing.Point(13, 600);
+            this.Button_Save.Location = new System.Drawing.Point(11, 600);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(120, 30);
             this.Button_Save.TabIndex = 18;
@@ -1238,7 +1298,7 @@
             // 
             // Button_Reload
             // 
-            this.Button_Reload.Location = new System.Drawing.Point(139, 600);
+            this.Button_Reload.Location = new System.Drawing.Point(137, 600);
             this.Button_Reload.Name = "Button_Reload";
             this.Button_Reload.Size = new System.Drawing.Size(120, 30);
             this.Button_Reload.TabIndex = 19;
@@ -1246,13 +1306,116 @@
             this.Button_Reload.UseVisualStyleBackColor = true;
             this.Button_Reload.Click += new System.EventHandler(this.Button_Reload_Click);
             // 
+            // GlobalToolTip
+            // 
+            this.GlobalToolTip.AutomaticDelay = 1000;
+            // 
+            // Button_ClearAll
+            // 
+            this.Button_ClearAll.Location = new System.Drawing.Point(140, 511);
+            this.Button_ClearAll.Name = "Button_ClearAll";
+            this.Button_ClearAll.Size = new System.Drawing.Size(120, 30);
+            this.Button_ClearAll.TabIndex = 27;
+            this.Button_ClearAll.Text = "Delete All";
+            this.GlobalToolTip.SetToolTip(this.Button_ClearAll, "Delete all options from the\r\ngrid above and from the INI.");
+            this.Button_ClearAll.UseVisualStyleBackColor = true;
+            this.Button_ClearAll.Click += new System.EventHandler(this.Button_ClearAll_Click);
+            // 
+            // Button_Bonus
+            // 
+            this.Button_Bonus.Location = new System.Drawing.Point(12, 511);
+            this.Button_Bonus.Name = "Button_Bonus";
+            this.Button_Bonus.Size = new System.Drawing.Size(120, 30);
+            this.Button_Bonus.TabIndex = 26;
+            this.Button_Bonus.Text = "Collections";
+            this.GlobalToolTip.SetToolTip(this.Button_Bonus, "Contains sets of options to achieve \r\ncertain effects. To add the options to \r\nEn" +
+        "gine.ini file they must be parsed.");
+            this.Button_Bonus.UseVisualStyleBackColor = true;
+            this.Button_Bonus.Click += new System.EventHandler(this.Button_Bonus_Click);
+            // 
+            // Button_RestoreText
+            // 
+            this.Button_RestoreText.Location = new System.Drawing.Point(323, 511);
+            this.Button_RestoreText.Name = "Button_RestoreText";
+            this.Button_RestoreText.Size = new System.Drawing.Size(34, 30);
+            this.Button_RestoreText.TabIndex = 25;
+            this.Button_RestoreText.Text = "?";
+            this.GlobalToolTip.SetToolTip(this.Button_RestoreText, "Re-shows the initial message\r\nafter it has been wiped out.");
+            this.Button_RestoreText.UseVisualStyleBackColor = true;
+            this.Button_RestoreText.Click += new System.EventHandler(this.Button_RestoreText_Click);
+            // 
+            // Button_Parse
+            // 
+            this.Button_Parse.Location = new System.Drawing.Point(363, 511);
+            this.Button_Parse.Name = "Button_Parse";
+            this.Button_Parse.Size = new System.Drawing.Size(120, 30);
+            this.Button_Parse.TabIndex = 25;
+            this.Button_Parse.Text = "Parse";
+            this.GlobalToolTip.SetToolTip(this.Button_Parse, "Parses the text that is entered in the\r\ntextbox above into INI entries. Entries\r\n" +
+        "require a name, an equals sign, and a\r\nvalue to be successfully parsed. This\r\nca" +
+        "n parse multiple entries at once.");
+            this.Button_Parse.UseVisualStyleBackColor = true;
+            this.Button_Parse.Click += new System.EventHandler(this.Button_Parse_Click);
+            // 
+            // RichTextBox_AddOptions
+            // 
+            this.RichTextBox_AddOptions.ContextMenuStrip = this.CMenuStrip_TextEdit;
+            this.RichTextBox_AddOptions.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RichTextBox_AddOptions.Location = new System.Drawing.Point(13, 379);
+            this.RichTextBox_AddOptions.Margin = new System.Windows.Forms.Padding(10);
+            this.RichTextBox_AddOptions.Name = "RichTextBox_AddOptions";
+            this.RichTextBox_AddOptions.Size = new System.Drawing.Size(470, 126);
+            this.RichTextBox_AddOptions.TabIndex = 1;
+            this.RichTextBox_AddOptions.Text = resources.GetString("RichTextBox_AddOptions.Text");
+            this.GlobalToolTip.SetToolTip(this.RichTextBox_AddOptions, "Text entered here must be parsed\r\nbefore it is added to Engine.ini file.");
+            this.RichTextBox_AddOptions.WordWrap = false;
+            this.RichTextBox_AddOptions.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RichTextBox_AddOptions_MouseClick);
+            // 
+            // CMenuStrip_TextEdit
+            // 
+            this.CMenuStrip_TextEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripItem_Cut,
+            this.StripItem_Copy,
+            this.StripItem_Paste,
+            this.StripItem_Delete});
+            this.CMenuStrip_TextEdit.Name = "CMenuStrip_TextEdit";
+            this.CMenuStrip_TextEdit.Size = new System.Drawing.Size(108, 92);
+            // 
+            // StripItem_Cut
+            // 
+            this.StripItem_Cut.Name = "StripItem_Cut";
+            this.StripItem_Cut.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Cut.Text = "Cut";
+            this.StripItem_Cut.Click += new System.EventHandler(this.StripItem_Cut_Click);
+            // 
+            // StripItem_Copy
+            // 
+            this.StripItem_Copy.Name = "StripItem_Copy";
+            this.StripItem_Copy.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Copy.Text = "Copy";
+            this.StripItem_Copy.Click += new System.EventHandler(this.StripItem_Copy_Click);
+            // 
+            // StripItem_Paste
+            // 
+            this.StripItem_Paste.Name = "StripItem_Paste";
+            this.StripItem_Paste.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Paste.Text = "Paste";
+            this.StripItem_Paste.Click += new System.EventHandler(this.StripItem_Paste_Click);
+            // 
+            // StripItem_Delete
+            // 
+            this.StripItem_Delete.Name = "StripItem_Delete";
+            this.StripItem_Delete.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Delete.Text = "Delete";
+            this.StripItem_Delete.Click += new System.EventHandler(this.StripItem_Delete_Click);
+            // 
             // GroupBox_GameVer
             // 
             this.GroupBox_GameVer.Controls.Add(this.Radio_GamePass);
             this.GroupBox_GameVer.Controls.Add(this.Radio_Steam);
-            this.GroupBox_GameVer.Location = new System.Drawing.Point(13, 267);
+            this.GroupBox_GameVer.Location = new System.Drawing.Point(11, 267);
             this.GroupBox_GameVer.Name = "GroupBox_GameVer";
-            this.GroupBox_GameVer.Size = new System.Drawing.Size(498, 48);
+            this.GroupBox_GameVer.Size = new System.Drawing.Size(244, 48);
             this.GroupBox_GameVer.TabIndex = 22;
             this.GroupBox_GameVer.TabStop = false;
             this.GroupBox_GameVer.Text = "Game Version";
@@ -1260,7 +1423,7 @@
             // Radio_GamePass
             // 
             this.Radio_GamePass.AutoSize = true;
-            this.Radio_GamePass.Location = new System.Drawing.Point(126, 19);
+            this.Radio_GamePass.Location = new System.Drawing.Point(118, 19);
             this.Radio_GamePass.Name = "Radio_GamePass";
             this.Radio_GamePass.Size = new System.Drawing.Size(114, 17);
             this.Radio_GamePass.TabIndex = 22;
@@ -1272,7 +1435,7 @@
             // Radio_Steam
             // 
             this.Radio_Steam.AutoSize = true;
-            this.Radio_Steam.Location = new System.Drawing.Point(16, 19);
+            this.Radio_Steam.Location = new System.Drawing.Point(14, 19);
             this.Radio_Steam.Name = "Radio_Steam";
             this.Radio_Steam.Size = new System.Drawing.Size(93, 17);
             this.Radio_Steam.TabIndex = 22;
@@ -1281,27 +1444,187 @@
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
-            // StripItem_LaunchSave
+            // GroupBox_Misc
             // 
-            this.StripItem_LaunchSave.Name = "StripItem_LaunchSave";
-            this.StripItem_LaunchSave.Size = new System.Drawing.Size(240, 22);
-            this.StripItem_LaunchSave.Text = "Save Changes on Game Launch";
-            this.StripItem_LaunchSave.ToolTipText = "Save all options to the INI\r\nwhen launching the game.";
-            this.StripItem_LaunchSave.Click += new System.EventHandler(this.StripItem_LaunchSave_Click);
+            this.GroupBox_Misc.Controls.Add(this.Radio_AdvHide);
+            this.GroupBox_Misc.Controls.Add(this.Radio_AdvShow);
+            this.GroupBox_Misc.Location = new System.Drawing.Point(266, 267);
+            this.GroupBox_Misc.Name = "GroupBox_Misc";
+            this.GroupBox_Misc.Size = new System.Drawing.Size(244, 48);
+            this.GroupBox_Misc.TabIndex = 23;
+            this.GroupBox_Misc.TabStop = false;
+            this.GroupBox_Misc.Text = "Advanced Options";
             // 
-            // StripItem_EditINI
+            // Radio_AdvHide
             // 
-            this.StripItem_EditINI.Name = "StripItem_EditINI";
-            this.StripItem_EditINI.Size = new System.Drawing.Size(196, 22);
-            this.StripItem_EditINI.Text = "Edit Engine.ini";
-            this.StripItem_EditINI.ToolTipText = resources.GetString("StripItem_EditINI.ToolTipText");
-            this.StripItem_EditINI.Click += new System.EventHandler(this.StripItem_EditINI_Click);
+            this.Radio_AdvHide.AutoSize = true;
+            this.Radio_AdvHide.Location = new System.Drawing.Point(14, 19);
+            this.Radio_AdvHide.Name = "Radio_AdvHide";
+            this.Radio_AdvHide.Size = new System.Drawing.Size(86, 17);
+            this.Radio_AdvHide.TabIndex = 23;
+            this.Radio_AdvHide.TabStop = true;
+            this.Radio_AdvHide.Text = "Hide Options";
+            this.Radio_AdvHide.UseVisualStyleBackColor = true;
+            this.Radio_AdvHide.CheckedChanged += new System.EventHandler(this.Radio_AdvHide_CheckedChanged);
+            // 
+            // Radio_AdvShow
+            // 
+            this.Radio_AdvShow.AutoSize = true;
+            this.Radio_AdvShow.Location = new System.Drawing.Point(118, 19);
+            this.Radio_AdvShow.Name = "Radio_AdvShow";
+            this.Radio_AdvShow.Size = new System.Drawing.Size(91, 17);
+            this.Radio_AdvShow.TabIndex = 23;
+            this.Radio_AdvShow.TabStop = true;
+            this.Radio_AdvShow.Text = "Show Options";
+            this.Radio_AdvShow.UseVisualStyleBackColor = true;
+            this.Radio_AdvShow.CheckedChanged += new System.EventHandler(this.Radio_AdvShow_CheckedChanged);
+            // 
+            // GroupBox_MoreOptions
+            // 
+            this.GroupBox_MoreOptions.Controls.Add(this.GroupBox_Advanced);
+            this.GroupBox_MoreOptions.Location = new System.Drawing.Point(522, 18);
+            this.GroupBox_MoreOptions.Name = "GroupBox_MoreOptions";
+            this.GroupBox_MoreOptions.Size = new System.Drawing.Size(522, 577);
+            this.GroupBox_MoreOptions.TabIndex = 24;
+            this.GroupBox_MoreOptions.TabStop = false;
+            // 
+            // GroupBox_Advanced
+            // 
+            this.GroupBox_Advanced.Controls.Add(this.Button_ClearAll);
+            this.GroupBox_Advanced.Controls.Add(this.Button_Bonus);
+            this.GroupBox_Advanced.Controls.Add(this.Button_RestoreText);
+            this.GroupBox_Advanced.Controls.Add(this.Button_Parse);
+            this.GroupBox_Advanced.Controls.Add(this.RichTextBox_AddOptions);
+            this.GroupBox_Advanced.Controls.Add(this.GridView_Options);
+            this.GroupBox_Advanced.Location = new System.Drawing.Point(13, 18);
+            this.GroupBox_Advanced.Margin = new System.Windows.Forms.Padding(10);
+            this.GroupBox_Advanced.Name = "GroupBox_Advanced";
+            this.GroupBox_Advanced.Size = new System.Drawing.Size(496, 548);
+            this.GroupBox_Advanced.TabIndex = 1;
+            this.GroupBox_Advanced.TabStop = false;
+            this.GroupBox_Advanced.Text = "Advanced Graphics Configuration";
+            // 
+            // GridView_Options
+            // 
+            this.GridView_Options.AllowUserToAddRows = false;
+            this.GridView_Options.AllowUserToDeleteRows = false;
+            this.GridView_Options.AllowUserToResizeColumns = false;
+            this.GridView_Options.AllowUserToResizeRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OptionName,
+            this.Value});
+            this.GridView_Options.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.GridView_Options.Location = new System.Drawing.Point(13, 19);
+            this.GridView_Options.Margin = new System.Windows.Forms.Padding(10);
+            this.GridView_Options.Name = "GridView_Options";
+            this.GridView_Options.RowHeadersVisible = false;
+            this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.GridView_Options.ShowCellErrors = false;
+            this.GridView_Options.ShowCellToolTips = false;
+            this.GridView_Options.ShowEditingIcon = false;
+            this.GridView_Options.ShowRowErrors = false;
+            this.GridView_Options.Size = new System.Drawing.Size(470, 347);
+            this.GridView_Options.TabIndex = 0;
+            this.GlobalToolTip.SetToolTip(this.GridView_Options, resources.GetString("GridView_Options.ToolTip"));
+            this.GridView_Options.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_Options_CellValueChanged);
+            this.GridView_Options.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridView_Options_KeyDown);
+            // 
+            // OptionName
+            // 
+            this.OptionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionName.HeaderText = "Option Name";
+            this.OptionName.Name = "OptionName";
+            this.OptionName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OptionName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CMenuStrip_Collections
+            // 
+            this.CMenuStrip_Collections.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripItem_NoLumen,
+            this.StripItem_EnhLumen,
+            this.StripItem_Clarity,
+            this.StripItem_UltiHighEnd,
+            this.StripItem_6GBVRAM});
+            this.CMenuStrip_Collections.Name = "contextMenuStrip6";
+            this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 114);
+            // 
+            // StripItem_EnhLumen
+            // 
+            this.StripItem_EnhLumen.Name = "StripItem_EnhLumen";
+            this.StripItem_EnhLumen.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_EnhLumen.Text = "Enhanced Lumen";
+            this.StripItem_EnhLumen.ToolTipText = "Adds more accurate lighting\r\nand reflections calculations.\r\n\r\nCredit: TenebrisVen" +
+    "it";
+            this.StripItem_EnhLumen.Click += new System.EventHandler(this.StripItem_EnhLumen_Click);
+            // 
+            // StripItem_NoLumen
+            // 
+            this.StripItem_NoLumen.Name = "StripItem_NoLumen";
+            this.StripItem_NoLumen.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_NoLumen.Text = "Disable Software Lumen";
+            this.StripItem_NoLumen.ToolTipText = "Disables software-based Lumen.\r\n\r\nCredit: PCGamingWiki";
+            this.StripItem_NoLumen.Click += new System.EventHandler(this.StripItem_NoLumen_Click);
+            // 
+            // StripItem_Clarity
+            // 
+            this.StripItem_Clarity.Name = "StripItem_Clarity";
+            this.StripItem_Clarity.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_Clarity.Text = "Perfect Clarity E33";
+            this.StripItem_Clarity.ToolTipText = "A barebone Engine.ini modification \r\nthat provides perfect visual clarity.\r\n\r\nCre" +
+    "dit: MisterAlerion";
+            this.StripItem_Clarity.Click += new System.EventHandler(this.StripItem_Clarity_Click);
+            // 
+            // StripItem_NoToolTips
+            // 
+            this.StripItem_NoToolTips.Name = "StripItem_NoToolTips";
+            this.StripItem_NoToolTips.Size = new System.Drawing.Size(240, 22);
+            this.StripItem_NoToolTips.Text = "Disable Most Popup Tooltips";
+            this.StripItem_NoToolTips.ToolTipText = "Disable tooltips that appear when \r\nhovering over a control. Does not\r\nhide toolt" +
+    "ips from menu items.";
+            this.StripItem_NoToolTips.Click += new System.EventHandler(this.StripItem_NoToolTips_Click);
+            // 
+            // StripItem_UltiHighEnd
+            // 
+            this.StripItem_UltiHighEnd.Name = "StripItem_UltiHighEnd";
+            this.StripItem_UltiHighEnd.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_UltiHighEnd.Text = "Ultimate for High-End PCs";
+            this.StripItem_UltiHighEnd.ToolTipText = "Fully unleashes your hardware, upgrading \r\nLumen GI, shadows, textures, view dist" +
+    "ance, \r\nand more. Requires a powerful computer.\r\n\r\nCredit: Omniscye";
+            this.StripItem_UltiHighEnd.Click += new System.EventHandler(this.StripItem_UltiHighEnd_Click);
+            // 
+            // StripItem_6GBVRAM
+            // 
+            this.StripItem_6GBVRAM.Name = "StripItem_6GBVRAM";
+            this.StripItem_6GBVRAM.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_6GBVRAM.Text = "E33 Optimization 6GB VRAM";
+            this.StripItem_6GBVRAM.ToolTipText = "Enhances visual quality while keeping\r\nperformance smooth & stable. Tuned\r\nfor gr" +
+    "aphics cards with 6+GB VRAM.\r\n\r\nCredit: axbhub";
+            this.StripItem_6GBVRAM.Click += new System.EventHandler(this.StripItem_6GBVRAM_Click);
             // 
             // Form_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 637);
+            this.ClientSize = new System.Drawing.Size(1056, 637);
+            this.Controls.Add(this.GroupBox_Misc);
             this.Controls.Add(this.GroupBox_GameVer);
             this.Controls.Add(this.Button_Reload);
             this.Controls.Add(this.Button_Save);
@@ -1309,7 +1632,8 @@
             this.Controls.Add(this.Button_ExitSave);
             this.Controls.Add(this.GroupBox_Main);
             this.Controls.Add(this.PictureBox_GameArt);
-            this.Controls.Add(this.MainMenuStrip);
+            this.Controls.Add(this.MenuStrip_MainMenu);
+            this.Controls.Add(this.GroupBox_MoreOptions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -1317,7 +1641,7 @@
             this.Name = "Form_MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clair Obscur: Expedition 33 - Unreal Config";
-            this.Shown += new System.EventHandler(this.Form_MainForm_Shown);
+            this.Load += new System.EventHandler(this.Form_MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form_MainForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).EndInit();
@@ -1327,10 +1651,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_ShadDist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_ViewDist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_Sharpen)).EndInit();
-            this.MainMenuStrip.ResumeLayout(false);
-            this.MainMenuStrip.PerformLayout();
+            this.MenuStrip_MainMenu.ResumeLayout(false);
+            this.MenuStrip_MainMenu.PerformLayout();
+            this.CMenuStrip_TextEdit.ResumeLayout(false);
             this.GroupBox_GameVer.ResumeLayout(false);
             this.GroupBox_GameVer.PerformLayout();
+            this.GroupBox_Misc.ResumeLayout(false);
+            this.GroupBox_Misc.PerformLayout();
+            this.GroupBox_MoreOptions.ResumeLayout(false);
+            this.GroupBox_Advanced.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).EndInit();
+            this.CMenuStrip_Collections.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1375,7 +1706,7 @@
         public System.Windows.Forms.ComboBox Combo_ChromAb;
         public System.Windows.Forms.ComboBox Combo_VFog;
         public System.Windows.Forms.Button Button_ExitSave;
-        public System.Windows.Forms.MenuStrip MainMenuStrip;
+        public System.Windows.Forms.MenuStrip MenuStrip_MainMenu;
         public System.Windows.Forms.ToolStripMenuItem MainStripItem_File;
         public System.Windows.Forms.ToolStripMenuItem StripItem_CreateINI;
         public System.Windows.Forms.ToolStripMenuItem StripItem_ReloadINI;
@@ -1436,7 +1767,32 @@
         public System.Windows.Forms.ToolStripMenuItem StripItem_HideCheckBox;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchClose;
         public System.Windows.Forms.ToolStripMenuItem StripItem_LaunchSave;
-        private System.Windows.Forms.ToolStripMenuItem StripItem_EditINI;
+        private System.Windows.Forms.GroupBox GroupBox_Misc;
+        private System.Windows.Forms.GroupBox GroupBox_MoreOptions;
+        public System.Windows.Forms.Button Button_Parse;
+        public System.Windows.Forms.DataGridView GridView_Options;
+        public System.Windows.Forms.RichTextBox RichTextBox_AddOptions;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_EditINI;
+        public System.Windows.Forms.Button Button_RestoreText;
+        public System.Windows.Forms.RadioButton Radio_AdvHide;
+        public System.Windows.Forms.RadioButton Radio_AdvShow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        public System.Windows.Forms.Button Button_Bonus;
+        private System.Windows.Forms.ContextMenuStrip CMenuStrip_Collections;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_EnhLumen;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_NoLumen;
+        public System.Windows.Forms.Button Button_ClearAll;
+        private System.Windows.Forms.ContextMenuStrip CMenuStrip_TextEdit;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Paste;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Copy;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Cut;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Delete;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Clarity;
+        public System.Windows.Forms.ToolStripMenuItem StripItem_NoToolTips;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_UltiHighEnd;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_6GBVRAM;
+        public System.Windows.Forms.GroupBox GroupBox_Advanced;
     }
 }
 
