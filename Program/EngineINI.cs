@@ -255,7 +255,7 @@ namespace ClairObscurConfig
                 string Value = EngineINI.MoreEntries[Key].ToString();
 
                 // Use the key to reference the position and store the new value.
-                EngineINI.Class.ConditionalWriteDelete(Key, Value, "SystemSettings", !Forms.ChkBoxArray[i].Checked);
+                EngineINI.Class.Write(Key, Value, "SystemSettings");
 
                 // Add all active advanced entries to the list.
                 ValidEntries.Add(Key);
