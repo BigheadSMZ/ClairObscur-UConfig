@@ -722,5 +722,9 @@ namespace ClairObscurConfig
         {
             this.RichTextBox_AddOptions.SelectedText = "";
         }
+        private void StripItem_Clear_Click(object sender, EventArgs e)
+        {
+            this.RichTextBox_AddOptions.Text = "";
+        }
     }
 }

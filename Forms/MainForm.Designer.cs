@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
@@ -121,6 +121,7 @@
             this.StripItem_HideCheckBox = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_NoToolTips = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,6 +140,9 @@
             this.StripItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridView_Options = new System.Windows.Forms.DataGridView();
+            this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox_GameVer = new System.Windows.Forms.GroupBox();
             this.Radio_GamePass = new System.Windows.Forms.RadioButton();
             this.Radio_Steam = new System.Windows.Forms.RadioButton();
@@ -147,16 +151,13 @@
             this.Radio_AdvShow = new System.Windows.Forms.RadioButton();
             this.GroupBox_MoreOptions = new System.Windows.Forms.GroupBox();
             this.GroupBox_Advanced = new System.Windows.Forms.GroupBox();
-            this.GridView_Options = new System.Windows.Forms.DataGridView();
-            this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMenuStrip_Collections = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.StripItem_EnhLumen = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_NoLumen = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_EnhLumen = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Clarity = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripItem_NoToolTips = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_UltiHighEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_6GBVRAM = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Clear = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_FolDist)).BeginInit();
@@ -165,11 +166,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_Sharpen)).BeginInit();
             this.MenuStrip_MainMenu.SuspendLayout();
             this.CMenuStrip_TextEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).BeginInit();
             this.GroupBox_GameVer.SuspendLayout();
             this.GroupBox_Misc.SuspendLayout();
             this.GroupBox_MoreOptions.SuspendLayout();
             this.GroupBox_Advanced.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).BeginInit();
             this.CMenuStrip_Collections.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1245,6 +1246,15 @@
             this.StripItem_LaunchClose.ToolTipText = "Also close this configurator\r\nwhen launching the game.";
             this.StripItem_LaunchClose.Click += new System.EventHandler(this.StripItem_LaunchClose_Click);
             // 
+            // StripItem_NoToolTips
+            // 
+            this.StripItem_NoToolTips.Name = "StripItem_NoToolTips";
+            this.StripItem_NoToolTips.Size = new System.Drawing.Size(240, 22);
+            this.StripItem_NoToolTips.Text = "Disable Most Popup Tooltips";
+            this.StripItem_NoToolTips.ToolTipText = "Disable tooltips that appear when \r\nhovering over a control. Does not\r\nhide toolt" +
+    "ips from menu items.";
+            this.StripItem_NoToolTips.Click += new System.EventHandler(this.StripItem_NoToolTips_Click);
+            // 
             // MainStripItem_Help
             // 
             this.MainStripItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1377,37 +1387,89 @@
             this.StripItem_Cut,
             this.StripItem_Copy,
             this.StripItem_Paste,
-            this.StripItem_Delete});
+            this.StripItem_Delete,
+            this.StripItem_Clear});
             this.CMenuStrip_TextEdit.Name = "CMenuStrip_TextEdit";
-            this.CMenuStrip_TextEdit.Size = new System.Drawing.Size(108, 92);
+            this.CMenuStrip_TextEdit.Size = new System.Drawing.Size(181, 136);
             // 
             // StripItem_Cut
             // 
             this.StripItem_Cut.Name = "StripItem_Cut";
-            this.StripItem_Cut.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Cut.Size = new System.Drawing.Size(180, 22);
             this.StripItem_Cut.Text = "Cut";
             this.StripItem_Cut.Click += new System.EventHandler(this.StripItem_Cut_Click);
             // 
             // StripItem_Copy
             // 
             this.StripItem_Copy.Name = "StripItem_Copy";
-            this.StripItem_Copy.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Copy.Size = new System.Drawing.Size(180, 22);
             this.StripItem_Copy.Text = "Copy";
             this.StripItem_Copy.Click += new System.EventHandler(this.StripItem_Copy_Click);
             // 
             // StripItem_Paste
             // 
             this.StripItem_Paste.Name = "StripItem_Paste";
-            this.StripItem_Paste.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Paste.Size = new System.Drawing.Size(180, 22);
             this.StripItem_Paste.Text = "Paste";
             this.StripItem_Paste.Click += new System.EventHandler(this.StripItem_Paste_Click);
             // 
             // StripItem_Delete
             // 
             this.StripItem_Delete.Name = "StripItem_Delete";
-            this.StripItem_Delete.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Delete.Size = new System.Drawing.Size(180, 22);
             this.StripItem_Delete.Text = "Delete";
             this.StripItem_Delete.Click += new System.EventHandler(this.StripItem_Delete_Click);
+            // 
+            // GridView_Options
+            // 
+            this.GridView_Options.AllowUserToAddRows = false;
+            this.GridView_Options.AllowUserToDeleteRows = false;
+            this.GridView_Options.AllowUserToResizeColumns = false;
+            this.GridView_Options.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OptionName,
+            this.Value});
+            this.GridView_Options.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.GridView_Options.Location = new System.Drawing.Point(13, 19);
+            this.GridView_Options.Margin = new System.Windows.Forms.Padding(10);
+            this.GridView_Options.Name = "GridView_Options";
+            this.GridView_Options.RowHeadersVisible = false;
+            this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.GridView_Options.ShowCellErrors = false;
+            this.GridView_Options.ShowCellToolTips = false;
+            this.GridView_Options.ShowEditingIcon = false;
+            this.GridView_Options.ShowRowErrors = false;
+            this.GridView_Options.Size = new System.Drawing.Size(470, 347);
+            this.GridView_Options.TabIndex = 0;
+            this.GlobalToolTip.SetToolTip(this.GridView_Options, resources.GetString("GridView_Options.ToolTip"));
+            this.GridView_Options.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_Options_CellValueChanged);
+            this.GridView_Options.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridView_Options_KeyDown);
+            // 
+            // OptionName
+            // 
+            this.OptionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionName.HeaderText = "Option Name";
+            this.OptionName.Name = "OptionName";
+            this.OptionName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OptionName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // GroupBox_GameVer
             // 
@@ -1504,57 +1566,6 @@
             this.GroupBox_Advanced.TabStop = false;
             this.GroupBox_Advanced.Text = "Advanced Graphics Configuration";
             // 
-            // GridView_Options
-            // 
-            this.GridView_Options.AllowUserToAddRows = false;
-            this.GridView_Options.AllowUserToDeleteRows = false;
-            this.GridView_Options.AllowUserToResizeColumns = false;
-            this.GridView_Options.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OptionName,
-            this.Value});
-            this.GridView_Options.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.GridView_Options.Location = new System.Drawing.Point(13, 19);
-            this.GridView_Options.Margin = new System.Windows.Forms.Padding(10);
-            this.GridView_Options.Name = "GridView_Options";
-            this.GridView_Options.RowHeadersVisible = false;
-            this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GridView_Options.ShowCellErrors = false;
-            this.GridView_Options.ShowCellToolTips = false;
-            this.GridView_Options.ShowEditingIcon = false;
-            this.GridView_Options.ShowRowErrors = false;
-            this.GridView_Options.Size = new System.Drawing.Size(470, 347);
-            this.GridView_Options.TabIndex = 0;
-            this.GlobalToolTip.SetToolTip(this.GridView_Options, resources.GetString("GridView_Options.ToolTip"));
-            this.GridView_Options.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_Options_CellValueChanged);
-            this.GridView_Options.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridView_Options_KeyDown);
-            // 
-            // OptionName
-            // 
-            this.OptionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionName.HeaderText = "Option Name";
-            this.OptionName.Name = "OptionName";
-            this.OptionName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.OptionName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // CMenuStrip_Collections
             // 
             this.CMenuStrip_Collections.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1566,6 +1577,14 @@
             this.CMenuStrip_Collections.Name = "contextMenuStrip6";
             this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 114);
             // 
+            // StripItem_NoLumen
+            // 
+            this.StripItem_NoLumen.Name = "StripItem_NoLumen";
+            this.StripItem_NoLumen.Size = new System.Drawing.Size(224, 22);
+            this.StripItem_NoLumen.Text = "Disable Software Lumen";
+            this.StripItem_NoLumen.ToolTipText = "Disables software-based Lumen.\r\n\r\nCredit: PCGamingWiki";
+            this.StripItem_NoLumen.Click += new System.EventHandler(this.StripItem_NoLumen_Click);
+            // 
             // StripItem_EnhLumen
             // 
             this.StripItem_EnhLumen.Name = "StripItem_EnhLumen";
@@ -1575,14 +1594,6 @@
     "it";
             this.StripItem_EnhLumen.Click += new System.EventHandler(this.StripItem_EnhLumen_Click);
             // 
-            // StripItem_NoLumen
-            // 
-            this.StripItem_NoLumen.Name = "StripItem_NoLumen";
-            this.StripItem_NoLumen.Size = new System.Drawing.Size(224, 22);
-            this.StripItem_NoLumen.Text = "Disable Software Lumen";
-            this.StripItem_NoLumen.ToolTipText = "Disables software-based Lumen.\r\n\r\nCredit: PCGamingWiki";
-            this.StripItem_NoLumen.Click += new System.EventHandler(this.StripItem_NoLumen_Click);
-            // 
             // StripItem_Clarity
             // 
             this.StripItem_Clarity.Name = "StripItem_Clarity";
@@ -1591,15 +1602,6 @@
             this.StripItem_Clarity.ToolTipText = "A barebone Engine.ini modification \r\nthat provides perfect visual clarity.\r\n\r\nCre" +
     "dit: MisterAlerion";
             this.StripItem_Clarity.Click += new System.EventHandler(this.StripItem_Clarity_Click);
-            // 
-            // StripItem_NoToolTips
-            // 
-            this.StripItem_NoToolTips.Name = "StripItem_NoToolTips";
-            this.StripItem_NoToolTips.Size = new System.Drawing.Size(240, 22);
-            this.StripItem_NoToolTips.Text = "Disable Most Popup Tooltips";
-            this.StripItem_NoToolTips.ToolTipText = "Disable tooltips that appear when \r\nhovering over a control. Does not\r\nhide toolt" +
-    "ips from menu items.";
-            this.StripItem_NoToolTips.Click += new System.EventHandler(this.StripItem_NoToolTips_Click);
             // 
             // StripItem_UltiHighEnd
             // 
@@ -1618,6 +1620,13 @@
             this.StripItem_6GBVRAM.ToolTipText = "Enhances visual quality while keeping\r\nperformance smooth & stable. Tuned\r\nfor gr" +
     "aphics cards with 6+GB VRAM.\r\n\r\nCredit: axbhub";
             this.StripItem_6GBVRAM.Click += new System.EventHandler(this.StripItem_6GBVRAM_Click);
+            // 
+            // StripItem_Clear
+            // 
+            this.StripItem_Clear.Name = "StripItem_Clear";
+            this.StripItem_Clear.Size = new System.Drawing.Size(180, 22);
+            this.StripItem_Clear.Text = "Clear";
+            this.StripItem_Clear.Click += new System.EventHandler(this.StripItem_Clear_Click);
             // 
             // Form_MainForm
             // 
@@ -1654,13 +1663,13 @@
             this.MenuStrip_MainMenu.ResumeLayout(false);
             this.MenuStrip_MainMenu.PerformLayout();
             this.CMenuStrip_TextEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).EndInit();
             this.GroupBox_GameVer.ResumeLayout(false);
             this.GroupBox_GameVer.PerformLayout();
             this.GroupBox_Misc.ResumeLayout(false);
             this.GroupBox_Misc.PerformLayout();
             this.GroupBox_MoreOptions.ResumeLayout(false);
             this.GroupBox_Advanced.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_Options)).EndInit();
             this.CMenuStrip_Collections.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1793,6 +1802,7 @@
         private System.Windows.Forms.ToolStripMenuItem StripItem_UltiHighEnd;
         private System.Windows.Forms.ToolStripMenuItem StripItem_6GBVRAM;
         public System.Windows.Forms.GroupBox GroupBox_Advanced;
+        private System.Windows.Forms.ToolStripMenuItem StripItem_Clear;
     }
 }
 
