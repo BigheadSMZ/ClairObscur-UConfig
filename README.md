@@ -1,7 +1,7 @@
 # Clair Obscur: Expedition 33 - Unreal Config
 Creates and configures "Engine.ini" for Clair Obscur: Expedition 33.
 
-![image](https://github.com/user-attachments/assets/0d411e32-f02f-410d-ad6d-67ca64010639)
+![image](https://github.com/user-attachments/assets/d9ec6733-fa92-473c-befa-8b071c5a7dfa)
 
 # Installation
 
@@ -19,6 +19,15 @@ The executable can be ran from anywhere, but it is suggested to copy it alongsid
 - Doubles as a launcher using the **Launch Game** button or the menu bar option.
 - Can quickly task kill the game from the menu bar option for quick testing.
 - Compatible with most premade Engine.ini files that use **[SystemSettings]** section.
+
+# Advanced Usage
+
+- Click the **Show Options** radio button under **Advanced Options**.
+- From here a new world opens up in terms of configuration.
+- **Collections** contains a bunch of predefined settings from other mod authors.
+- Copy and paste your own options into the textbox and click **Parse** to add them.
+- Add, delete, or configure options directly from the grid.
+- Parsing values that falls under the "standard" config imports their values.
 
 # Other Info
 
