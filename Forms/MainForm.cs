@@ -650,7 +650,7 @@ namespace ClairObscurConfig
 
             // The text that was on the textbox before it was wiped.
             string TextBoxText = "Copy and paste multiple lines of \"Engine.ini\" options and values here\r\n" +
-                                 "and click \"Parse\" to import them into the options above.Any potential\r\n" +
+                                 "and click \"Parse\" to import them into the options above. Any potential\r\n" +
                                  "duplicate entries will be automatically excluded. When saving the INI,\r\n" +
                                  "all options and values above will also be written to the INI file.";
             // Restore the text.
