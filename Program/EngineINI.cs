@@ -311,13 +311,19 @@ namespace ClairObscurConfig
             // Make sure the backup file exists.
             if (BackupPath.TestPath() & Forms.PromptRestoreINI())
             {
-                // Make sure the INI exists before setting attributes.
+                // Check to see if the INI already exists.
                 if (EngineINI.Path.TestPath())
                 {
+                    // Remove the Read-Only attribute.
                     File.SetAttributes(EngineINI.Path, ~FileAttributes.ReadOnly);
+
+                    // Remove the old INI.
+                    EngineINI.Path.RemovePath();
                 }
-                // Rename the backup to the main INI file.
-                BackupPath.RenamePath(EngineINI.Path, true);
+                // Rename the new file to the INI file.
+                File.Move(BackupPath, EngineINI.Path);
+
+                // Set the Read-Only attribute.
                 File.SetAttributes(EngineINI.Path, FileAttributes.ReadOnly);
 
                 // Disable the backup option since a backup no longer exists.
