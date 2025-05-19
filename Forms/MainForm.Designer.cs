@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
@@ -140,6 +140,7 @@
             this.StripItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripItem_Clear = new System.Windows.Forms.ToolStripMenuItem();
             this.GridView_Options = new System.Windows.Forms.DataGridView();
             this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -157,7 +158,6 @@
             this.StripItem_Clarity = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_UltiHighEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_6GBVRAM = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripItem_Clear = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_Engine33 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_GameArt)).BeginInit();
             this.GroupBox_Main.SuspendLayout();
@@ -1421,20 +1421,27 @@
             this.StripItem_Delete.Text = "Delete";
             this.StripItem_Delete.Click += new System.EventHandler(this.StripItem_Delete_Click);
             // 
+            // StripItem_Clear
+            // 
+            this.StripItem_Clear.Name = "StripItem_Clear";
+            this.StripItem_Clear.Size = new System.Drawing.Size(107, 22);
+            this.StripItem_Clear.Text = "Clear";
+            this.StripItem_Clear.Click += new System.EventHandler(this.StripItem_Clear_Click);
+            // 
             // GridView_Options
             // 
             this.GridView_Options.AllowUserToAddRows = false;
             this.GridView_Options.AllowUserToDeleteRows = false;
             this.GridView_Options.AllowUserToResizeColumns = false;
             this.GridView_Options.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OptionName,
@@ -1445,8 +1452,8 @@
             this.GridView_Options.Name = "GridView_Options";
             this.GridView_Options.RowHeadersVisible = false;
             this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.GridView_Options.ShowCellErrors = false;
             this.GridView_Options.ShowCellToolTips = false;
@@ -1486,12 +1493,12 @@
             // Radio_GamePass
             // 
             this.Radio_GamePass.AutoSize = true;
-            this.Radio_GamePass.Location = new System.Drawing.Point(118, 19);
+            this.Radio_GamePass.Location = new System.Drawing.Point(143, 19);
             this.Radio_GamePass.Name = "Radio_GamePass";
-            this.Radio_GamePass.Size = new System.Drawing.Size(114, 17);
+            this.Radio_GamePass.Size = new System.Drawing.Size(76, 17);
             this.Radio_GamePass.TabIndex = 22;
             this.Radio_GamePass.TabStop = true;
-            this.Radio_GamePass.Text = "GamePass Version";
+            this.Radio_GamePass.Text = "GamePass";
             this.Radio_GamePass.UseVisualStyleBackColor = true;
             this.Radio_GamePass.CheckedChanged += new System.EventHandler(this.Radio_GamePass_CheckedChanged);
             // 
@@ -1500,10 +1507,10 @@
             this.Radio_Steam.AutoSize = true;
             this.Radio_Steam.Location = new System.Drawing.Point(14, 19);
             this.Radio_Steam.Name = "Radio_Steam";
-            this.Radio_Steam.Size = new System.Drawing.Size(93, 17);
+            this.Radio_Steam.Size = new System.Drawing.Size(117, 17);
             this.Radio_Steam.TabIndex = 22;
             this.Radio_Steam.TabStop = true;
-            this.Radio_Steam.Text = "Steam Version";
+            this.Radio_Steam.Text = "Steam/Epic Games";
             this.Radio_Steam.UseVisualStyleBackColor = true;
             this.Radio_Steam.CheckedChanged += new System.EventHandler(this.Radio_Steam_CheckedChanged);
             // 
@@ -1533,7 +1540,7 @@
             // Radio_AdvShow
             // 
             this.Radio_AdvShow.AutoSize = true;
-            this.Radio_AdvShow.Location = new System.Drawing.Point(118, 19);
+            this.Radio_AdvShow.Location = new System.Drawing.Point(120, 19);
             this.Radio_AdvShow.Name = "Radio_AdvShow";
             this.Radio_AdvShow.Size = new System.Drawing.Size(91, 17);
             this.Radio_AdvShow.TabIndex = 23;
@@ -1577,7 +1584,7 @@
             this.StripItem_6GBVRAM,
             this.StripItem_Engine33});
             this.CMenuStrip_Collections.Name = "contextMenuStrip6";
-            this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 158);
+            this.CMenuStrip_Collections.Size = new System.Drawing.Size(225, 136);
             // 
             // StripItem_NoLumen
             // 
@@ -1622,13 +1629,6 @@
             this.StripItem_6GBVRAM.ToolTipText = "Enhances visual quality while keeping\r\nperformance smooth & stable. Tuned\r\nfor gr" +
     "aphics cards with 6+GB VRAM.\r\n\r\nCredit: axbhub";
             this.StripItem_6GBVRAM.Click += new System.EventHandler(this.StripItem_6GBVRAM_Click);
-            // 
-            // StripItem_Clear
-            // 
-            this.StripItem_Clear.Name = "StripItem_Clear";
-            this.StripItem_Clear.Size = new System.Drawing.Size(107, 22);
-            this.StripItem_Clear.Text = "Clear";
-            this.StripItem_Clear.Click += new System.EventHandler(this.StripItem_Clear_Click);
             // 
             // StripItem_Engine33
             // 
