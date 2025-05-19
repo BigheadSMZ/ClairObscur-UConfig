@@ -181,8 +181,6 @@ namespace ClairObscurConfig
 
         public static void ToggleCheckBoxes(bool ToggleState)
         {
-            Console.WriteLine("Launched");
-
             // Track through a variable to make it simpler.
             Config.DisableCheckBoxes = ToggleState;
 
