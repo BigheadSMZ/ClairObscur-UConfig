@@ -26,6 +26,12 @@ namespace ClairObscurConfig
             {
                 Forms.ToggleCheckBoxes(Config.DisableCheckBoxes);
             }
+            // Force a dialog refresh so it at least populates the datagridview. This is handled when toggling the checkboxes, but
+            // since we don't need to call that method if they are not disabled we need to update the dialog window here.
+            else
+            {
+                Forms.UpdateValues();
+            }
             // If the user disabled tooltips, now is a decent time to apply it.
             if (Config.DisableToolTips)
             {
