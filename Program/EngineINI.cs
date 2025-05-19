@@ -134,6 +134,11 @@ namespace ClairObscurConfig
                     // Add the line to the dictionary.
                     EngineINI.MoreEntries.Add(Key, Value);
                 }
+                // If we hit a blank entry exit the loop early.
+                else
+                {
+                    break;
+                }
             }
         }
 
