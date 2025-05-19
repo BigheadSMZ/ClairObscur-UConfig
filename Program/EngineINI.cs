@@ -122,7 +122,7 @@ namespace ClairObscurConfig
             EngineINI.MoreEntries.Clear();
 
             // Loop through all potential entries.
-            for (int i = 0; i < Forms.MaxRows; i++)
+            for (int i = 0; i < Forms.MainDialog.GridView_Options.RowCount; i++)
             {
                 // Get the key and value from the datagridview.
                 object Key   = Forms.MainDialog.GridView_Options[0, i].Value;
