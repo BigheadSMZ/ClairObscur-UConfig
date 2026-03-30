@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ClairObscurConfig
@@ -739,6 +739,23 @@ namespace ClairObscurConfig
         private void StripItem_Clear_Click(object sender, EventArgs e)
         {
             this.RichTextBox_AddOptions.Text = "";
+        }
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //  Camera FOV Settings
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        private void CameraFOV_StripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CameraINI.Initialize())
+            {
+                CameraINI.LoadValues();
+                Forms.CameraDialog.ShowDialog();
+            }
+            else
+            {
+                string Title = "Camera FOV INI Not Found";
+                string Message = "The INI for Camera FOV by MrHunts was not found. You must install it if you want to configure it through this tool.";
+                Forms.OkayDialog.Display(Title, Message, 290, 44, 14, 18, 14);
+            }
         }
     }
 }

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CamForm.Designer.cs">
+      <DependentUpon>CamForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\YesNoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,7 @@
     <Compile Include="Imported\IniFile.cs" />
     <Compile Include="Imported\Wildcard.cs" />
     <Compile Include="Initialization.cs" />
+    <Compile Include="Program\CameraINI.cs" />
     <Compile Include="Program\Config.cs" />
     <Compile Include="Program\EngineINI_Collections.cs" />
     <Compile Include="Program\Forms.cs" />
@@ -84,6 +91,9 @@
     <Compile Include="Program\ValueSwap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program\EngineINI_Presets.cs" />
+    <EmbeddedResource Include="Forms\CamForm.resx">
+      <DependentUpon>CamForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PictureBox_GameArt = new System.Windows.Forms.PictureBox();
             this.GroupBox_Main = new System.Windows.Forms.GroupBox();
             this.CheckBox_FolDist = new System.Windows.Forms.CheckBox();
@@ -122,6 +122,8 @@
             this.StripItem_LaunchSave = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_LaunchClose = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_NoToolTips = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraFOVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStripItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_GitHub = new System.Windows.Forms.ToolStripMenuItem();
             this.StripItem_NexusMods = new System.Windows.Forms.ToolStripMenuItem();
@@ -971,6 +973,7 @@
             this.MainStripItem_Presets,
             this.MainStripItem_Game,
             this.MainStripItem_Options,
+            this.cameraFOVToolStripMenuItem,
             this.MainStripItem_Help});
             this.MenuStrip_MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip_MainMenu.Name = "MenuStrip_MainMenu";
@@ -1256,6 +1259,21 @@
     "ips from menu items.";
             this.StripItem_NoToolTips.Click += new System.EventHandler(this.StripItem_NoToolTips_Click);
             // 
+            // cameraFOVToolStripMenuItem
+            // 
+            this.cameraFOVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configureToolStripMenuItem});
+            this.cameraFOVToolStripMenuItem.Name = "cameraFOVToolStripMenuItem";
+            this.cameraFOVToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.cameraFOVToolStripMenuItem.Text = "CameraFOV";
+            // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configureToolStripMenuItem.Text = "Configure...";
+            this.configureToolStripMenuItem.Click += new System.EventHandler(this.CameraFOV_StripMenuItem_Click);
+            // 
             // MainStripItem_Help
             // 
             this.MainStripItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1434,14 +1452,14 @@
             this.GridView_Options.AllowUserToDeleteRows = false;
             this.GridView_Options.AllowUserToResizeColumns = false;
             this.GridView_Options.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView_Options.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridView_Options.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridView_Options.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OptionName,
@@ -1452,8 +1470,8 @@
             this.GridView_Options.Name = "GridView_Options";
             this.GridView_Options.RowHeadersVisible = false;
             this.GridView_Options.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cascadia Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView_Options.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.GridView_Options.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.GridView_Options.ShowCellErrors = false;
             this.GridView_Options.ShowCellToolTips = false;
@@ -1816,6 +1834,8 @@
         public System.Windows.Forms.GroupBox GroupBox_Advanced;
         private System.Windows.Forms.ToolStripMenuItem StripItem_Clear;
         private System.Windows.Forms.ToolStripMenuItem StripItem_Engine33;
+        private System.Windows.Forms.ToolStripMenuItem cameraFOVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
     }
 }
 

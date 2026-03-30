@@ -12,6 +12,7 @@ namespace ClairObscurConfig
         public static Form_MainForm  MainDialog;
         public static Form_OkayForm  OkayDialog;
         public static Form_YesNoForm YesNoDialog;
+        public static Form_CamForm   CameraDialog;
 
         // Checkbox array is simple. Textbox will also contain numeric up/down
         // which complicates things. But I want them all to be in a single array.
@@ -26,9 +27,10 @@ namespace ClairObscurConfig
         public static void Initialize()
         {
             // Create the dialogs.
-            Forms.MainDialog  = new Form_MainForm();
-            Forms.OkayDialog  = new Form_OkayForm();
-            Forms.YesNoDialog = new Form_YesNoForm();
+            Forms.MainDialog   = new Form_MainForm();
+            Forms.OkayDialog   = new Form_OkayForm();
+            Forms.YesNoDialog  = new Form_YesNoForm();
+            Forms.CameraDialog = new Form_CamForm();
 
             // Set the title of the window to include the current version.
             Forms.MainDialog.Text = Game.Name + " - Unreal Config v" + Config.AppVersion;
@@ -86,7 +88,7 @@ namespace ClairObscurConfig
             // Clear the rows.
             Forms.MainDialog.GridView_Options.Rows.Clear();
 
-            // Default to 100 rows. It's doubtful anyone will need more than that.
+            // Add what I set for maximum rows.
             Forms.MainDialog.GridView_Options.RowCount = Forms.MaxRows;
 
             // Loop through the additional entries.
