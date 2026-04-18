@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Threading;
 using System.Windows.Forms;
-
-// This is a bunch of extensions I created to make certain tasks much simpler. Unfortunately I lost the majority of my source code for all my
-// projects, so this code was originally lost. I managed to recover it via dnSpy and mostly rewrite it to the way it was before. I am importing
-// it and making use of it as a means to "back up" this code as I will probably use it in most of my future projects.
 
 namespace ClairObscurConfig
 {
@@ -35,27 +33,40 @@ namespace ClairObscurConfig
         public static bool TestPath(this string InputPath, bool IsDirectory = false)
         {
             // If the value is null or empty then return false.
-            if (InputPath == null || InputPath == "")
+            if (string.IsNullOrWhiteSpace(InputPath))
                 return false;
 
-            // Attempt to pull attributes from the file/folder.
-            try {
-                FileAttributes Dummy = File.GetAttributes(InputPath);
+            // Test the path for file or directory.
+            try
+            {
+                // Attempt to pull attributes from the file/folder.
+                var attributes = File.GetAttributes(InputPath);
+                bool isDir = (attributes & FileAttributes.Directory) != 0;
+
+                // If parameter is set only return true if it's a directory.
+                if (IsDirectory)
+                    return isDir;
+
+                // If it's a file or directory without the paramemter return true.
+                return true;
             }
             // Catch all known exception types.
-            catch (Exception x) {
-                if (x is DirectoryNotFoundException || x is FileNotFoundException || x is ArgumentException || x is NotSupportedException)
+            catch (Exception x) 
+            {
+                // Catches types where directory does not eixst.
+                if (x is DirectoryNotFoundException || 
+                    x is FileNotFoundException || 
+                    x is ArgumentException || 
+                    x is NotSupportedException)
                     return false;
-            }
-            // The above should already catch most paths or files that don't exist. But any paths or files that make it past
-            // the exception, get the type that they are (path or file) then use the respective method to test if they exist.*/
-            if (File.GetAttributes(InputPath).HasFlag(FileAttributes.Directory))
-                return Directory.Exists(InputPath);
-            else if (!IsDirectory)
-                return File.Exists(InputPath);
 
-            // If file checks were blocked with IsDirectory, we end up here so return false.
-            return false;
+                // Directory exists but is inaccessible.
+                else if (x is UnauthorizedAccessException)
+                    return true;
+
+                // Exception is unknown.
+                return false;
+            }
         }
 
         public static string CreatePath(this string InputPath, bool NoReturn = false)
@@ -74,50 +85,147 @@ namespace ClairObscurConfig
             return null;
         }
 
+        public static void RemovePath(this string inputPath)
+        {
+            // If the path is empty then it does not exist.
+            if (string.IsNullOrEmpty(inputPath))
+                return;
+
+            // Don't even enter the loop if nothing is there.
+            if (!File.Exists(inputPath) && !Directory.Exists(inputPath))
+                return;
+
+            // Set up a loop for retries if a file is still locked when trying to delete it.
+            for (int i = 0; i < 10; i++)
+            {
+                // Attempt to delete the file or folder.
+                try
+                {
+                    // Get whether it's a file or a folder and run the proper delete command.
+                    var attributes = File.GetAttributes(inputPath);
+
+                    // If it's a directory (folder).
+                    if ((attributes & FileAttributes.Directory) != 0)
+                    {
+                        // Clear "read-only" on directories recursively.
+                        foreach (var file in Directory.GetFiles(inputPath, "*", SearchOption.AllDirectories))
+                            File.SetAttributes(file, FileAttributes.Normal);
+                        foreach (var dir in Directory.GetDirectories(inputPath, "*", SearchOption.AllDirectories))
+                            File.SetAttributes(dir, FileAttributes.Normal);
+                       
+                        // Clear potential "read-only" and delete the directory.
+                        File.SetAttributes(inputPath, FileAttributes.Normal);
+                        Directory.Delete(inputPath, true);
+                    }
+                    // If it's simply a file.
+                    else
+                    {
+                        // Clear potential "read-only" and delete the file.
+                        File.SetAttributes(inputPath, FileAttributes.Normal);
+                        File.Delete(inputPath);
+                    }
+                    return;
+                }
+                // Catch exceptions and try to delete again.
+                catch (Exception x) 
+                {
+                    // Catch types where directory does not exist.
+                    if (x is DirectoryNotFoundException || x is FileNotFoundException)
+                        return;
+
+                    // Catch types were a delete retry takes place.
+                    else if (x is IOException || x is UnauthorizedAccessException)
+                        Thread.Sleep(200);
+                }
+            }
+        }
+
+        public static void MovePath(this string Source, string Destination, bool Overwrite = false)
+        {
+            // If the values are null or empty then return false.
+            if (string.IsNullOrWhiteSpace(Source) || string.IsNullOrWhiteSpace(Destination))
+                return;
+
+            // Bail early if source doesn't exist.
+            if (!File.Exists(Source) && !Directory.Exists(Source))
+                return;
+
+            // Get whether it's a file or a folder and run the proper rename command.
+            var attributes = File.GetAttributes(Source);
+
+            // If it's a directory (folder).
+            if ((attributes & FileAttributes.Directory) != 0)
+            {
+                // If the destination exists and we want to overwrite the contents.
+                if (Directory.Exists(Destination))
+                {
+                    if (!Overwrite) return;
+                    Destination.RemovePath();
+                }
+                // Move the new name to the destination.
+                Directory.Move(Source, Destination);
+            }
+            // Move the file to the new destination.
+            else
+            {
+                // If the destination exists and we want to overwrite the contents.
+                if (File.Exists(Destination))
+                {
+                    if (!Overwrite) return;
+                    Destination.RemovePath();
+                }
+                File.Move(Source, Destination);
+            }
+        }
+
         public static void RenamePath(this string Source, string Destination, bool Overwrite = false)
         {
-            // If the destination exists and we wan't to overwrite the contents.
-            if (Overwrite && Destination.TestPath(true))
-                Destination.RemovePath();
-            else
-                return;
-
-            // Move the new name to the destination.
-            Directory.Move(Source, Destination);
+            // Anything I write here would be identical to move so just call that.
+            Source.MovePath(Destination, Overwrite);
         }
 
-        public static void RemovePath(this string InputPath)
+        public static void CopyPath(this string SourcePath, string DestinationPath, bool Overwrite)
         {
             // If the path is empty then it does not exist.
-            if (InputPath == null || InputPath == "")
+            if (SourcePath == null || SourcePath == "")
                 return;
 
-            // If the path exists call the type needed to remove it.
-            if (InputPath.TestPath())
-                if (File.GetAttributes(InputPath) == FileAttributes.Directory)
-                    Directory.Delete(InputPath, true);
-                else
-                    File.Delete(InputPath);
-        }
-
-        public static void MovePath(this string SourcePath, string DestinationPath, bool Overwrite)
-        {
-            // If the path is empty then it does not exist.
-            if (SourcePath == null || SourcePath == "" || DestinationPath == null || DestinationPath == "")
-                return;
-
-            // The path exists so let's try to move it.
+            // The path exists so let's try to copy it.
             if (SourcePath.TestPath())
             {
                 // The destination already exists so either remove it or exit.
-                if (DestinationPath.TestPath() & Overwrite)
-                    DestinationPath.RemovePath();
-                else
-                    return;
+                if (DestinationPath.TestPath())
+                    if (Overwrite)
+                        DestinationPath.RemovePath();
+                    else
+                        return;
 
-                // Move the file to the new destination.
-                File.Move(SourcePath, DestinationPath);
+                // if a folder, copy the folder, subfolders, and files to the new destination..
+                if (File.GetAttributes(SourcePath) == FileAttributes.Directory)
+                {
+                    foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+                        Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
+                    foreach (string newPath in Directory.GetFiles(SourcePath, "*.*",SearchOption.AllDirectories))
+                        File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+                }
+                // Copying a file is a much simpler process.
+                else
+                    File.Copy(SourcePath, DestinationPath);
             }
+        }
+
+        public static bool IsPathEmpty(this string SourcePath)
+        {
+            if (File.GetAttributes(SourcePath) == FileAttributes.Directory)
+            {
+                // If it doesn't exist then treat it as "empty".
+                if (!SourcePath.TestPath())
+                    return true;
+
+                return !Directory.EnumerateFileSystemEntries(SourcePath).Any();
+            }
+            // If it's a file then just return false since the file exists.
+            return false;
         }
 
         public static List<string> GetFiles(this string Path, string SearchPatterns = "*.*", bool Recurse = false)
@@ -244,6 +352,14 @@ namespace ClairObscurConfig
             }
             // Return the string where all '\n' were replaced with '{0}'.
             return NewString;
+        }
+
+        public static string CalculateHash(this string FilePath, string HashType)
+        {
+            if (!FilePath.TestPath()) { return ""; }
+            HashAlgorithm Algorithm = HashAlgorithm.Create(HashType);
+            byte[] ByteArray = File.ReadAllBytes(FilePath);
+            return BitConverter.ToString(Algorithm.ComputeHash(ByteArray)).Replace("-", "");
         }
 
         public static List<string> EnumToList(this IEnumerable<string> EnumArray)
