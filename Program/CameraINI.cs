@@ -33,9 +33,21 @@ namespace ClairObscurConfig
         public static string EsquieOffsetY;
         public static string EsquieOffsetZ;
 
+        public static string FindCameraConfigINI()
+        {
+            foreach (string LoopFile in Config.BasePath.GetFiles(Recurse: true))
+            {
+                string[] files = LoopFile.Split(new char[] {'\\'});
+                string fileName = files[files.Length-1];
+                if (fileName == "CameraConfig.ini")
+                    return LoopFile;
+            }
+            return "";
+        }
+
         public static bool Initialize()
         {
-            IniPath = Config.BasePath + "\\data\\Sandfall\\Binaries\\Win64\\CameraConfig.ini";
+            IniPath = FindCameraConfigINI();
 
             if (!IniPath.TestPath())
                 return false;
